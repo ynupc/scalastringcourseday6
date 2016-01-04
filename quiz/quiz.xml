@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quiz
+    messages_intro="「Day 6 正規表現と文字列操作」"
+    title="Day 6 正規表現と文字列操作"
+    shuffle_questions="true"
+    shuffle_choices="true"
+    show_correct_answer="false"
+    show_instant_result="true"
+    passing_score="100"
+    movable="false"
+    sound="true"
+    lang="ja">
+  <!--Day6-1-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-2-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-3-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-4-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-5-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-6-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-7-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+  <!--Day6-8-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+ <!--Day6-9-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+ <!--Day6-10-->
+  <question
+      statement=""
+      feedback_for_correct_answer=""
+      feedback_for_incorrect_answer="">
+      type="ma">
+    <choices>
+      <choice answer="true"></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+      <choice feedback=""></choice>
+    </choices>
+  </question>
+</quiz>
+
