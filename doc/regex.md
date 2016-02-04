@@ -2,6 +2,8 @@
 正規表現（regular expression、regex）とは、文字列の集合を文字列で表現する方法のことです。
 正規表現は<a href="https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A7%E3%83%A0%E3%82%B9%E3%82%AD%E3%83%BC%E9%9A%8E%E5%B1%A4" target="_blank">チョムスキー階層</a>のタイプ３文法（根が１つの二分木、入れ子構造を持たない文法、正規文法から生成可能、有限オートマトンによって受理可能）です。一般的にプログラミングにおける正規表現はそれに加えどんな文字にも一致する特殊文字「ワイルドカード」を組み合わせたものを指します。ここでの正規表現は便宜上ワイルドカードと組み合わせたものを指します。<br>
 <br>
+Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/util/regex/Pattern.html" target="_blank">JavaのJavadocのPatternクラス</a>に書かれています。
+<br>
 正規表現の例としてUCS-2（2-byte Universal Character Set）、UTF-16（ビッグエンディアン）、UTF-16（リトルエンディアン）の正規表現を次に示します。<br><br>
 例：UCS-2を表す正規表現<strong>（ScalaのChar / Javaのcharに相当）</strong>
 ```
