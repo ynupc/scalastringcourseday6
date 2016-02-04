@@ -1,4 +1,60 @@
 # 1.　正規表現（regular expression、regex）
+
+例：EUC-JPを表す正規表現
+```
+(
+                  [\\x00-\\x7F]|//コードセット０ (ASCII/JIS ローマ字)
+     [\\xA1-\\xFE][\\xA1-\\xFE]|//コードセット１（JIS X 0208:1997）
+             \\x8E[\\xA0-\\xDF]|//コードセット２（半角片仮名）
+\\x8F[\\xA1-\\xFE][\\xA1-\\xFE] //コードセット３（JIS X 0212-1990）
+)
+```
+例：Shift-JISを表す正規表現
+```
+(
+                                   [\\x00-\\x7F]|//ASCII/JIS ローマ字
+[\\x81-\\x9F\\xE0-\\xFC][\\x40-\\x7E\\x80-\\xFC]|//JIS X 0208:1997
+                                   [\\xA0-\\xDF] //半角片仮名
+)
+```
+例：UCS-2を表す正規表現（Javaのchar）
+```
+[\\x00-\\xFF][\\x00-\\xFF]
+```
+
+例：UTF-16を表す正規表現（ビッグエンディアン）（JavaのString）
+
+BOM（ビッグエンディアン）：
+```
+[\\xFE\\xFF]
+```
+
+文字：
+
+```
+(
+               [\\x00-\\xD7\\xE0-\\xFF][\\x00-\\xFF]|//UCS-2
+[\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF][\\x00-\\xFF] //UTF-16代理領域（サロゲートペア）
+                                         //（左がhigh surrogate、右がlow surrogate）
+)
+```
+
+例：UTF-16を表す正規表現（リトルエンディアン）
+
+BOM（リトルエンディアン）：
+```
+[\\xFF\\xFE]
+```
+
+文字：
+```
+(
+               [\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|//UCS-2
+[\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF] //UTF-16代理領域（サロゲートペア）
+                                         //（右がlow surrogate、左がhigh surrogate）
+)
+```
+
 <h3>1.1　一致（match）</h3>
 <ul>
   <li>完全一致（exact match）：ABCDはABCDに完全一致</li>
@@ -26,3 +82,5 @@ Pattern.split
 3|(B(C))|
 4|(C)|
 <h3>1.4　置換（replace）</h3>
+
+<h3>コラム：チョムスキー階層</h3>
