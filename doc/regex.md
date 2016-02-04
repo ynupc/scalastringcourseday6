@@ -69,13 +69,13 @@ BOM（リトルエンディアン）：
 ***
 <h3>1.2　分割（split）</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）する。
-よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用する。
+よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのと逆の処理になります。
 StringTokenizer
 String.split
 Pattern.split
 ***
 <h3>1.3　グループ（group）</h3>
-グループはテキストからパターンマッチにより部分的なテキストを抽出するために使われます。
+グループはテキストからパターンマッチにより部分的なテキストを抽出するために使われます。<br>
 正規表現内を()で囲むとグループが作れます。左から右に左丸括弧を数えることでグループ番号が振られます。例えば、((A)(B(C)))Dの場合、次のように番号付けされます。
 
 グループ番号|部分シーケンス|備考
