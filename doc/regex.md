@@ -11,7 +11,7 @@
 </ul>
 <h3>1.2　分割（split）</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）する。
-
+よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用する。
 StringTokenizer
 String.split
 Pattern.split
