@@ -2,7 +2,7 @@
 <h3>1.1　一致（match）</h3>
 <ul>
   <li>完全一致（exact match）：ABCDはABCDに完全一致</li>
-  <li>部分一致（broad match / partial match）：BCはABCDに部分一致、下記の前方一致・後方一致は部分一致の特殊例
+  <li>部分一致（broad match / partial match）：BCはABCDに部分一致、下記の前方一致・後方一致は部分一致の特殊例、一般的に完全一致は部分一致に含めないが特殊例として解釈することも可能。
 　  <ul>
 　    <li>前方一致（forward match）：ABはABCDに前方一致</li>
 　    <li>後方一致（backward match）：CDはABCDに後方一致</li>
