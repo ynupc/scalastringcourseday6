@@ -35,7 +35,7 @@ BOM（ビッグエンディアン）：
 (
                [\\x00-\\xD7\\xE0-\\xFF][\\x00-\\xFF]|//UCS-2
 [\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF][\\x00-\\xFF] //UTF-16代理領域（サロゲートペア）
-                                         //（左がhigh surrogate、右がlow surrogate）
+//（左の2オクテットがhigh surrogate、右の2オクテットがlow surrogate）
 )
 ```
 
@@ -51,7 +51,7 @@ BOM（リトルエンディアン）：
 (
                [\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|//UCS-2
 [\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF] //UTF-16代理領域（サロゲートペア）
-                                         //（右がlow surrogate、左がhigh surrogate）
+//（右の2オクテットがlow surrogate、左の2オクテットがhigh surrogate）
 )
 ```
 
