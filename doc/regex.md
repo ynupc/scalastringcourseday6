@@ -69,7 +69,7 @@ BOM（リトルエンディアン）：
 ***
 <h3>1.2　分割（split）</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）する。
-よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのと逆の処理になります。
+よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのと逆の処理になります。
 StringTokenizer
 String.split
 Pattern.split
