@@ -1,6 +1,6 @@
 # 1.　正規表現（regular expression、regex）
 
-例：UCS-2を表す正規表現（ScalaのChar / Javaのcharに相当）
+例：UCS-2を表す正規表現<strong>（ScalaのChar / Javaのcharに相当）</strong>
 ```
 [\\x00-\\xFF][\\x00-\\xFF]
 ```
@@ -12,7 +12,7 @@ BOM（ビッグエンディアン）：
 [\\xFE\\xFF]
 ```
 
-文字：（Scala/Javaの文字）
+文字：<strong>（Scala/Javaの文字）</strong>
 
 ```
 (
