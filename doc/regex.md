@@ -56,7 +56,7 @@ BOM（リトルエンディアン）：
 )
 ```
 ***
-<h3>1.1　一致（match）</h3>
+<h3>1.1　一致</h3>
 <ul>
   <li>完全一致（exact match）：ABCDはABCDに完全一致</li>
   <li>部分一致（broad match / partial match）：BCはABCDに部分一致、下記の前方一致・後方一致は部分一致の特殊例、一般的に完全一致は部分一致に含めないが特殊例として解釈することも可能。
@@ -67,15 +67,15 @@ BOM（リトルエンディアン）：
 　</li>
 </ul>
 ***
-<h3>1.2　分割（split）</h3>
+<h3>1.2　分割</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）する。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのと逆の処理になります。
 StringTokenizer
 String.split
 Pattern.split
 ***
-<h3>1.3　グループ（group）</h3>
-グループはテキストからパターンマッチにより部分的なテキストを抽出するために使われます。<br>
+<h3>1.3　抽出</h3>
+テキストからパターンマッチにより部分的なテキストを抽出するためにグループが使われます。<br>
 正規表現内を()で囲むとグループが作れます。左から右に左丸括弧を数えることでグループ番号が振られます。例えば、((A)(B(C)))Dの場合、次のように番号付けされます。
 
 グループ番号|部分シーケンス|備考
@@ -86,6 +86,6 @@ Pattern.split
 3|(B(C))|
 4|(C)|
 ***
-<h3>1.4　置換（replace）</h3>
+<h3>1.4　置換</h3>
 ***
 <h3>コラム：チョムスキー階層</h3>
