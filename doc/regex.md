@@ -9,7 +9,7 @@
 
 BOM（ビッグエンディアン）：
 ```
-[\\xFE\\xFF]
+\\xFE\\xFF
 ```
 
 文字：<strong>（Scala/Javaの文字）</strong>
@@ -26,7 +26,7 @@ BOM（ビッグエンディアン）：
 
 BOM（リトルエンディアン）：
 ```
-[\\xFF\\xFE]
+\\xFF\\xFE
 ```
 
 文字：
