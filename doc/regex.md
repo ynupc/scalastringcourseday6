@@ -17,12 +17,12 @@
                                    [\\xA0-\\xDF] //半角片仮名
 )
 ```
-例：UCS-2を表す正規表現（Javaのchar）
+例：UCS-2を表す正規表現（ScalaのChar / Javaのchar）
 ```
 [\\x00-\\xFF][\\x00-\\xFF]
 ```
 
-例：UTF-16を表す正規表現（ビッグエンディアン）（JavaのString）
+例：UTF-16を表す正規表現（ビッグエンディアン）（Scala/JavaのString）
 
 BOM（ビッグエンディアン）：
 ```
