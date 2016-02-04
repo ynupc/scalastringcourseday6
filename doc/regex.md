@@ -10,7 +10,7 @@
 　</li>
 </ul>
 <h3>1.2　分割（split）</h3>
-区切り文字（delimiter）でトークン（token）にsplit
+区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）する。
 
 StringTokenizer
 String.split
