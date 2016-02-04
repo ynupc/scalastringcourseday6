@@ -1,6 +1,6 @@
 # 1.　正規表現（regular expression、regex）
 
-例：UCS-2を表す正規表現（ScalaのChar / Javaのchar）
+例：UCS-2を表す正規表現（ScalaのChar / Javaのcharに相当）
 ```
 [\\x00-\\xFF][\\x00-\\xFF]
 ```
