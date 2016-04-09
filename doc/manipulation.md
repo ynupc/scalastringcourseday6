@@ -56,15 +56,10 @@
  <br>LCS = ABCD
  </td>
 </tr>
-<tr>
- <td>文字WLCS<br>（Weighted Longest Common Subsequence）</td>
- <td>二つの文字列を比較して共通する文字の集合。文字列の順序は考慮する。
- <br>例：
- </td>
-</tr>
 </table>
 <h4>2.8.2　レーベンシュタイン距離（自作）</h4>
-<h4>2.8.3　LCS（自作）</h4>
+<h4>2.8.3　文字LCS（自作）</h4>
+LCSの長さで類似度を計測することができる。
 <h4>2.8.4　ベクトル化（自作）</h4>
 <table>
 <tr><th>ベクトルの種類</th><th>説明</th></tr>
