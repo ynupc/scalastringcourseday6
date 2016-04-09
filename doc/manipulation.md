@@ -30,7 +30,7 @@
  </td>
 </tr>
 <tr>
- <td>任意ギャップの文字Skip N-gram（Nは２以上の整数）</td>
+ <td>任意ギャップの<br>文字Skip N-gram（Nは２以上の整数）</td>
  <td>非連続なN文字
  <br>例：ABCDE
  <br>Skip 2-gram = AB, AC, AD, AE, BC, BD, BE, CD, CE, DE
@@ -38,7 +38,7 @@
  </td>
 </tr>
 <tr>
- <td>最大ギャップMの文字Skip N-gram（Nは２以上の整数、Mは１以上の整数）</td>
+ <td>最大ギャップMの<br>文字Skip N-gram（Nは２以上の整数、Mは１以上の整数）</td>
  <td>非連続なN文字
  <br>例：ABCDE
  <br>Skip 2-gram（最大ギャップ1） = AB, AC, BC, BD, CD, CE, DE
