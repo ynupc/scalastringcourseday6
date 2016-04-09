@@ -48,11 +48,11 @@
  </td>
 </tr>
 <tr>
- <td>文字Longest Common Subsequence</td>
+ <td>文字LCS<br>Longest Common Subsequence</td>
  <td>二つの文字列を比較して共通する文字の集合。文字列の順序は考慮する。
  <br>例：
  </td>
 </tr>
 </table>
 <h4>2.8.2　レーベンシュタイン距離（自作）</h4>
-<h4>類似度の尺度</h4>
+<h4>2.8.3　類似度の尺度</h4>
