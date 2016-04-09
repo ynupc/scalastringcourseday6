@@ -21,6 +21,15 @@
 <table>
 <tr><th>単位</th><th>説明</th></tr>
 <tr>
+ <td>文字LCS<br>（Longest Common Subsequence）</td>
+ <td>二つの文字列を比較して共通する文字の集合。文字列の順序は考慮する。
+ <br>例：
+ <br>Y1: [A B C D H I K]
+ <br>Y2: [A H B K C I D]
+ <br>LCS = ABCD
+ </td>
+</tr>
+<tr>
  <td>文字N-gram<br>（Nは１以上の整数）</td>
  <td>連続するN文字
  <br>例：ABCDEFG
@@ -47,19 +56,10 @@
  <br>Skip 3-gram（最大ギャップ2） = ABC, ABD, ABE, ACD, ACE, ADE, BCD, BCE, BDE, CDE
  </td>
 </tr>
-<tr>
- <td>文字LCS<br>（Longest Common Subsequence）</td>
- <td>二つの文字列を比較して共通する文字の集合。文字列の順序は考慮する。
- <br>例：
- <br>Y1: [A B C D H I K]
- <br>Y2: [A H B K C I D]
- <br>LCS = ABCD
- </td>
-</tr>
 </table>
-<h4>2.8.2　レーベンシュタイン距離（自作）</h4>
-<h4>2.8.3　文字LCS（自作）</h4>
+<h4>2.8.2　文字LCS（自作）</h4>
 LCSの長さで類似度を計測することができる。
+<h4>2.8.3　レーベンシュタイン距離（自作）</h4>
 <h4>2.8.4　ベクトル化（自作）</h4>
 <table>
 <tr><th>ベクトルの種類</th><th>説明</th></tr>
