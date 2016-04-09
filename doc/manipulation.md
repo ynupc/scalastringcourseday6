@@ -51,6 +51,9 @@
  <td>文字LCS<br>（Longest Common Subsequence）</td>
  <td>二つの文字列を比較して共通する文字の集合。文字列の順序は考慮する。
  <br>例：
+ <br>Y1: [A B C D H I K]
+ <br>Y2: [A H B K C I D]
+ <br>LCS = ABCD
  </td>
 </tr>
 <tr>
