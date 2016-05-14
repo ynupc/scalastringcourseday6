@@ -94,7 +94,29 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <table>
 <tr>
 <th>一致の種類</th>
-<th>次の正規表現を使うと部分一致のfindメソッドで実装可能</th>
+<th>次の正規表現を使うと完全一致のmatches系メソッドで実装可能</th>
+</tr>
+<tr>
+<td>完全一致</td>
+<td>[正規表現]</td>
+</tr>
+<tr>
+<td>部分一致</td>
+<td>.*[正規表現].*</td>
+</tr>
+<tr>
+<td>前方一致</td>
+<td>[正規表現].*</td>
+</tr>
+<tr>
+<td>後方一致</td>
+<td>.*[正規表現]</td>
+</tr>
+</table>
+<table>
+<tr>
+<th>一致の種類</th>
+<th>次の正規表現を使うと部分一致のfind系メソッドで実装可能</th>
 </tr>
 <tr>
 <td>完全一致</td>
@@ -195,13 +217,25 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <h4>1.1.3　前方一致</h4>
 
 ```scala
+  @Test
+  def testForwardMatch(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウナギ")
+    val matcher: Matcher = pattern.matcher(tautology)
 
+    assert(matcher.lookingAt())
+  }
 ```
 
 <h4>1.1.4　後方一致</h4>
 
 ```scala
+  @Test
+  def testBackwardMatch(): Unit = {
+    val pattern: Pattern = Pattern.compile("ギだ。".reverse)
+    val matcher: Matcher = pattern.matcher(tautology.reverse)
 
+    assert(matcher.lookingAt())
+  }
 ```
 ***
 <h3>1.2　分割</h3>
