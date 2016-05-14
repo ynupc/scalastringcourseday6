@@ -94,7 +94,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <table>
 <tr>
 <th>一致の種類</th>
-<th>次の正規表現を使うと完全一致のmatches系メソッドで実装可能</th>
+<th>次の正規表現を使うと完全一致のmatchesメソッドなどで実装可能</th>
 </tr>
 <tr>
 <td>完全一致</td>
