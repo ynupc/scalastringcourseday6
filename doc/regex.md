@@ -73,16 +73,16 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <tr>
 <td>完全一致</td>
 <td>matches</td>
-<td>&nbsp;</td>
+<td>equals, ==</td>
 </tr>
 <tr>
 <td>部分一致</td>
 <td>find</td>
-<td>&nbsp;</td>
+<td>contains</td>
 </tr>
 <tr>
 <td>前方一致</td>
-<td>&nbsp;</td>
+<td>lookingAt</td>
 <td>startsWith</td>
 </tr>
 <tr>
@@ -195,6 +195,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     val allIn: MatchIterator = regex.findAllIn(tautology)
 
     assert(allIn.nonEmpty)
+    assert(allIn.size == 2)
   }
 
   @Test
@@ -211,6 +212,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     val allMatch: Iterator[Match] = regex.findAllMatchIn(tautology)
 
     assert(allMatch.nonEmpty)
+    assert(allMatch.size == 2)
   }
 ```
 
