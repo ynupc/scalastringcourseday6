@@ -91,95 +91,105 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <td>endsWith</td>
 </tr>
 </table>
+<table>
+<tr>
+<th>一致の種類</th>
+<th>次の正規表現を使うと部分一致のfindメソッドで実装可能</th>
+</tr>
+<tr>
+<td>完全一致</td>
+<td>^[正規表現]$</td>
+</tr>
+<tr>
+<td>部分一致</td>
+<td>[正規表現]</td>
+</tr>
+<tr>
+<td>前方一致</td>
+<td>^[正規表現]</td>
+</tr>
+<tr>
+<td>後方一致</td>
+<td>[正規表現]$</td>
+</tr>
+</table>
 <h4>1.1.1　完全一致</h4>
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
   @Test
   def testExactMatch1(): Unit = {
-    //^$をつけなくても良い
     assert(unagiCopula.matches("僕はウナギ"))
-
-    //^$をつけても良い
-    assert(unagiCopula.matches("^僕はウナギ$"))
   }
 
   @Test
   def testExactMatch2(): Unit = {
-    //^$をつけなくても良い
-    val pattern1: Pattern = Pattern.compile("僕はウナギ")
-    val matcher1: Matcher = pattern1.matcher(unagiCopula)
-
-    assert(matcher1.matches())
-
-    //^$をつけても良い
-    val pattern2: Pattern = Pattern.compile("^僕はウナギ$")
-    val matcher2: Matcher = pattern2.matcher(unagiCopula)
-
-    assert(matcher2.matches())
-  }
-
-  @Test
-  def testExactMatch3(): Unit = {
-    //^$をつけなければならない
-    val pattern: Pattern = Pattern.compile("^僕はウナギ$")
-    val matcher: Matcher = pattern.matcher(unagiCopula)
-
-    assert(matcher.find())
+    assert(Pattern.matches("僕はウナギ", unagiCopula))
   }
 
   @Test
   def testExactMatch4(): Unit = {
-    //^$をつけなくても良い
-    assert(Pattern.matches("僕はウナギ", unagiCopula))
+    val pattern: Pattern = Pattern.compile("僕はウナギ")
+    val matcher: Matcher = pattern.matcher(unagiCopula)
 
-    //^$をつけても良い
-    assert(Pattern.matches("^僕はウナギ$", unagiCopula))
+    assert(matcher.matches())
   }
 
   @Test
   def testExactMatch5(): Unit = {
-    //^$をつけなくても良い
-    val regex1: Regex = """僕はウナギ""".r
+    val regex: Regex = """僕はウナギ""".r
     unagiCopula match {
-      case regex1() =>
+      case regex() =>
         assert(true)
       case otherwise =>
         assert(false)
     }
-
-    //^$をつけても良い
-    val regex2: Regex = """^僕はウナギ$""".r
-    unagiCopula match {
-      case regex2() =>
-        assert(true)
-      case otherwise =>
-        assert(false)
-    }
-  }
-
-  @Test
-  def testExactMatch6(): Unit = {
-    //^$をつけなければならない
-    val regex: Regex = """^僕はウナギ$""".r
-    val firstIn: Option[String] = regex.findFirstIn(unagiCopula)
-
-    assert(firstIn.nonEmpty)
-  }
-
-  @Test
-  def testExactMatch7(): Unit = {
-    //^$をつけなければならない
-    val regex: Regex = """^僕はウナギ$""".r
-    val firstMatch: Option[Match] = regex.findFirstMatchIn(unagiCopula)
-
-    assert(firstMatch.nonEmpty)
   }
 ```
 <h4>1.1.2　部分一致</h4>
 
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
 
+  @Test
+  def testBroadMatch1(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウナギ")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    assert(matcher.find())
+  }
+
+  @Test
+  def testBroadMatch2(): Unit = {
+    val regex: Regex = """ウナギ""".r
+    val firstIn: Option[String] = regex.findFirstIn(tautology)
+
+    assert(firstIn.nonEmpty)
+  }
+
+  @Test
+  def testBroadMatch3(): Unit = {
+    val regex: Regex = """ウナギ""".r
+    val allIn: MatchIterator = regex.findAllIn(tautology)
+
+    assert(allIn.nonEmpty)
+  }
+
+  @Test
+  def testBroadMatch4(): Unit = {
+    val regex: Regex = """ウナギ""".r
+    val firstMatch: Option[Match] = regex.findFirstMatchIn(tautology)
+
+    assert(firstMatch.nonEmpty)
+  }
+
+  @Test
+  def testBroadMatch5(): Unit = {
+    val regex: Regex = """ウナギ""".r
+    val allMatch: Iterator[Match] = regex.findAllMatchIn(tautology)
+
+    assert(allMatch.nonEmpty)
+  }
 ```
 
 <h4>1.1.3　前方一致</h4>
