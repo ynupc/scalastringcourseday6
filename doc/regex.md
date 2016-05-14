@@ -64,6 +64,135 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 　  </ul>
 　</li>
 </ul>
+<table>
+<tr>
+<th>一致の種類</th>
+<th>正規表現によるパターンマッチのメソッド名</th>
+<th>表層文字列一致のメソッド名</th>
+</tr>
+<tr>
+<td>完全一致</td>
+<td>matches</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>部分一致</td>
+<td>find</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>前方一致</td>
+<td>&nbsp;</td>
+<td>startsWith</td>
+</tr>
+<tr>
+<td>後方一致</td>
+<td>&nbsp;</td>
+<td>endsWith</td>
+</tr>
+</table>
+<h4>1.1.1　完全一致</h4>
+```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
+  @Test
+  def testExactMatch1(): Unit = {
+    //^$をつけなくても良い
+    assert(unagiCopula.matches("僕はウナギ"))
+
+    //^$をつけても良い
+    assert(unagiCopula.matches("^僕はウナギ$"))
+  }
+
+  @Test
+  def testExactMatch2(): Unit = {
+    //^$をつけなくても良い
+    val pattern1: Pattern = Pattern.compile("僕はウナギ")
+    val matcher1: Matcher = pattern1.matcher(unagiCopula)
+
+    assert(matcher1.matches())
+
+    //^$をつけても良い
+    val pattern2: Pattern = Pattern.compile("^僕はウナギ$")
+    val matcher2: Matcher = pattern2.matcher(unagiCopula)
+
+    assert(matcher2.matches())
+  }
+
+  @Test
+  def testExactMatch3(): Unit = {
+    //^$をつけなければならない
+    val pattern: Pattern = Pattern.compile("^僕はウナギ$")
+    val matcher: Matcher = pattern.matcher(unagiCopula)
+
+    assert(matcher.find())
+  }
+
+  @Test
+  def testExactMatch4(): Unit = {
+    //^$をつけなくても良い
+    assert(Pattern.matches("僕はウナギ", unagiCopula))
+
+    //^$をつけても良い
+    assert(Pattern.matches("^僕はウナギ$", unagiCopula))
+  }
+
+  @Test
+  def testExactMatch5(): Unit = {
+    //^$をつけなくても良い
+    val regex1: Regex = """僕はウナギ""".r
+    unagiCopula match {
+      case regex1() =>
+        assert(true)
+      case otherwise =>
+        assert(false)
+    }
+
+    //^$をつけても良い
+    val regex2: Regex = """^僕はウナギ$""".r
+    unagiCopula match {
+      case regex2() =>
+        assert(true)
+      case otherwise =>
+        assert(false)
+    }
+  }
+
+  @Test
+  def testExactMatch6(): Unit = {
+    //^$をつけなければならない
+    val regex: Regex = """^僕はウナギ$""".r
+    val firstIn: Option[String] = regex.findFirstIn(unagiCopula)
+
+    assert(firstIn.nonEmpty)
+  }
+
+  @Test
+  def testExactMatch7(): Unit = {
+    //^$をつけなければならない
+    val regex: Regex = """^僕はウナギ$""".r
+    val firstMatch: Option[Match] = regex.findFirstMatchIn(unagiCopula)
+
+    assert(firstMatch.nonEmpty)
+  }
+```
+<h4>1.1.2　部分一致</h4>
+
+```scala
+
+```
+
+<h4>1.1.3　前方一致</h4>
+
+```scala
+
+```
+
+<h4>1.1.4　後方一致</h4>
+
+```scala
+
+```
 ***
 <h3>1.2　分割</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
