@@ -116,7 +116,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <table>
 <tr>
 <th>一致の種類</th>
-<th>次の正規表現を使うと部分一致のfind系メソッドで実装可能</th>
+<th>次の正規表現を使うと部分一致のfindメソッドなどで実装可能</th>
 </tr>
 <tr>
 <td>完全一致</td>
@@ -133,6 +133,28 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <tr>
 <td>後方一致</td>
 <td>[正規表現]$</td>
+</tr>
+</table>
+<table>
+<tr>
+<th>一致の種類</th>
+<th>次の正規表現を使うと前方一致のlookingAtメソッドで実装可能</th>
+</tr>
+<tr>
+<td>完全一致</td>
+<td>[正規表現]$</td>
+</tr>
+<tr>
+<td>部分一致</td>
+<td>.*[正規表現]</td>
+</tr>
+<tr>
+<td>前方一致</td>
+<td>[正規表現]</td>
+</tr>
+<tr>
+<td>後方一致</td>
+<td>&nbps;</td>
 </tr>
 </table>
 <h4>1.1.1　完全一致</h4>
