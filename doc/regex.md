@@ -157,6 +157,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <td>&nbsp;</td>
 </tr>
 </table>
+***
 <h4>1.1.1　完全一致（表層文字列）</h4>
 ```scala
   private val unagiCopula: String = "僕はウナギ"
@@ -182,6 +183,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(unagiCopula ne "僕はウサギ")
   }
 ```
+***
 <h4>1.1.2　完全一致（正規表現）</h4>
 ```scala
   private val unagiCopula: String = "僕はウナギ"
@@ -215,6 +217,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     }
   }
 ```
+***
 <h4>1.1.3　部分一致（表層文字列）</h4>
 ```scala
   private val unagiCopula: String = "僕はウナギ"
@@ -224,6 +227,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(unagiCopula.contains("ウナギ"))
   }
 ```
+***
 <h4>1.1.4　部分一致（正規表現）</h4>
 
 ```scala
@@ -271,7 +275,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(allMatch.size == 2)
   }
 ```
-
+***
 <h4>1.1.5　前方一致（表層文字列）</h4>
 ```scala
   @Test
@@ -279,6 +283,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(tautology.startsWith("ウナギ"))
   }
 ```
+***
 <h4>1.1.6　前方一致（正規表現）</h4>
 
 ```scala
@@ -290,6 +295,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(matcher.lookingAt())
   }
 ```
+***
 <h4>1.1.7　後方一致（表層文字列）</h4>
 ```scala
   @Test
@@ -297,6 +303,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(tautology.endsWith("ギだ。"))
   }
 ```
+***
 <h4>1.1.8　後方一致（正規表現）</h4>
 
 ```scala
