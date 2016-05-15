@@ -273,6 +273,12 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 ```
 
 <h4>1.1.5　前方一致（表層文字列）</h4>
+```scala
+  @Test
+  def testStartsWith(): Unit = {
+    assert(tautology.startsWith("ウナギ"))
+  }
+```
 <h4>1.1.6　前方一致（正規表現）</h4>
 
 ```scala
@@ -285,6 +291,12 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
   }
 ```
 <h4>1.1.7　後方一致（表層文字列）</h4>
+```scala
+  @Test
+  def testEndsWith(): Unit = {
+    assert(tautology.endsWith("ギだ。"))
+  }
+```
 <h4>1.1.8　後方一致（正規表現）</h4>
 
 ```scala
