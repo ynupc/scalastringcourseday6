@@ -54,7 +54,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 
 正規表現は、Stringクラス、Patternクラス、Regexクラスのメソッドで使用できます。
 Stringクラスで正規表現を引数とするメソッドはかなりユーティリティが非常に高く適応範囲がかなり限定的なもの（matches、split）です。
-正規表現で可能な全ての処理を使うにはPatternクラスかRegexクラスを使用する必要があります。
+正規表現で可能な全ての処理を行うにはPatternクラスかRegexクラスを使用する必要があります。
 PatternクラスはJavaのAPIで、RegexクラスはScalaのAPIです。
 Regexクラスを使用するとmatch-case文でパターンマッチの分岐を書いたり、抽出したグループの変数名を指定することができ、Patternクラスよりも直感的に実装できるようになります。
 
