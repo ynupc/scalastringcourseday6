@@ -159,6 +159,8 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 </table>
 <h4>1.1.1　完全一致（表層文字列）</h4>
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testStringEqualExpression(): Unit = {
     assert(unagiCopula == "僕はウナギ")
@@ -214,7 +216,14 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
   }
 ```
 <h4>1.1.3　部分一致（表層文字列）</h4>
-
+```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
+  @Test
+  def testContains(): Unit = {
+    assert(unagiCopula.contains("ウナギ"))
+  }
+```scala
 <h4>1.1.4　部分一致（正規表現）</h4>
 
 ```scala
