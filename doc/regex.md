@@ -154,7 +154,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 </tr>
 <tr>
 <td>後方一致</td>
-<td>&nbps;</td>
+<td>&nbsp;</td>
 </tr>
 </table>
 <h4>1.1.1　完全一致</h4>
