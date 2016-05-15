@@ -223,7 +223,7 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
   def testContains(): Unit = {
     assert(unagiCopula.contains("ウナギ"))
   }
-```scala
+```
 <h4>1.1.4　部分一致（正規表現）</h4>
 
 ```scala
