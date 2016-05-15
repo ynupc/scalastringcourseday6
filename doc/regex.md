@@ -319,9 +319,67 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <h3>1.2　分割</h3>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのと逆の処理になります。
-StringTokenizer
-String.split
-Pattern.split
+また、この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
+```scala
+  @Test
+  def testSplit1(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val delimiter: String = ","
+    val tokens: Array[String] = csv.split(delimiter)
+    assert(tokens.sameElements(Array[String]("A", "B", "C", "D", "E", "F")))
+  }
+
+  @Test
+  def testSplit2(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val delimiter: String = ","
+    val limit: Int = 3
+    val tokens: Array[String] = csv.split(delimiter, limit)
+    assert(tokens.sameElements(Array[String]("A", "B", "C,D,E,F")))
+
+    val csv2: String = "A,B"
+    val tokens2: Array[String] = csv2.split(delimiter, limit)
+    assert(tokens2.sameElements(Array[String]("A", "B")))
+  }
+
+  @Test
+  def testSplit3(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val delimiter: Pattern = Pattern.compile(",")
+    val tokens: Array[String] = delimiter.split(csv)
+    assert(tokens.sameElements(Array[String]("A", "B", "C", "D", "E", "F")))
+  }
+
+  @Test
+  def testSplit4(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val delimiter: Pattern = Pattern.compile(",")
+    val limit: Int = 3
+    val tokens: Array[String] = delimiter.split(csv, limit)
+    assert(tokens.sameElements(Array[String]("A", "B", "C,D,E,F")))
+
+    val csv2: String = "A,B"
+    val tokens2: Array[String] = delimiter.split(csv2, limit)
+    assert(tokens2.sameElements(Array[String]("A", "B")))
+  }
+
+  @Test
+  def testSplit5(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val delimiter: Pattern = Pattern.compile(",")
+    val tokens: java.util.stream.Stream[String] = delimiter.splitAsStream(csv)
+    val results: Array[String] = Array[String]("A", "B", "C", "D", "E", "F")
+    var i = 0
+    tokens.forEach(
+      new Consumer[String]() {
+        override def accept(str: String): Unit = {
+          assert(str == results(i))
+          i += 1
+        }
+      }
+    )
+  }
+```
 ***
 <h3>1.3　抽出</h3>
 文字列からパターンマッチにより部分的な文字列を抽出するためにグループが使われます。<br>
