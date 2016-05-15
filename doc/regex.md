@@ -67,28 +67,28 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <table>
 <tr>
 <th>一致の種類</th>
-<th>正規表現によるパターンマッチのメソッド名</th>
 <th>表層文字列一致のメソッド名</th>
+<th>正規表現によるパターンマッチのメソッド名</th>
 </tr>
 <tr>
 <td>完全一致</td>
-<td>matches</td>
 <td>equals, ==</td>
+<td>matches</td>
 </tr>
 <tr>
 <td>部分一致</td>
-<td>find</td>
 <td>contains</td>
+<td>find</td>
 </tr>
 <tr>
 <td>前方一致</td>
-<td>lookingAt</td>
 <td>startsWith</td>
+<td>lookingAt</td>
 </tr>
 <tr>
 <td>後方一致</td>
-<td>&nbsp;</td>
 <td>endsWith</td>
+<td>&nbsp;</td>
 </tr>
 </table>
 <table>
@@ -157,7 +157,30 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
 <td>&nbsp;</td>
 </tr>
 </table>
-<h4>1.1.1　完全一致</h4>
+<h4>1.1.1　完全一致（表層文字列）</h4>
+```scala
+  @Test
+  def testStringEqualExpression(): Unit = {
+    assert(unagiCopula == "僕はウナギ")
+    assert(unagiCopula.equals("僕はウナギ"))
+
+    assert(unagiCopula != "僕はウサギ")
+    assert(!unagiCopula.equals("僕はウサギ"))
+  }
+
+  @Test
+  def testStringEqualExpressionIngnoreCase(): Unit = {
+    assert(!"I am Unagi.".equals("i am unagi."))
+    assert("I am Unagi.".equalsIgnoreCase("i am unagi."))
+  }
+
+  @Test
+  def testStringEqualExpression2(): Unit = {
+    assert(unagiCopula eq "僕はウナギ")
+    assert(unagiCopula ne "僕はウサギ")
+  }
+```
+<h4>1.1.2　完全一致（正規表現）</h4>
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -190,7 +213,9 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     }
   }
 ```
-<h4>1.1.2　部分一致</h4>
+<h4>1.1.3　部分一致（表層文字列）</h4>
+
+<h4>1.1.4　部分一致（正規表現）</h4>
 
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
@@ -238,7 +263,8 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
   }
 ```
 
-<h4>1.1.3　前方一致</h4>
+<h4>1.1.5　前方一致（表層文字列）</h4>
+<h4>1.1.6　前方一致（正規表現）</h4>
 
 ```scala
   @Test
@@ -249,8 +275,8 @@ Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/
     assert(matcher.lookingAt())
   }
 ```
-
-<h4>1.1.4　後方一致</h4>
+<h4>1.1.7　後方一致（表層文字列）</h4>
+<h4>1.1.8　後方一致（正規表現）</h4>
 
 ```scala
   @Test
