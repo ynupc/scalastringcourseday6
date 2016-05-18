@@ -448,6 +448,19 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 
     assert(buffer == Seq[String]("A,B\n", "C,D,E\f", "F"))
   }
+  
+  @Test
+  def testStringTokenizer(): Unit = {
+    //StringTokenizerは互換性を保つためにJavaが残しているlegacy classですので、可能な限り使用は避けましょう。
+    val stringTokenizer = new StringTokenizer("A,B,C,D,E,F", ",")
+    val buffer: ListBuffer[String] = ListBuffer[String]()
+
+    while (stringTokenizer.hasMoreTokens) {
+      buffer += stringTokenizer.nextToken
+    }
+
+    assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
+  }
 ```
 ***
 <h3>1.3　置換</h3>
