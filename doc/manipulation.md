@@ -15,11 +15,112 @@
 ---
 <h3>2.2　パスフィルタ</h3>
 <h4>2.2.1　N番目の文字の取得</h4>
+
+```scala
+  @Test
+  def testNthCharInString1(): Unit = {
+    //Char
+    assert(tautology(3) == 'は')
+  }
+
+  @Test
+  def testNthCharInString2(): Unit = {
+    //Char
+    assert(tautology.charAt(3) == 'は')
+  }
+
+  @Test
+  def testNthCharInString3(): Unit = {
+    //コードポイント
+    assert(tautology.codePointAt(3) == 'は')
+  }
+```
 <h4>2.2.2　部分文字列の取得</h4>
+
+```scala
+  @Test
+  def testSubstring(): Unit = {
+    assert(gardenPathSentence.substring(9, 12) == "ウナギ")
+  }
+```
 <h4>2.2.3　先頭の一文字の取得</h4>
+
+```scala
+  @Test
+  def testHeadChar(): Unit = {
+    assert(unagiCopula.head == '僕')
+  }
+
+  @Test
+  def testHeadCharOption(): Unit = {
+    unagiCopula.headOption match {
+      case Some(head) if head == '僕' =>
+        assert(true)
+      case otherwise =>
+        assert(false)
+    }
+  }
+```
 <h4>2.2.4　先頭のN文字の取得</h4>
+```scala
+  @Test
+  def testHeadString1(): Unit = {
+    val numOfChars: Int = 3
+    assert(tautology.take(numOfChars) == "ウナギ")
+  }
+
+  @Test
+  def testHeadString2(): Unit = {
+    val numOfChars: Int = 3
+    assert(tautology.substring(0, numOfChars) == "ウナギ")
+  }
+
+  @Test
+  def testHeadString3(): Unit = {
+    val numOfChars: Int = 3
+    assert(tautology.dropRight(tautology.length - numOfChars) == "ウナギ")
+  }
+```
 <h4>2.2.5　末尾の一文字の取得</h4>
+
+```scala
+  @Test
+  def testLastChar(): Unit = {
+    assert(unagiCopula.last == 'ギ')
+  }
+
+  @Test
+  def testLastCharOption(): Unit = {
+    unagiCopula.lastOption match {
+      case Some(last) if last == 'ギ' =>
+        assert(true)
+      case otherwise =>
+        assert(false)
+    }
+  }
+```
 <h4>2.2.6　末尾のN文字の取得</h4>
+
+```scala
+  @Test
+  def testLastString1(): Unit = {
+    val numOfChars: Int = 3
+    assert(tautology.takeRight(numOfChars) == "ギだ。")
+  }
+
+  @Test
+  def testLastString2(): Unit = {
+    val numOfChars: Int = 3
+    val index = tautology.length - numOfChars
+    assert(tautology.substring(index) == "ギだ。")
+  }
+
+  @Test
+  def testLastString3(): Unit = {
+    val numOfChars: Int = 3
+    assert(tautology.drop(tautology.length - numOfChars) == "ギだ。")
+  }
+```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
 ---
 <h3>2.3　カットフィルタ</h3>
