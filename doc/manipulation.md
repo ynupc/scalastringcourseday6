@@ -6,10 +6,31 @@
 ```scala
   @Test
   def testAlphabeticalOrder(): Unit = {
+    assert(!('A' < 'A'))
     assert('A' < 'B')
+    assert(!('B' < 'A'))
+    assert(!('B' < 'B'))
+
+    assert('A' <= 'A')
     assert('A' <= 'B')
+    assert('B' <= 'B')
+    assert(!('B' <= 'A'))
+
+    assert(!("AA" < "AA"))
     assert("AA" < "AB")
+    assert(!("AB" < "AA"))
+    assert(!("AB" < "AB"))
+
+    assert("AA" <= "AA")
     assert("AA" <= "AB")
+    assert(!("AB" <= "AA"))
+    assert("AB" <= "AB")
+
+    assert("A" < "AA")
+    assert(!("AA" < "A"))
+
+    assert("A" <= "AA")
+    assert(!("AA" <= "A"))
   }
 ```
 ---
