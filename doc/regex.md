@@ -388,6 +388,56 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
       }
     )
   }
+  
+  @Test
+  def testSplitAt(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val pair: (String, String) = csv.splitAt(3)
+    assert(pair._1 == "A,B")
+    assert(pair._2 == ",C,D,E,F")
+
+    val swappedPair: (String, String) = pair.swap
+    assert(swappedPair._1 == ",C,D,E,F")
+    assert(swappedPair._2 == "A,B")
+  }
+
+  @Test
+  def testSpan(): Unit = {
+    val csv: String = "A,B,C,D,E,F"
+    val pair: (String, String) = csv span {
+      char =>
+        char != 'C'
+    }
+
+    assert(pair._1 == "A,B,")
+    assert(pair._2 == "C,D,E,F")
+  }
+
+  @Test
+  def testSeparateLines1(): Unit = {
+    val multiLine: String = "A,B\nC,D,E\fF"
+    val it: Iterator[String] = multiLine.lines
+
+    val buffer: ListBuffer[String] = ListBuffer[String]()
+    while (it.hasNext) {
+      buffer += it.next
+    }
+
+    assert(buffer == Seq[String]("A,B", "C,D,E", "F"))
+  }
+
+  @Test
+  def testSeparateLines2(): Unit = {
+    val multiLine: String = "A,B\nC,D,E\fF"
+    val it: Iterator[String] = multiLine.linesWithSeparators
+
+    val buffer: ListBuffer[String] = ListBuffer[String]()
+    while (it.hasNext) {
+      buffer += it.next
+    }
+
+    assert(buffer == Seq[String]("A,B\n", "C,D,E\f", "F"))
+  }
 ```
 ***
 <h3>1.3　置換</h3>
