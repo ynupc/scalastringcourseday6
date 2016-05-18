@@ -26,11 +26,11 @@
     assert(!("AB" <= "AA"))
     assert("AB" <= "AB")
 
-    assert("A" < "AA")
-    assert(!("AA" < "A"))
+    assert("B" < "BA")
+    assert(!("BA" < "B"))
 
-    assert("A" <= "AA")
-    assert(!("AA" <= "A"))
+    assert("B" <= "BA")
+    assert(!("BA" <= "B"))
   }
 ```
 ---
