@@ -132,14 +132,15 @@
   @Test
   def testLastString2(): Unit = {
     val numOfChars: Int = 3
-    val index = tautology.length - numOfChars
+    val index: Int = tautology.length - numOfChars
     assert(tautology.substring(index) == "ギだ。")
   }
 
   @Test
   def testLastString3(): Unit = {
     val numOfChars: Int = 3
-    assert(tautology.drop(tautology.length - numOfChars) == "ギだ。")
+    val index: Int = tautology.length - numOfChars
+    assert(tautology.drop(index) == "ギだ。")
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
