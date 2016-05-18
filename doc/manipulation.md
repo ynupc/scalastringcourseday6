@@ -143,3 +143,6 @@ N-gram|異表記|接頭辞の由来|読み方（カタカナ）
 11-gram|undecgram|ラテン|ウンデクグラム
 12-gram|duodecgram|ラテン|デュオデクグラム
 13-gram|tredecgram|ラテン|トレデクグラム
+
+ちなみにラテン語ではなくギリシャ語由来の接頭辞表現を使用すると幾何的なポリグラム（星型のポリゴン）：
+Pentagram（五芒星）、Hexagram（六芒星）、Heptagram（七芒星）、Octagram（八芒星）、Enneagram（九芒星）、Decagram（十芒星）、Hendecagram（十一芒星）、Dodecagram（十二芒星）と名前が被ってしまいます。
