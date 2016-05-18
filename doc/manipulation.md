@@ -105,4 +105,36 @@ LCSの長さで類似度を計測することができる。
 <h4>2.8.5　ベクトル間の類似度（自作）</h4>
 <h4>2.8.6　ベクトル間の距離（自作）</h4>
 <h4>2.8.7　ベクトル間の包含度（自作）</h4>
+***
 <h3>コラム：N-gramの読み方</h3>
+原則は、N-gramの数字Nはラテン語の接頭辞表現が使用されます。
+例えば1-gram、2-gram、3-gramはラテン語のそれぞれuni、bi、triを用いてunigram、bigram、trigramで表現されます。
+読み方はラテン語表記に従って、それぞれ、ユニグラム、バイグラム、トライグラムと読みます。
+ただし、4-gram以降はラテン語より英語でfour-gram、five-gram、six-gramなどのように表記しそのように読むのが一般的のようです。
+
+N-gram|異表記|読み方（カタカナ）
+---|---|---
+1-gram|unigram|ユニグラム
+2-gram|bigram|バイグラム
+3-gram|trigram|トライグラム
+4-gram|four-gram|フォーグラム
+4-gram|quadgram|クアッドグラム
+4-gram|quadrigram|クアッドリグラム
+5-gram|five-gram|ファイブグラム
+5-gram|quintgram|クイントグラム
+6-gram|six-gram|シックスグラム
+6-gram|sexgram|セクスグラム
+7-gram|seven-gram|セブングラム
+7-gram|septgram|セプトグラム
+8-gram|eight-gram|エイトグラム
+8-gram|octgram|セプトグラム
+9-gram|nine-gram|ナイングラム
+9-gram|nongram|ナイングラム
+10-gram|ten-gram|テングラム
+10-gram|decgram|デックグラム
+11-gram|eleven-gram|イレブングラム
+11-gram|undec-gram|アンデックグラム
+12-gram|twelve-gram|トゥウェルブグラム
+12-gram|duodec-gram|デュオデックグラム
+13-gram|thirteen-gram|サーティーングラム
+13-gram|tredec-gram|トレデックグラム
