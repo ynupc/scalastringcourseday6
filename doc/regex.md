@@ -317,7 +317,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 ```scala
   @Test
   def testBackwardMatch(): Unit = {
-    val pattern: Pattern = Pattern.compile("ギだ。".reverse)
+    val pattern: Pattern = Pattern.compile(""。だギ"")
     val matcher: Matcher = pattern.matcher(tautology.reverse)
 
     assert(matcher.lookingAt())
