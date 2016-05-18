@@ -416,6 +416,11 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   @Test
   def testSeparateLines1(): Unit = {
     val multiLine: String = "A,B\nC,D,E\fF"
+    //行末文字：
+    //LF(line feed, 改行, \n, 0x0A)
+    //FF(form feed, 改ページ, \f, 0x0C)
+    //で分割し、
+    //行末文字は削除する
     val it: Iterator[String] = multiLine.lines
 
     val buffer: ListBuffer[String] = ListBuffer[String]()
@@ -429,6 +434,11 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   @Test
   def testSeparateLines2(): Unit = {
     val multiLine: String = "A,B\nC,D,E\fF"
+    //行末文字：
+    //LF(line feed, 改行, \n, 0x0A)
+    //FF(form feed, 改ページ, \f, 0x0C)
+    //で分割し、
+    //行末文字を残す
     val it: Iterator[String] = multiLine.linesWithSeparators
 
     val buffer: ListBuffer[String] = ListBuffer[String]()
