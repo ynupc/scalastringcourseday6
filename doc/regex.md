@@ -403,7 +403,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 
 ```scala
   @Test
-  def testGroup1(): Unit = {
+  def testExtractByPattern1(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -415,7 +415,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testGroup2(): Unit = {
+  def testExtractByPattern2(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -435,7 +435,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testGroup3(): Unit = {
+  def testExtractByPattern3(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -455,7 +455,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testGroup4(): Unit = {
+  def testExtractByPattern4(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -473,7 +473,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testGroupMisc(): Unit = {
+  def testExtractByPattern5(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -556,7 +556,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract1(): Unit = {
+  def testExtractByRegex1(): Unit = {
     val regex: Regex = "ウ((ナ)(ギ))".r
 
     //完全一致
@@ -571,7 +571,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract2(): Unit = {
+  def testExtractByRegex2(): Unit = {
     val regex: Regex = "ウ((ナ)(ギ))".r
 
     "ウナギ" match {
@@ -586,7 +586,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract3(): Unit = {
+  def testExtractByRegex3(): Unit = {
     val regex: Regex = "ウ((ナ)(ギ))".r
 
     //部分一致（前方から解析して最初の一致）
@@ -602,7 +602,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract4(): Unit = {
+  def testExtractByRegex4(): Unit = {
     val regex: Regex = "ウ((ナ)(ギ))".r
 
     //完全一致
@@ -616,7 +616,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract5(): Unit = {
+  def testExtractByRegex5(): Unit = {
     val regex: Regex = new scala.util.matching.Regex("ウ((ナ)(ギ))", "first", "second", "third")
 
     //部分一致（前方から解析して最初の一致）
@@ -641,7 +641,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract6(): Unit = {
+  def testExtractByRegex6(): Unit = {
     val regex: Regex = new scala.util.matching.Regex("ウ(?<first>(?<second>ナ)(?<third>ギ))")
 
     //部分一致（前方から解析して最初の一致）
@@ -670,7 +670,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract7(): Unit = {
+  def testExtractByRegex7(): Unit = {
     val regex: Regex = "ウ((ナ)(ギ))".r
 
     //部分一致（前方から解析して一致する全て）
@@ -690,7 +690,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtract8(): Unit = {
+  def testExtractByRegex8(): Unit = {
     val regex: Regex = new scala.util.matching.Regex("ウ((ナ)(ギ))", "first", "second", "third")
 
     //部分一致（前方から解析して一致する全て）
