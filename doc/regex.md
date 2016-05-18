@@ -505,6 +505,65 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
       "サ") == "ウサギはウサギだ。")
   }
 ```
+位置を指定して置換する。
+```scala
+  @Test
+  def testUpdated(): Unit = {
+    val index: Int = 6
+    val replacement: Char = 'ジ'
+    val result: String = tautology.updated(index, replacement)
+
+    //インデックスが6の位置にある「ギ」が「ジ」に変換されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウナギはウナジだ。")
+  }
+
+  @Test
+  def testPatch(): Unit = {
+    val index: Int = 4
+    val offset: Int = 3
+    val replacement: String = "イヌ"
+    val result: String = tautology.patch(index, replacement, offset)
+
+    //インデックスが4の位置にある「ウ」から３文字分の「ウナギ」が「イヌ」に変換されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウナギはイヌだ。")
+  }
+```
+一致した文字を別の文字に変換する
+```scala
+  @Test
+  def testCollectFirst(): Unit = {
+    val resultOpt: Option[Char] = tautology collectFirst {
+      case 'ギ' => 'コ'
+      case 'ア' => 'ナ'
+      case 'ナ' => 'ン'
+      case '高' => 'く'
+      case '地' => 'ん'
+    }
+
+    assert(tautology == "ウナギはウナギだ。")
+    assert(resultOpt.nonEmpty)
+    //２文字目の「ナ」に最初にマッチするので「ナ」の変更先の「ン」がresultOptに格納されています。
+    assert(resultOpt.get == 'ン')
+  }
+
+  @Test
+  def testCollect(): Unit = {
+    val result: String = tautology collect {
+      case 'ギ' => 'コ'
+      case 'ア' => 'ナ'
+      case 'ナ' => 'ン'
+      case '高' => 'く'
+      case '地' => 'ん'
+      case otherwise => otherwise
+    }
+
+    //「ナ」が「ン」に、「ギ」が「コ」変わっています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウンコはウンコだ。")
+  }
+```
 ***
 <h3>1.4　抽出</h3>
 文字列からパターンマッチにより部分的な文字列を抽出するためにグループが使われます。<br>
