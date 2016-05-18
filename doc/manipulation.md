@@ -125,7 +125,28 @@
 ---
 <h3>2.3　カットフィルタ</h3>
 <h4>2.3.1　N番目の文字の削除</h4>
+
+```scala
+  @Test
+  def testDeleteNthCharInString(): Unit = {
+    val n: Int = 3
+    val builder: StringBuilder = new StringBuilder(tautology.length).append(tautology)
+    builder.deleteCharAt(n)
+    val str: String = builder.result
+    assert(str == "ウナギウナギだ。")
+  }
+```
 <h4>2.3.2　部分文字列の削除</h4>
+
+```scala
+  @Test
+  def testDeleteSubstringInString(): Unit = {
+    val builder: StringBuilder = new StringBuilder(tautology.length).append(tautology)
+    builder.delete(3, 7)
+    val str: String = builder.result
+    assert(str == "ウナギだ。")
+  }
+```
 <h4>2.3.3　先頭の一文字の削除</h4>
 <h4>2.3.4　先頭のN文字の削除</h4>
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
