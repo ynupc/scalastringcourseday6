@@ -138,8 +138,8 @@ N-gram|異表記|接頭辞の由来|読み方（カタカナ）
 6-gram|sexgram|ラテン|セクスグラム
 7-gram|septgram|ラテン|セプトグラム
 8-gram|octgram|ラテン|オクトグラム
-9-gram|nongram|ラテン|ナイングラム
-10-gram|decgram|ラテン|デックグラム
-11-gram|undecgram|ラテン|アンデックグラム
-12-gram|duodecgram|ラテン|デュオデックグラム
-13-gram|tredecgram|ラテン|トレデックグラム
+9-gram|nongram|ラテン|ノングラム
+10-gram|decgram|ラテン|デクグラム
+11-gram|undecgram|ラテン|ウンデクグラム
+12-gram|duodecgram|ラテン|デュオデクグラム
+13-gram|tredecgram|ラテン|トレデクグラム
