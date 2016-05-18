@@ -114,9 +114,9 @@ N-gramの数字Nはラテン語の接頭辞表現が使用されます。
 
 N-gram|異表記|接頭辞の由来|読み方（カタカナ）
 ---|---|---|---
-1-gram|unigram|ラテン|ユニグラム
-2-gram|bigram|ラテン|バイグラム
-3-gram|trigram|ラテン|トライグラム
+1-gram|unigram|ラテン語|ユニグラム
+2-gram|bigram|ラテン語|バイグラム
+3-gram|trigram|ラテン語|トライグラム
 4-gram|four-gram|英語|フォーグラム
 5-gram|five-gram|英語|ファイブグラム
 6-gram|six-gram|英語|シックスグラム
@@ -132,17 +132,17 @@ N-gram|異表記|接頭辞の由来|読み方（カタカナ）
 
 N-gram|異表記|接頭辞の由来|読み方（カタカナ）
 ---|---|---|---
-4-gram|quadgram|ラテン|クアッドグラム
-4-gram|quadrigram|ラテン|クアッドリグラム
-5-gram|quintgram|ラテン|クイントグラム
-6-gram|sexgram|ラテン|セクスグラム
-7-gram|septgram|ラテン|セプトグラム
-8-gram|octgram|ラテン|オクトグラム
-9-gram|nongram|ラテン|ノングラム
-10-gram|decgram|ラテン|デクグラム
-11-gram|undecgram|ラテン|ウンデクグラム
-12-gram|duodecgram|ラテン|デュオデクグラム
-13-gram|tredecgram|ラテン|トレデクグラム
+4-gram|quadgram|ラテン語|クアッドグラム
+4-gram|quadrigram|ラテン語|クアッドリグラム
+5-gram|quintgram|ラテン語|クイントグラム
+6-gram|sexgram|ラテン語|セクスグラム
+7-gram|septgram|ラテン語|セプトグラム
+8-gram|octgram|ラテン語|オクトグラム
+9-gram|nongram|ラテン語|ノングラム
+10-gram|decgram|ラテン語|デクグラム
+11-gram|undecgram|ラテン語|ウンデクグラム
+12-gram|duodecgram|ラテン語|デュオデクグラム
+13-gram|tredecgram|ラテン語|トレデクグラム
 
 ちなみに、ラテン語ではなくギリシャ語由来の接頭辞表現を使用すると幾何的なポリグラム（星型のポリゴン）：
 Pentagram（五芒星、ペンタグラム）、Hexagram（六芒星、ヘクサグラム）、Heptagram（七芒星、ヘプタグラム）、Octagram（八芒星、オクタグラム）、Enneagram（九芒星、エニアグラム）、Decagram（十芒星、デカグラム）、Hendecagram（十一芒星、ヘンデカグラム）、Dodecagram（十二芒星、ドデカグラム）と名前が被ってしまいます。
