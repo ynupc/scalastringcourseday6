@@ -328,6 +328,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
+
 ```scala
   @Test
   def testSplit1(): Unit = {
@@ -395,11 +396,330 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 
 グループ番号|部分シーケンス|備考
 ---|---|---
-0|((A)(B(C)))D|0番には入力シーケンス自体が入ります。
-1|((A)(B(C)))|
-2|(A)|
-3|(B(C))|
-4|(C)|
+0|ウ((ナ)(ギ))|0番には入力シーケンス自体が入ります。
+1|((ナ)(ギ))|
+2|(ナ)|
+3|(ギ)|
+
+```scala
+  @Test
+  def testGroup1(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    while (matcher.find) {
+      val group: String = matcher.group
+
+      assert(group == "ウナギ")
+    }
+  }
+
+  @Test
+  def testGroup2(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    while (matcher.find) {
+      val group0: String = matcher.group(0)
+      val group1: String = matcher.group(1)
+      val group2: String = matcher.group(2)
+      val group3: String = matcher.group(3)
+      //java.lang.IndexOutOfBoundsException: No group 4
+      //val group3: String = matcher.group(4)
+
+      assert(group0 == "ウナギ")
+      assert(group1 == "ナギ")
+      assert(group2 == "ナ")
+      assert(group3 == "ギ")
+    }
+  }
+
+  @Test
+  def testGroup3(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    while (matcher.find) {
+      val group0: String = matcher.group(0)
+      val group1: String = matcher.group(1)
+      val group2: String = matcher.group(2)
+      val group3: String = matcher.group(3)
+      //java.lang.IndexOutOfBoundsException: No group 4
+      //val group3: String = matcher.group(4)
+
+      assert(group0 == "ウナギ")
+      assert(group1 == "ナギ")
+      assert(group2 == "ナ")
+      assert(group3 == "ギ")
+    }
+  }
+
+  @Test
+  def testGroup4(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    while (matcher.find) {
+      val group0: String = matcher.group()
+      val group1: String = matcher.group("first")
+      val group2: String = matcher.group("second")
+      val group3: String = matcher.group("third")
+
+      assert(group0 == "ウナギ")
+      assert(group1 == "ナギ")
+      assert(group2 == "ナ")
+      assert(group3 == "ギ")
+    }
+  }
+
+  @Test
+  def testGroupMisc(): Unit = {
+    val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    var counter: Int = 0
+
+    while (matcher.find) {
+      counter += 1
+
+      assert(matcher.groupCount() == 3)
+
+      counter match {
+        case 1 =>
+          assert(matcher.start()           == 0)
+          assert(matcher.end()             == 3)
+          assert(tautology.substring(0, 3) == "ウナギ")
+          assert(matcher.group()           == "ウナギ")
+          assert(matcher.group(0)          == "ウナギ")
+
+          assert(matcher.start("first")    == 1)
+          assert(matcher.start(1)          == 1)
+          assert(matcher.end("first")      == 3)
+          assert(matcher.end(1)            == 3)
+          assert(tautology.substring(1, 3) == "ナギ")
+          assert(matcher.group("first")    == "ナギ")
+          assert(matcher.group(1)          == "ナギ")
+
+          assert(matcher.start("second")   == 1)
+          assert(matcher.start(2)          == 1)
+          assert(matcher.end("second")     == 2)
+          assert(matcher.end(2)            == 2)
+          assert(tautology.substring(1, 2) == "ナ")
+          assert(matcher.group("second")   == "ナ")
+          assert(matcher.group(2)          == "ナ")
+
+          assert(matcher.start("third")    == 2)
+          assert(matcher.start(3)          == 2)
+          assert(matcher.end("third")      == 3)
+          assert(matcher.end(3)            == 3)
+          assert(tautology.substring(2, 3) == "ギ")
+          assert(matcher.group("third")    == "ギ")
+          assert(matcher.group(3)          == "ギ")
+
+        case 2 =>
+          assert(matcher.start()           == 4)
+          assert(matcher.end()             == 7)
+          assert(tautology.substring(4, 7) == "ウナギ")
+          assert(matcher.group()           == "ウナギ")
+          assert(matcher.group(0)          == "ウナギ")
+
+          assert(matcher.start("first")    == 5)
+          assert(matcher.start(1)          == 5)
+          assert(matcher.end("first")      == 7)
+          assert(matcher.end(1)            == 7)
+          assert(tautology.substring(5, 7) == "ナギ")
+          assert(matcher.group("first")    == "ナギ")
+          assert(matcher.group(1)          == "ナギ")
+
+          assert(matcher.start("second")   == 5)
+          assert(matcher.start(2)          == 5)
+          assert(matcher.end("second")     == 6)
+          assert(matcher.end(2)            == 6)
+          assert(tautology.substring(5, 6) == "ナ")
+          assert(matcher.group("second")   == "ナ")
+          assert(matcher.group(2)          == "ナ")
+
+          assert(matcher.start("third")    == 6)
+          assert(matcher.start(3)          == 6)
+          assert(matcher.end("third")      == 7)
+          assert(matcher.end(3)            == 7)
+          assert(tautology.substring(6, 7) == "ギ")
+          assert(matcher.group("third")    == "ギ")
+          assert(matcher.group(3)          == "ギ")
+
+        case otherwise =>
+          assert(false)
+      }
+    }
+
+    assert(counter == 2)
+  }
+
+  @Test
+  def testExtract1(): Unit = {
+    val regex: Regex = "ウ((ナ)(ギ))".r
+
+    //完全一致
+    val regex(first, second, third) = "ウナギ"
+
+    //val regex(first, second, third) = tautology
+    //scala.MatchError: ウナギはウナギだ。 (of class java.lang.String)
+
+    assert(first  == "ナギ")
+    assert(second == "ナ")
+    assert(third  == "ギ")
+  }
+
+  @Test
+  def testExtract2(): Unit = {
+    val regex: Regex = "ウ((ナ)(ギ))".r
+
+    "ウナギ" match {
+      //完全一致
+      case regex(first, second, third) =>
+        assert(first  == "ナギ")
+        assert(second == "ナ")
+        assert(third  == "ギ")
+      case otherwise =>
+        assert(false)
+    }
+  }
+
+  @Test
+  def testExtract3(): Unit = {
+    val regex: Regex = "ウ((ナ)(ギ))".r
+
+    //部分一致（前方から解析して最初の一致）
+    regex.findFirstIn(tautology) match {
+      //完全一致
+      case Some(regex(first, second, third)) =>
+        assert(first  == "ナギ")
+        assert(second == "ナ")
+        assert(third  == "ギ")
+      case None =>
+        assert(false)
+    }
+  }
+
+  @Test
+  def testExtract4(): Unit = {
+    val regex: Regex = "ウ((ナ)(ギ))".r
+
+    //完全一致
+    for (regex(first, second, third)
+            //部分一致（前方から解析して最初の一致）
+         <- regex.findFirstIn(tautology)) {
+      assert(first  == "ナギ")
+      assert(second == "ナ")
+      assert(third  == "ギ")
+    }
+  }
+
+  @Test
+  def testExtract5(): Unit = {
+    val regex: Regex = new scala.util.matching.Regex("ウ((ナ)(ギ))", "first", "second", "third")
+
+    //部分一致（前方から解析して最初の一致）
+    for (m <- regex.findFirstMatchIn(tautology)) {
+      assert(tautology.substring(m.start, m.end) == "ウナギ")
+
+      assert(m.groupCount == 3)
+      assert(m.groupNames == Seq[String]("first", "second", "third"))
+
+      assert(m.group("first")                          == "ナギ")
+      assert(m.group(1)                                == "ナギ")
+      assert(tautology.substring(m.start(1), m.end(1)) == "ナギ")
+
+      assert(m.group("second")                         == "ナ")
+      assert(m.group(2)                                == "ナ")
+      assert(tautology.substring(m.start(2), m.end(2)) == "ナ")
+
+      assert(m.group("third")                          == "ギ")
+      assert(m.group(3)                                == "ギ")
+      assert(tautology.substring(m.start(3), m.end(3)) == "ギ")
+    }
+  }
+
+  @Test
+  def testExtract6(): Unit = {
+    val regex: Regex = new scala.util.matching.Regex("ウ(?<first>(?<second>ナ)(?<third>ギ))")
+
+    //部分一致（前方から解析して最初の一致）
+    for (m <- regex.findFirstMatchIn(tautology)) {
+      assert(tautology.substring(m.start, m.end) == "ウナギ")
+
+      assert(m.groupCount == 3)
+      //assert(m.groupNames == Seq[String]("first", "second", "third"))
+      //org.scalatest.junit.JUnitTestFailedError: Array() did not equal List("first", "second", "third")
+
+      //assert(m.group("first")                          == "ナギ")
+      //java.util.NoSuchElementException: group name first not defined
+      assert(m.group(1)                                == "ナギ")
+      assert(tautology.substring(m.start(1), m.end(1)) == "ナギ")
+
+      //assert(m.group("second")                         == "ナ")
+      //java.util.NoSuchElementException: group name second not defined
+      assert(m.group(2)                                == "ナ")
+      assert(tautology.substring(m.start(2), m.end(2)) == "ナ")
+
+      //assert(m.group("third")                          == "ギ")
+      //java.util.NoSuchElementException: group name third not defined
+      assert(m.group(3)                                == "ギ")
+      assert(tautology.substring(m.start(3), m.end(3)) == "ギ")
+    }
+  }
+
+  @Test
+  def testExtract7(): Unit = {
+    val regex: Regex = "ウ((ナ)(ギ))".r
+
+    //部分一致（前方から解析して一致する全て）
+    val matches: Regex.MatchIterator = regex.findAllIn(tautology)
+
+    assert(matches.size == 2)
+
+    matches foreach {
+      //完全一致
+      case regex(first, second, third) =>
+        assert(first  == "ナギ")
+        assert(second == "ナ")
+        assert(third  == "ギ")
+      case otherwise =>
+        assert(false)
+    }
+  }
+
+  @Test
+  def testExtract8(): Unit = {
+    val regex: Regex = new scala.util.matching.Regex("ウ((ナ)(ギ))", "first", "second", "third")
+
+    //部分一致（前方から解析して一致する全て）
+    val matches: Iterator[Regex.Match] = regex.findAllMatchIn(tautology)
+
+    assert(matches.size == 2)
+
+    matches foreach {
+      m =>
+        assert(tautology.substring(m.start, m.end) == "ウナギ")
+
+        assert(m.groupCount == 3)
+        assert(m.groupNames == Seq[String]("first", "second", "third"))
+
+        assert(m.group("first")                          == "ナギ")
+        assert(m.group(1)                                == "ナギ")
+        assert(tautology.substring(m.start(1), m.end(1)) == "ナギ")
+
+        assert(m.group("second")                         == "ナ")
+        assert(m.group(2)                                == "ナ")
+        assert(tautology.substring(m.start(2), m.end(2)) == "ナ")
+
+        assert(m.group("third")                          == "ギ")
+        assert(m.group(3)                                == "ギ")
+        assert(tautology.substring(m.start(3), m.end(3)) == "ギ")
+    }
+  }
+```
+
 ***
 <h3>1.4　置換</h3>
 文字列がパターンにマッチしたらマッチした箇所を他の文字列に置き換えます。置き換える文字列を空文字列にすることでマッチした箇所を削除することも可能です。
