@@ -479,14 +479,20 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 ```scala
   @Test
   def testReplace1(): Unit = {
+    //置換前の状態の確認用
+    assert(tautology == "ウナギはウナギだ。")
+
     //文字に一致した全ての箇所を置換
-    assert(tautology.replace('ナ', 'サ') == "ウサギはウサギだ。")
+    val replace1: String = tautology.replace('ナ', 'サ')
+    assert(replace1 == "ウサギはウサギだ。")
 
     //文字列に一致した全ての箇所を置換
-    assert(tautology.replace("ウナギ", "かめ")             == "かめはかめだ。")
+    val replace2: String = tautology.replace("ウナギ", "かめ")
+    assert(replace2             == "かめはかめだ。")
 
     //文字列に一致した全ての箇所を置換
-    assert(tautology.replaceAllLiterally("ウナギ", "かめ") == "かめはかめだ。")
+    val replace3: String = tautology.replaceAllLiterally("ウナギ", "かめ")
+    assert(replace3 == "かめはかめだ。")
   }
 ```
 
@@ -494,15 +500,37 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 ```scala
   @Test
   def testReplace2(): Unit = {
+    //置換前の状態の確認用
+    assert(tautology == "ウナギはウナギだ。")
+
     //正規表現に最初に一致した箇所のみ置換
-    assert(tautology.replaceFirst(
+    val replaceFirst: String = tautology.replaceFirst(
       "[ナニヌネノ]",//カタカナのナ行の１文字を表す正規表現
-      "サ") == "ウサギはウナギだ。")
+      "サ")
+    //最初の「ナ」は「サ」に置換されています。
+    assert(replaceFirst == "ウサギはウナギだ。")
 
     //正規表現に一致した全ての箇所を置換
-    assert(tautology.replaceAll(
+    val replaceAll: String = tautology.replaceAll(
       "[ナニヌネノ]",//カタカナのナ行の１文字を表す正規表現
-      "サ") == "ウサギはウサギだ。")
+      "サ")
+    //「ナ」が全て「サ」に置換されています。
+    assert(replaceAll == "ウサギはウサギだ。")
+  }
+  
+  @Test
+  def testReplace3(): Unit = {
+    //カタカナのナ行の１文字を表す正規表現
+    val pattern: Pattern = Pattern.compile("[ナニヌネノ]")
+    val matcher: Matcher = pattern.matcher(tautology)
+
+    //正規表現に最初に一致した箇所のみ置換
+    val replaceFirst: String = matcher.replaceFirst("サ")
+    assert(replaceFirst == "ウサギはウナギだ。")
+
+    //正規表現に一致した全ての箇所を置換
+    val replaceAll: String = matcher.replaceAll("サ")
+    assert(replaceAll == "ウサギはウサギだ。")
   }
 ```
 位置を指定して置換する。
