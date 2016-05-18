@@ -390,9 +390,26 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
   
   @Test
+  def testStringTokenizer(): Unit = {
+    //StringTokenizerは互換性を保つためにJavaが残しているlegacy classですので、可能な限り使用は避けましょう。
+    val stringTokenizer = new StringTokenizer("A,B,C,D,E,F", ",")
+    val buffer: ListBuffer[String] = ListBuffer[String]()
+
+    while (stringTokenizer.hasMoreTokens) {
+      buffer += stringTokenizer.nextToken
+    }
+
+    assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
+  }
+```
+分割位置を指定して分割します。
+```scala
+  @Test
   def testSplitAt(): Unit = {
     val csv: String = "A,B,C,D,E,F"
-    val pair: (String, String) = csv.splitAt(3)
+    val index: Int = 3
+    //indexの位置で分割する
+    val pair: (String, String) = csv.splitAt(index)
     assert(pair._1 == "A,B")
     assert(pair._2 == ",C,D,E,F")
 
@@ -400,19 +417,24 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
     assert(swappedPair._1 == ",C,D,E,F")
     assert(swappedPair._2 == "A,B")
   }
-
+```
+条件に従わなくなった位置で分割します。
+```scala
   @Test
   def testSpan(): Unit = {
     val csv: String = "A,B,C,D,E,F"
     val pair: (String, String) = csv span {
       char =>
+        //条件に従わなくなったところで分割する
         char != 'C'
     }
 
     assert(pair._1 == "A,B,")
     assert(pair._2 == "C,D,E,F")
   }
-
+```
+行末文字で分割します。
+```scala
   @Test
   def testSeparateLines1(): Unit = {
     val multiLine: String = "A,B\nC,D,E\fF"
@@ -447,19 +469,6 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
     }
 
     assert(buffer == Seq[String]("A,B\n", "C,D,E\f", "F"))
-  }
-  
-  @Test
-  def testStringTokenizer(): Unit = {
-    //StringTokenizerは互換性を保つためにJavaが残しているlegacy classですので、可能な限り使用は避けましょう。
-    val stringTokenizer = new StringTokenizer("A,B,C,D,E,F", ",")
-    val buffer: ListBuffer[String] = ListBuffer[String]()
-
-    while (stringTokenizer.hasMoreTokens) {
-      buffer += stringTokenizer.nextToken
-    }
-
-    assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
   }
 ```
 ***
