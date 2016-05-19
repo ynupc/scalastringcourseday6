@@ -87,19 +87,22 @@
   @Test
   def testTakeHeadString1(): Unit = {
     val numOfChars: Int = 3
-    assert(tautology.take(numOfChars) == "ウナギ")
+    val result: String = tautology.take(numOfChars)
+    assert(result == "ウナギ")
   }
 
   @Test
   def testTakeHeadString2(): Unit = {
     val numOfChars: Int = 3
-    assert(tautology.substring(0, numOfChars) == "ウナギ")
+    val result: String = tautology.substring(0, numOfChars)
+    assert(result == "ウナギ")
   }
 
   @Test
   def testTakeHeadString3(): Unit = {
     val numOfChars: Int = 3
-    assert(tautology.dropRight(tautology.length - numOfChars) == "ウナギ")
+    val result: String = tautology.dropRight(tautology.length - numOfChars)
+    assert(result == "ウナギ")
   }
 ```
 <h4>2.2.5　末尾の一文字の取得</h4>
@@ -126,21 +129,24 @@
   @Test
   def testTakeLastString1(): Unit = {
     val numOfChars: Int = 3
-    assert(tautology.takeRight(numOfChars) == "ギだ。")
+    val result: String = tautology.takeRight(numOfChars)
+    assert(result == "ギだ。")
   }
 
   @Test
   def testTakeLastString2(): Unit = {
     val numOfChars: Int = 3
     val index: Int = tautology.length - numOfChars
-    assert(tautology.substring(index) == "ギだ。")
+    val result: String = tautology.substring(index)
+    assert(result == "ギだ。")
   }
 
   @Test
   def testTakeLastString3(): Unit = {
     val numOfChars: Int = 3
     val index: Int = tautology.length - numOfChars
-    assert(tautology.drop(index) == "ギだ。")
+    val result: String = tautology.drop(index)
+    assert(result == "ギだ。")
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
