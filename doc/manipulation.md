@@ -144,6 +144,105 @@
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
+```scala
+  @Test
+  def testTakeWhile(): Unit = {
+    val result: String = tautology takeWhile {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    }
+
+    //ひらがなの「は」はカタカナの「ア」より小さいので、
+    //「は」までの文字列が出力されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result == "ウナギ")
+  }
+```
+
+```scala
+  @Test
+  def testFilter(): Unit = {
+    val result: String = tautology filter {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    }
+
+    //「ア」以上のCharであるカタカナがフィルターをパスして残ります。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result == "ウナギウナギ")
+  }
+
+  @Test
+  def testWithFilter(): Unit = {
+    val result: String = tautology withFilter {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    } map (char => char)
+
+    //「ア」以上のCharであるカタカナがフィルターをパスして残ります。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result == "ウナギウナギ")
+  }
+```
+
+```scala
+  @Test
+  def testFind(): Unit = {
+    val resultOpt: Option[Char] = tautology find {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たします。
+        char < 'ア'
+    }
+
+    assert(tautology == "ウナギはウナギだ。")
+    assert(resultOpt.nonEmpty)
+    //条件を満たしたひらがなの「は」が格納されています。
+    assert(resultOpt.get == 'は')
+  }
+```
+
+```scala
+  @Test
+  def testPartition(): Unit = {
+    val pair1: (String, String) = tautology partition {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    }
+
+    //カタカナの「ア」以上の文字が連結した文字のみで構成された文字列
+    assert(pair1._1 == "ウナギウナギ")
+    //カタカナの「ア」未満の文字が連結した文字のみで構成された文字列
+    assert(pair1._2 == "はだ。")
+
+    val pair2: (String, String) = tautology partition {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たします。
+        char < 'ア'
+    }
+
+    //カタカナの「ア」未満の文字が連結した文字のみで構成された文字列
+    assert(pair2._1 == "はだ。")
+    //カタカナの「ア」以上の文字が連結した文字のみで構成された文字列
+    assert(pair2._2 == "ウナギウナギ")
+  }
+```
+
 ---
 <h3>2.3　カットフィルタ</h3>
 <h4>2.3.1　N番目の文字の削除</h4>
