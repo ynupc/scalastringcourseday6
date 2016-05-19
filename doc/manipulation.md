@@ -269,14 +269,60 @@
   }
 ```
 <h4>2.3.3　先頭の一文字の削除</h4>
+```scala
+  @Test
+  def testTail(): Unit = {
+    assert(unagiCopula.tail == "はウナギ")
+  }
+```
 <h4>2.3.4　先頭のN文字の削除</h4>
+```scala
+
+```
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
+```scala
+  @Test
+  def testStripPrefix(): Unit = {
+    assert("横浜国立大学".stripPrefix("横浜") == "国立大学")
+    unagiCopula.stringPrefix
+  }
+
+```
 <h4>2.3.6　末尾の一文字の削除</h4>
+```scala
+  @Test
+  def testInit(): Unit = {
+    assert(unagiCopula.init == "僕はウナ")
+  }
+```
 <h4>2.3.7　末尾のN文字の削除</h4>
 <h4>2.3.8　末尾の文字列が一致したら削除</h4>
+```scala
+  @Test
+  def testStripSuffix(): Unit = {
+    assert("横浜国立大学".stripSuffix("立大学") == "横浜国")
+  }
+```
 <h4>2.3.9　末尾改行文字削除</h4>
 <h4>2.3.10　前後の空白文字削除</h4>
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
+```scala
+  @Test
+  def testDropWhile(): Unit = {
+    val result: String = tautology dropWhile {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    }
+
+    //ひらがなの「は」はカタカナの「ア」より小さいので、
+    //「は」までの文字列が除去されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result == "はウナギだ。")
+  }
+```
 ---
 <h3>2.4　ソート</h3>
 <h4>2.4.1　文字によるソート</h4>
