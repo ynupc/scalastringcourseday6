@@ -68,12 +68,12 @@
 
 ```scala
   @Test
-  def testHeadChar(): Unit = {
+  def testTakeHeadChar(): Unit = {
     assert(unagiCopula.head == '僕')
   }
 
   @Test
-  def testHeadCharOption(): Unit = {
+  def testTakeHeadCharOption(): Unit = {
     unagiCopula.headOption match {
       case Some(head) if head == '僕' =>
         assert(true)
@@ -85,19 +85,19 @@
 <h4>2.2.4　先頭のN文字の取得</h4>
 ```scala
   @Test
-  def testHeadString1(): Unit = {
+  def testTakeHeadString1(): Unit = {
     val numOfChars: Int = 3
     assert(tautology.take(numOfChars) == "ウナギ")
   }
 
   @Test
-  def testHeadString2(): Unit = {
+  def testTakeHeadString2(): Unit = {
     val numOfChars: Int = 3
     assert(tautology.substring(0, numOfChars) == "ウナギ")
   }
 
   @Test
-  def testHeadString3(): Unit = {
+  def testTakeHeadString3(): Unit = {
     val numOfChars: Int = 3
     assert(tautology.dropRight(tautology.length - numOfChars) == "ウナギ")
   }
@@ -106,12 +106,12 @@
 
 ```scala
   @Test
-  def testLastChar(): Unit = {
+  def testTakeLastChar(): Unit = {
     assert(unagiCopula.last == 'ギ')
   }
 
   @Test
-  def testLastCharOption(): Unit = {
+  def testTakeLastCharOption(): Unit = {
     unagiCopula.lastOption match {
       case Some(last) if last == 'ギ' =>
         assert(true)
@@ -124,20 +124,20 @@
 
 ```scala
   @Test
-  def testLastString1(): Unit = {
+  def testTakeLastString1(): Unit = {
     val numOfChars: Int = 3
     assert(tautology.takeRight(numOfChars) == "ギだ。")
   }
 
   @Test
-  def testLastString2(): Unit = {
+  def testTakeLastString2(): Unit = {
     val numOfChars: Int = 3
     val index: Int = tautology.length - numOfChars
     assert(tautology.substring(index) == "ギだ。")
   }
 
   @Test
-  def testLastString3(): Unit = {
+  def testTakeLastString3(): Unit = {
     val numOfChars: Int = 3
     val index: Int = tautology.length - numOfChars
     assert(tautology.drop(index) == "ギだ。")
@@ -271,13 +271,41 @@
 <h4>2.3.3　先頭の一文字の削除</h4>
 ```scala
   @Test
-  def testTail(): Unit = {
+  def testDropHeadChar(): Unit = {
     assert(unagiCopula.tail == "はウナギ")
   }
 ```
 <h4>2.3.4　先頭のN文字の削除</h4>
 ```scala
+  @Test
+  def testDropHeadString1(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.drop(numOfChars)
 
+    //先頭の3文字が除去されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "はウナギだ。")
+  }
+
+  @Test
+  def testDropHeadString2(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.substring(numOfChars)
+
+    //先頭の3文字が除去されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "はウナギだ。")
+  }
+
+  @Test
+  def testDropHeadString3(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.takeRight(tautology.length - numOfChars)
+
+    //先頭の3文字が除去されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "はウナギだ。")
+  }
 ```
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
 ```scala
@@ -291,11 +319,43 @@
 <h4>2.3.6　末尾の一文字の削除</h4>
 ```scala
   @Test
-  def testInit(): Unit = {
+  def testDropLastChar(): Unit = {
     assert(unagiCopula.init == "僕はウナ")
   }
 ```
 <h4>2.3.7　末尾のN文字の削除</h4>
+```scala
+  @Test
+  def testDropLastString1(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.dropRight(numOfChars)
+
+    //末尾の３文字が削除されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウナギはウナ")
+  }
+
+  @Test
+  def testDropLastString2(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.substring(0, tautology.length - numOfChars)
+
+    //末尾の３文字が削除されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウナギはウナ")
+  }
+
+  @Test
+  def testDropLastString3(): Unit = {
+    val numOfChars: Int = 3
+    val result: String = tautology.take(tautology.length - numOfChars)
+
+    //末尾の３文字が削除されています。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result    == "ウナギはウナ")
+  }
+```
+
 <h4>2.3.8　末尾の文字列が一致したら削除</h4>
 ```scala
   @Test
