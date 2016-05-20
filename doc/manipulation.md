@@ -369,8 +369,24 @@
     assert("横浜国立大学".stripSuffix("立大学") == "横浜国")
   }
 ```
-<h4>2.3.9　末尾改行文字削除</h4>
-<h4>2.3.10　前後の空白文字削除</h4>
+<h4>2.3.9　先頭・末尾の空白文字削除</h4>
+```scala
+  @Test
+  def testTrim(): Unit = {
+    assert(gardenPathSentence  == "次郎は花子に渡したウナギを呼びつけた。")
+    assert(gardenPathSentence2 == " 次郎は花子に渡したウナギを呼びつけた。\n\n    \r")
+    assert(gardenPathSentence  == gardenPathSentence2.trim)
+  }
+```
+<h4>2.3.10　末尾改行文字削除</h4>
+```scala
+  @Test
+  def testStripLineEnd(): Unit = {
+    assert("\nUnigram\nBigram\rTrigram\n\n".stripLineEnd  == "\nUnigram\nBigram\rTrigram\n")
+    assert("\nUnigram\nBigram\rTrigram\n\r".stripLineEnd  == "\nUnigram\nBigram\rTrigram\n\r")
+    assert("\nUnigram\nBigram\rTrigram\n\n ".stripLineEnd == "\nUnigram\nBigram\rTrigram\n\n ")
+  }
+```
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
 ```scala
   @Test
