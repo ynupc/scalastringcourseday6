@@ -416,6 +416,46 @@
     assert(result == "はウナギだ。")
   }
 ```
+
+```scala
+  @Test
+  def testFilterNot(): Unit = {
+    val result: String = tautology filterNot {
+      char =>
+        //「ア」以上のChar
+        // カタカナはひらがなや句読点よりCharが大きいので、
+        // ひらがなや句読点が来たら条件を満たさなくなります。
+        'ア' <= char
+    }
+
+    //「ア」以上のCharであるカタカナがフィルターでカットされてひらがなが残ります。
+    assert(tautology == "ウナギはウナギだ。")
+    assert(result == "はだ。")
+  }
+```
+
+```scala
+  @Test
+  def testStripMargin(): Unit = {
+    assert("""
+ABC
+DEF
+GHI
+""" == "\nABC\nDEF\nGHI\n")
+
+//    assert("""
+//ここはなし |ABC
+//ここは無視|DEF
+//これは無視|GHI
+//""".stripMargin == "\nABC\nDEF\nGHI\n")
+
+    assert("""
+  %ABC
+  %DEF
+  %GHI
+""".stripMargin('%') == "\nABC\nDEF\nGHI\n")
+  }
+```
 ---
 <h3>2.4　ソート</h3>
 <h4>2.4.1　文字によるソート</h4>
