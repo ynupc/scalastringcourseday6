@@ -763,6 +763,47 @@ GHI
     println(list1.intersect(list2) == Seq[String]("安", "衣", "安", "𠮷"))
   }
 ```
+<h4>2.5.9　combinations</h4>
+```scala
+  @Test
+  def testCombinations(): Unit = {
+    val str: String = "以於𠮷"
+
+    val list: Seq[String] = Seq[String]("以", "於", "𠮷")
+
+    val strCombo: ListBuffer[String] = ListBuffer[String]()
+    str.combinations(2) foreach {strCombo.+=}
+    assert(strCombo == Seq[String]("以於", "以\uD842", "以\uDFB7", "於\uD842", "於\uDFB7", "𠮷"))
+
+    val listCombo: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
+    list.combinations(2) foreach {listCombo.+=}
+    assert(listCombo == Seq[Seq[String]](Seq("以", "於"), Seq("以", "𠮷"), Seq("於", "𠮷")))
+  }
+```
+<h4>2.5.10　permutations</h4>
+```scala
+  @Test
+  def testPermutations(): Unit = {
+    val str: String = "以於𠮷"
+
+    val list: Seq[String] = Seq[String]("以", "於", "𠮷")
+
+    val strPerm: ListBuffer[String] = ListBuffer[String]()
+    str.permutations foreach {strPerm.+=}
+    assert(strPerm == Seq[String](
+      "以於𠮷", "以於\uDFB7\uD842", "以\uD842於\uDFB7", "以𠮷於", "以\uDFB7於\uD842", "以\uDFB7\uD842於",
+      "於以𠮷", "於以\uDFB7\uD842", "於\uD842以\uDFB7", "於𠮷以", "於\uDFB7以\uD842", "於\uDFB7\uD842以",
+      "\uD842以於\uDFB7", "\uD842以\uDFB7於", "\uD842於以\uDFB7", "\uD842於\uDFB7以", "𠮷以於", "𠮷於以",
+      "\uDFB7以於\uD842", "\uDFB7以\uD842於", "\uDFB7於以\uD842", "\uDFB7於\uD842以", "\uDFB7\uD842以於", "\uDFB7\uD842於以"))
+
+    val listPerm: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
+    list.permutations foreach {listPerm.+=}
+    assert(listPerm == Seq[Seq[String]](
+      Seq("以", "於", "𠮷"), Seq("以", "𠮷", "於"),
+      Seq("於", "以", "𠮷"), Seq("於", "𠮷", "以"),
+      Seq("𠮷", "以", "於"), Seq("𠮷", "於", "以")))
+  }
+```
 ---
 <h3>2.6　インデックス</h3>
 <h4>2.6.1　正方向に解析して最初に現れたindexを取得</h4>
