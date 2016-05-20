@@ -382,9 +382,19 @@
 ```scala
   @Test
   def testStripLineEnd(): Unit = {
-    assert("\nUnigram\nBigram\rTrigram\n\n".stripLineEnd  == "\nUnigram\nBigram\rTrigram\n")
-    assert("\nUnigram\nBigram\rTrigram\n\r".stripLineEnd  == "\nUnigram\nBigram\rTrigram\n\r")
-    assert("\nUnigram\nBigram\rTrigram\n\n ".stripLineEnd == "\nUnigram\nBigram\rTrigram\n\n ")
+    //末尾の改行文字\nをひとつ削除
+    assert("\nUnigram\nBigram\r\nTrigram\n".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram")
+    assert("\nUnigram\nBigram\r\nTrigram\n\n".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram\n")
+    
+    //末尾の改行文字\r\nをひとつ削除
+    assert("\nUnigram\nBigram\r\nTrigram\r\n".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram")
+    assert("\nUnigram\nBigram\r\nTrigram\r\n\r\n".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram\r\n")
+    
+    //\rや\n\rは改行文字ではないので削除されません
+    assert("\nUnigram\nBigram\r\nTrigram\n\r".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram\n\r")
+    
+    //半角スペースも削除されません
+    assert("\nUnigram\nBigram\r\nTrigram\n\n ".stripLineEnd == "\nUnigram\nBigram\r\nTrigram\n\n ")
   }
 ```
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
