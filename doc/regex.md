@@ -233,6 +233,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   @Test
   def testContains(): Unit = {
     assert(unagiCopula.contains("ウナギ"))
+    assert(unagiCopula.containsSlice("ウナギ"))
   }
 ```
 ***
