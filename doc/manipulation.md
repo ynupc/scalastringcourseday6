@@ -741,11 +741,27 @@ GHI
 ```
 <h4>2.5.7　distinct</h4>
 ```scala
+  @Test
+  def testDistinct(): Unit = {
+    assert(tautology == "ウナギはウナギだ。")
+    assert(tautology.distinct == "ウナギはだ。")
 
+    val list: Seq[String] = Seq[String]("安", "衣", "安", "安", "宇", "以", "於", "𠮷")
+    assert(list.distinct == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
+  }
 ```
 <h4>2.5.8　intersect</h4>
 ```scala
+  @Test
+  def testIntersect(): Unit = {
+    val str1: String = "$ウ$ナ$ギ$は"
+    val str2: String = "ウ#ナ#ギ#だ#。#"
+    assert(str1.intersect(str2) == "ウナギ")
 
+    val list1: Seq[String] = Seq[String]("安", "衣", "安", "安", "宇", "以", "於", "𠮷")
+    val list2: Seq[String] = Seq[String]("衣", "う", "お", "𠮷", "安", "安", "え", "あ")
+    println(list1.intersect(list2) == Seq[String]("安", "衣", "安", "𠮷"))
+  }
 ```
 ---
 <h3>2.6　インデックス</h3>
