@@ -388,9 +388,9 @@
     assert("\nUnigram\nBigram\r\nTrigram\n\n".stripLineEnd == "\nUnigram\nBigram\r\nTrigram\n")
 
     //末尾の改行文字\r\nをひとつ削除
-    assert("\nUnigram\nBigram\r\nTrigram\r\n".stripLineEnd      == "\nUnigram\nBigram\r\nTrigram")
-    assert("\nUnigram\nBigram\r\nTrigram\r\n\r\n".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram\r\n")
-
+    assert("\nUnigram\nBigram\r\nTrigram\r\n".stripLineEnd     == "\nUnigram\nBigram\r\nTrigram")
+    assert("\nUnigram\nBigram\r\nTrigram\r\n\r\n".stripLineEnd == "\nUnigram\nBigram\r\nTrigram\r\n")
+    
     //\rや\n\rは改行文字ではないので削除されません
     assert("\nUnigram\nBigram\r\nTrigram\n\r".stripLineEnd  == "\nUnigram\nBigram\r\nTrigram\n\r")
 
