@@ -807,10 +807,69 @@ GHI
 ---
 <h3>2.6　インデックス</h3>
 <h4>2.6.1　正方向に解析して最初に現れたindexを取得</h4>
+```scala
+  @Test
+  def testIndexOf1(): Unit = {
+    assert(tautology.indexOf('ギ') == 2)
+  }
+
+  @Test
+  def testIndexOf2(): Unit = {
+    assert(tautology.indexOf('ギ', 3) == 6)
+  }
+
+  @Test
+  def testIndexOf3(): Unit = {
+    assert(tautology.indexOf("ナギ")      == 1)
+    assert(tautology.indexOfSlice("ナギ") == 1)
+  }
+
+  @Test
+  def testIndexOf4(): Unit = {
+    assert(tautology.indexOf("ナギ", 3)      == 5)
+    assert(tautology.indexOfSlice("ナギ", 3) == 5)
+  }
+```
 <h4>2.6.2　逆方向に解析して最初に現れたindexを取得</h4>
+```scala
+  @Test
+  def testLastIndexOf1(): Unit = {
+    assert(tautology.lastIndexOf('ギ') == 6)
+  }
+
+  @Test
+  def testLastIndexOf2(): Unit = {
+    assert(tautology.lastIndexOf('ギ', 3) == 2)
+  }
+
+  @Test
+  def testLastIndexOf3(): Unit = {
+    assert(tautology.lastIndexOf("ナギ")      == 5)
+    assert(tautology.lastIndexOfSlice("ナギ") == 5)
+  }
+
+  @Test
+  def testLastIndexOf4(): Unit = {
+    assert(tautology.lastIndexOf("ナギ", 3)      == 1)
+    assert(tautology.lastIndexOfSlice("ナギ", 3) == 1)
+  }
+```
 <h4>2.6.3　正方向に解析して条件を最初に満たしたindexを取得</h4>
+```scala
+```
 <h4>2.6.4　逆方向に解析して条件を最初に満たしたindexを取得</h4>
+```scala
+```
 <h4>2.6.5　indexが定義されているか</h4>
+```scala
+  @Test
+  def testIsDefinedAt(): Unit = {
+    assert(!tautology.isDefinedAt(-1))
+    assert(tautology.isDefinedAt(0))
+    assert(tautology.isDefinedAt(tautology.length - 1))
+    assert(!tautology.isDefinedAt(tautology.length))
+  }
+```
 ---
 <h3>2.7　イテレータ</h3>
 
