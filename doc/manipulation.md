@@ -767,41 +767,41 @@ GHI
 ```scala
   @Test
   def testCombinations(): Unit = {
-    val str: String = "以於𠮷"
+    val str: String = "𠮷野家"
 
-    val list: Seq[String] = Seq[String]("以", "於", "𠮷")
+    val list: Seq[String] = Seq[String]("𠮷", "野", "家")
 
     val strCombo: ListBuffer[String] = ListBuffer[String]()
     str.combinations(2) foreach {strCombo.+=}
-    assert(strCombo == Seq[String]("以於", "以\uD842", "以\uDFB7", "於\uD842", "於\uDFB7", "𠮷"))
+    assert(strCombo == Seq[String]("𠮷", "\uD842野", "\uD842家", "\uDFB7野", "\uDFB7家", "野家"))
 
     val listCombo: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
     list.combinations(2) foreach {listCombo.+=}
-    assert(listCombo == Seq[Seq[String]](Seq("以", "於"), Seq("以", "𠮷"), Seq("於", "𠮷")))
+    assert(listCombo == Seq[Seq[String]](Seq("𠮷", "野"), Seq("𠮷", "家"), Seq("野", "家")))
   }
 ```
 <h4>2.5.10　permutations</h4>
 ```scala
   @Test
   def testPermutations(): Unit = {
-    val str: String = "以於𠮷"
+    val str: String = "𠮷野家"
 
-    val list: Seq[String] = Seq[String]("以", "於", "𠮷")
+    val list: Seq[String] = Seq[String]("𠮷", "野", "家")
 
     val strPerm: ListBuffer[String] = ListBuffer[String]()
     str.permutations foreach {strPerm.+=}
     assert(strPerm == Seq[String](
-      "以於𠮷", "以於\uDFB7\uD842", "以\uD842於\uDFB7", "以𠮷於", "以\uDFB7於\uD842", "以\uDFB7\uD842於",
-      "於以𠮷", "於以\uDFB7\uD842", "於\uD842以\uDFB7", "於𠮷以", "於\uDFB7以\uD842", "於\uDFB7\uD842以",
-      "\uD842以於\uDFB7", "\uD842以\uDFB7於", "\uD842於以\uDFB7", "\uD842於\uDFB7以", "𠮷以於", "𠮷於以",
-      "\uDFB7以於\uD842", "\uDFB7以\uD842於", "\uDFB7於以\uD842", "\uDFB7於\uD842以", "\uDFB7\uD842以於", "\uDFB7\uD842於以"))
+      "𠮷野家", "𠮷家野", "\uD842野\uDFB7家", "\uD842野家\uDFB7", "\uD842家\uDFB7野", "\uD842家野\uDFB7",
+      "\uDFB7\uD842野家", "\uDFB7\uD842家野", "\uDFB7野\uD842家", "\uDFB7野家\uD842", "\uDFB7家\uD842野", "\uDFB7家野\uD842",
+      "野𠮷家", "野\uD842家\uDFB7", "野\uDFB7\uD842家", "野\uDFB7家\uD842", "野家𠮷", "野家\uDFB7\uD842",
+      "家𠮷野", "家\uD842野\uDFB7", "家\uDFB7\uD842野", "家\uDFB7野\uD842", "家野𠮷", "家野\uDFB7\uD842"))
 
     val listPerm: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
     list.permutations foreach {listPerm.+=}
     assert(listPerm == Seq[Seq[String]](
-      Seq("以", "於", "𠮷"), Seq("以", "𠮷", "於"),
-      Seq("於", "以", "𠮷"), Seq("於", "𠮷", "以"),
-      Seq("𠮷", "以", "於"), Seq("𠮷", "於", "以")))
+      Seq("𠮷", "野", "家"), Seq("𠮷", "家", "野"),
+      Seq("野", "𠮷", "家"), Seq("野", "家", "𠮷"),
+      Seq("家", "𠮷", "野"), Seq("家", "野", "𠮷")))
   }
 ```
 ---
