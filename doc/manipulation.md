@@ -512,18 +512,18 @@ GHI
   @Test
   def testSort4(): Unit = {
     assert(list.sortBy(transform) == Seq[String](
-      "A", "A", "AA", "AB", "B", "BA", "C", "D", "E", "F",
+      "A", "B", "C", "D", "E", "F", "A",
       "a", "b", "c", "d", "e", "f",
-      "、", "。",
       "あ", "い", "う", "え", "お",
       "ア", "イ", "ウ", "エ", "オ",
-      "以", "宇", "安", "於", "衣",
-      "𠮷", "，", "．"
+      "安", "以", "宇", "衣", "於",
+      "。", "、", "．", "，",
+      "AB", "AA", "BA", "𠮷"
     ))
 
     //ここで変換されたものに従って並べることができます
-    def transform(s: String): String = {
-      s
+    def transform(s: String): Int = {
+      s.length
     }
   }
 ```
@@ -639,8 +639,8 @@ GHI
     }
 
     //ここで変換されたものに従って並べることができます
-    def transformString(str: String): String = {
-      str
+    def transformString(str: String): Int = {
+      str.length
     }
   }
 ```
@@ -661,7 +661,7 @@ GHI
     val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
 
     assert(str.minBy(transformChar) == '以')
-    assert(list.minBy(transformString) == "以")
+    assert(list.minBy(transformString) == "安")
 
     //ここで変換されたものに従って並べることができます
     def transformChar(char: Char): Char = {
@@ -669,8 +669,8 @@ GHI
     }
 
     //ここで変換されたものに従って並べることができます
-    def transformString(str: String): String = {
-      str
+    def transformString(str: String): Int = {
+      str.length
     }
   }
 ```
