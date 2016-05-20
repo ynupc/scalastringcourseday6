@@ -511,7 +511,7 @@ GHI
 
   @Test
   def testSort4(): Unit = {
-    assert(list.sortBy(s => transform(s)) == Seq[String](
+    assert(list.sortBy(transform) == Seq[String](
       "A", "A", "AA", "AB", "B", "BA", "C", "D", "E", "F",
       "a", "b", "c", "d", "e", "f",
       "、", "。",
@@ -615,13 +615,138 @@ GHI
 ---
 <h3>2.5　集合演算</h3>
 <h4>2.5.1　max</h4>
+```scala
+  @Test
+  def testMax(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+    val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    assert(str.max == '\uDFB7')
+    assert(list.max == "𠮷")
+  }
+
+  @Test
+  def testMaxBy(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+    val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    assert(str.maxBy(transformChar) == '\uDFB7')
+    assert(list.maxBy(transformString) == "𠮷")
+
+    //ここで変換されたものに従って並べることができます
+    def transformChar(char: Char): Char = {
+      char
+    }
+
+    //ここで変換されたものに従って並べることができます
+    def transformString(str: String): String = {
+      str
+    }
+  }
+```
 <h4>2.5.2　min</h4>
+```scala
+  @Test
+  def testMin(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+    val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    assert(str.min == '以')
+    assert(list.min == "以")
+  }
+
+  @Test
+  def testMinBy(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+    val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    assert(str.minBy(transformChar) == '以')
+    assert(list.minBy(transformString) == "以")
+
+    //ここで変換されたものに従って並べることができます
+    def transformChar(char: Char): Char = {
+      char
+    }
+
+    //ここで変換されたものに従って並べることができます
+    def transformString(str: String): String = {
+      str
+    }
+  }
+```
 <h4>2.5.3　sum</h4>
+```scala
+  @Test
+  def testSum(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+
+    //Charは整数型なので総和が計算でわかりますが、なんのために使うのかはわかりません
+    assert(str.sum == '갍')
+
+    //val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    //Stringは整数型ではないので総和が計算できません
+    //println(list.sum)
+  }
+```
 <h4>2.5.4　product</h4>
+```scala
+  @Test
+  def testProduct(): Unit = {
+    val str: String = "安衣宇以於\uD842\uDFB7"
+
+    //Charは整数型なので総乗が計算でわかりますが、なんのために使うのかはわかりません
+    assert(str.product == 'ㅈ')
+
+    //val list: Seq[String] = Seq[String]("安", "衣", "宇", "以", "於", "𠮷")
+
+    //Stringは整数型ではないので総乗が計算できません
+    //println(list.product)
+  }
+```
 <h4>2.5.5　union</h4>
+```scala
+  @Test
+  def testUnion(): Unit = {
+    val str1: String = "安衣宇"
+    val str2: String = "以於\uD842\uDFB7"
+
+    assert(str1.union(str2) == "安衣宇以於𠮷")
+
+    val list1: Seq[String] = Seq[String]("安", "衣", "宇")
+    val list2: Seq[String] = Seq[String]("以", "於", "𠮷")
+
+    assert(list1.union(list2) == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
+  }
+```
 <h4>2.5.6　diff</h4>
+```scala
+  @Test
+  def testDiff(): Unit = {
+    assert(tautology == "ウナギはウナギだ。")
+    
+    assert(tautology.diff("ウ")            == "ナギはウナギだ。")
+    assert(tautology.diff("ウ").diff("ウ") == "ナギはナギだ。")
+    assert(tautology.diff("ウウ")          == "ナギはナギだ。")
+
+    val list: Seq[String] = Seq[String]("安", "衣", "安", "安", "宇", "以", "於", "𠮷")
+    
+    assert(list.diff(Seq[String]("安"))
+      == Seq[String]("衣", "安", "安", "宇", "以", "於", "𠮷"))
+    assert(list.diff(Seq[String]("安")).diff(Seq[String]("安"))
+      == Seq[String]("衣", "安", "宇", "以", "於", "𠮷"))
+    assert(list.diff(Seq[String]("安", "安"))
+      == Seq[String]("衣", "安", "宇", "以", "於", "𠮷"))
+  }
+```
 <h4>2.5.7　distinct</h4>
+```scala
+
+```
 <h4>2.5.8　intersect</h4>
+```scala
+
+```
 ---
 <h3>2.6　インデックス</h3>
 <h4>2.6.1　正方向に解析して最初に現れたindexを取得</h4>
