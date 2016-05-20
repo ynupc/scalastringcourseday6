@@ -61,7 +61,8 @@
 ```scala
   @Test
   def testSubstring(): Unit = {
-    assert(gardenPathSentence.substring(9, 12) == "ウナギ")
+    assert(gardenPathSentence == "次郎は花子に渡した\nウナギを呼びつけた。")
+    assert(gardenPathSentence.substring(10, 13) == "ウナギ")
   }
 ```
 <h4>2.2.3　先頭の一文字の取得</h4>
@@ -373,8 +374,8 @@
 ```scala
   @Test
   def testTrim(): Unit = {
-    assert(gardenPathSentence  == "次郎は花子に渡したウナギを呼びつけた。")
-    assert(gardenPathSentence2 == " 次郎は花子に渡したウナギを呼びつけた。\n\n    \r")
+    assert(gardenPathSentence  == "次郎は花子に渡した\nウナギを呼びつけた。")
+    assert(gardenPathSentence2 == " 次郎は花子に渡した\nウナギを呼びつけた。\n\n    \r")
     assert(gardenPathSentence  == gardenPathSentence2.trim)
   }
 ```
