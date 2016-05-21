@@ -16,6 +16,16 @@
     assert('B' <= 'B')
     assert(!('B' <= 'A'))
 
+    assert('A'.compare('A') == 0)
+    assert('A'.compare('B') < 0)
+    assert('B'.compare('A') > 0)
+    assert('B'.compare('B') == 0)
+
+    assert('A'.compareTo('A') == 0)
+    assert('A'.compareTo('B') < 0)
+    assert('B'.compareTo('A') > 0)
+    assert('B'.compareTo('B') == 0)
+
     assert(!("AA" < "AA"))
     assert("AA" < "AB")
     assert(!("AB" < "AA"))
@@ -26,11 +36,34 @@
     assert(!("AB" <= "AA"))
     assert("AB" <= "AB")
 
+    assert("AA".compare("AA") == 0)
+    assert("AA".compare("AB") < 0)
+    assert("AB".compare("AA") > 0)
+    assert("AB".compare("AB") == 0)
+
+    assert("AA".compareTo("AA") == 0)
+    assert("AA".compareTo("AB") < 0)
+    assert("AB".compareTo("AA") > 0)
+    assert("AB".compareTo("AB") == 0)
+
     assert("B" < "BA")
     assert(!("BA" < "B"))
 
     assert("B" <= "BA")
     assert(!("BA" <= "B"))
+
+    assert("B".compare("BA") < 0)
+    assert("BA".compare("B") > 0)
+
+    assert("B".compareTo("BA") < 0)
+    assert("BA".compareTo("B") > 0)
+
+    //case
+    assert("A".compareTo("a") < 0)
+    assert("a".compareTo("A") > 0)
+
+    assert("A".compareToIgnoreCase("a") == 0)
+    assert("a".compareToIgnoreCase("A") == 0)
   }
 ```
 ---
