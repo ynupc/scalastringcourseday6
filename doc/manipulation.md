@@ -905,18 +905,18 @@ LCS (Longest Common Subsequence)
 ```scala
   @Test
   def testPrefixLength(): Unit = {
-    assert(tautology.prefixLength(judge) == 2)
+    assert(tautology.prefixLength(where) == 2)
 
-    def judge(char: Char): Boolean = {
+    def where(char: Char): Boolean = {
       char != 'ギ'
     }
   }
 
   @Test
   def testSegmentLength(): Unit = {
-    assert(tautology.segmentLength(judge, 1) == 1)
+    assert(tautology.segmentLength(where, 1) == 1)
 
-    def judge(char: Char): Boolean = {
+    def where(char: Char): Boolean = {
       char != 'ギ'
     }
   }
