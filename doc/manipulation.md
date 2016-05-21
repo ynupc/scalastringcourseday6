@@ -1142,7 +1142,7 @@ LCS (Longest Common Subsequence)
     assert(groups == Seq[String]("僕は", "ウナ", "ギ"))
   }
 ```
-<h4>2.7.3　lines</h4>
+<h4>2.7.4　lines</h4>
 ```scala
   @Test
   def testLines(): Unit = {
