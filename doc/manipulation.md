@@ -1213,24 +1213,24 @@ LCSの長さで類似度を計測することができます。
 ```scala
   @Test
   def testLCSBasedSimilarity(): Unit = {
-    val str1: String = "$ウ$ナ$ギ$は"
-    val str2: String = "ウ#ナ#ギ#だ#。#"
+    val source: String = "$ウ$ナ$ギ$は"
+    val target: String = "ウ#ナ#ギ#だ#。#"
 
-    val codePoints1: Array[Int] = str1.codePoints.toArray
-    val codePoints2: Array[Int] = str2.codePoints.toArray
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
 
-    val length1: Int = codePoints1.length
-    val length2: Int = codePoints2.length
+    val lengthOfSource: Int = codePointsOfSource.length
+    val lengthOfTarget: Int = codePointsOfTarget.length
 
-    val lcs: Array[Int] = codePoints1.intersect(codePoints2)
+    val lcs: Array[Int] = codePointsOfSource.intersect(codePointsOfTarget)
     val lcsLength: Int = lcs.length
 
     assert(lcsLength == 3)
     assert(new String(lcs, 0, lcsLength) == "ウナギ")
 
-    val recall: Double = divide(lcsLength, length1)
+    val recall: Double = divide(lcsLength, lengthOfSource)
 
-    val precision: Double = divide(lcsLength, length2)
+    val precision: Double = divide(lcsLength, lengthOfTarget)
 
     val f1: Double = divide(recall * precision * 2, recall + precision)
 
