@@ -1024,7 +1024,7 @@ LCS (Longest Common Subsequence)
 ```
 ---
 <h3>2.7　イテレータ</h3>
-<h4>2.7.1　</h4>
+<h4>2.7.1　イテレータ</h4>
 ```scala
   @Test
   def testForeach(): Unit = {
@@ -1054,7 +1054,6 @@ LCS (Longest Common Subsequence)
     assert(result == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
   }
 ```
-<h4>2.7.2　</h4>
 ```scala
   @Test
   def testIterator(): Unit = {
@@ -1066,6 +1065,8 @@ LCS (Longest Common Subsequence)
     assert(unagiCopula.reverseIterator.toSeq == Seq[Char]('ギ', 'ナ', 'ウ', 'は', '僕'))
   }
 ```
+<h4>2.7.2　map</h4>
+
 ```scala
   @Test
   def testMap(): Unit = {
@@ -1077,6 +1078,7 @@ LCS (Longest Common Subsequence)
     assert(unagiCopula.reverseMap(char => char) == "ギナウは僕")
   }
 ```
+<h4>2.7.3　sliding</h4>
 ```scala
   @Test
   def testSliding1(): Unit = {
@@ -1140,6 +1142,7 @@ LCS (Longest Common Subsequence)
     assert(groups == Seq[String]("僕は", "ウナ", "ギ"))
   }
 ```
+<h4>2.7.3　lines</h4>
 ```scala
   @Test
   def testLines(): Unit = {
