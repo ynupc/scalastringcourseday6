@@ -1065,7 +1065,8 @@ LCS (Longest Common Subsequence)
   def testReverseIterator(): Unit = {
     assert(unagiCopula.reverseIterator.toSeq == Seq[Char]('ギ', 'ナ', 'ウ', 'は', '僕'))
   }
-
+```
+```scala
   @Test
   def testMap(): Unit = {
     assert(unagiCopula.map(char => char) == "僕はウナギ")
@@ -1075,7 +1076,8 @@ LCS (Longest Common Subsequence)
   def testReverseMap(): Unit = {
     assert(unagiCopula.reverseMap(char => char) == "ギナウは僕")
   }
-
+```
+```scala
   @Test
   def testSliding1(): Unit = {
     val n: Int = 2
@@ -1137,7 +1139,8 @@ LCS (Longest Common Subsequence)
 
     assert(groups == Seq[String]("僕は", "ウナ", "ギ"))
   }
-
+```
+```scala
   @Test
   def testLines(): Unit = {
     val str: String = "\nUnigram\nBigram\r\nTrigram\n\n"
