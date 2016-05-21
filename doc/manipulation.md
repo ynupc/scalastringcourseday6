@@ -1258,8 +1258,8 @@ LCSの長さで類似度を計測することができます。
     val source: String = "$ウウ$ナナ$ギギ$は"
     val target: String = "ウウ#ナナ#ギギ#だ#。#"
 
-    val codePointsOfSource: Array[Int] = source.codePoints.toArray
-    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray.distinct
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray.distinct
 
     val codePointNGramsOfSource: Array[Array[Int]] = codePointsOfSource.sliding(n).toArray
     val codePointNGramsOfTarget: Array[Array[Int]] = codePointsOfTarget.sliding(n).toArray
