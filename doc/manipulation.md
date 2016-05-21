@@ -1258,20 +1258,20 @@ LCSの長さで類似度を計測することができます。
     val source: String = "$ウウ$ナナ$ギギ$は"
     val target: String = "ウウ#ナナ#ギギ#だ#。#"
 
-    val codePointsOfSource: Array[Int] = source.codePoints.toArray.distinct
-    val codePointsOfTarget: Array[Int] = target.codePoints.toArray.distinct
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
 
     val codePointNGramsOfSource: Array[Array[Int]] = codePointsOfSource.sliding(n).toArray
     val codePointNGramsOfTarget: Array[Array[Int]] = codePointsOfTarget.sliding(n).toArray
 
-    val nGramsOfSource: Array[String] = codePointNGramsOfSource.map(codePoints => new String(codePoints, 0, codePoints.length))
-    val nGramsOfTarget: Array[String] = codePointNGramsOfTarget.map(codePoints => new String(codePoints, 0, codePoints.length))
+    val nGramsOfSource: Array[String] = codePointNGramsOfSource.map(codePoints => new String(codePoints, 0, codePoints.length)).distinct
+    val nGramsOfTarget: Array[String] = codePointNGramsOfTarget.map(codePoints => new String(codePoints, 0, codePoints.length)).distinct
 
     assert(nGramsOfSource sameElements Array[String]("$ウ", "ウウ", "ウ$", "$ナ", "ナナ", "ナ$", "$ギ", "ギギ", "ギ$", "$は"))
     assert(nGramsOfTarget sameElements Array[String]("ウウ", "ウ#", "#ナ", "ナナ", "ナ#", "#ギ", "ギギ", "ギ#", "#だ", "だ#", "#。", "。#"))
 
-    val lengthOfSource: Int = codePointNGramsOfSource.length
-    val lengthOfTarget: Int = codePointNGramsOfTarget.length
+    val lengthOfSource: Int = nGramsOfSource.length
+    val lengthOfTarget: Int = nGramsOfTarget.length
 
     assert(lengthOfSource == 10)
     assert(lengthOfTarget == 12)
