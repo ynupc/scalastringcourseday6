@@ -1209,7 +1209,43 @@ LCS (Longest Common Subsequence)
 </table>
 N-gramの読み方については、<a href="#コラムn-gramの読み方">コラム：N-gramの読み方</a>をご参照ください。
 <h4>2.8.2　文字LCS（自作）</h4>
-LCSの長さで類似度を計測することができる。
+LCSの長さで類似度を計測することができます。
+```scala
+  @Test
+  def testLCSBasedSimilarity(): Unit = {
+    val str1: String = "$ウ$ナ$ギ$は"
+    val str2: String = "ウ#ナ#ギ#だ#。#"
+
+    val codePoints1: Array[Int] = str1.codePoints.toArray
+    val codePoints2: Array[Int] = str2.codePoints.toArray
+
+    val length1: Int = codePoints1.length
+    val length2: Int = codePoints2.length
+
+    val lcs: Array[Int] = codePoints1.intersect(codePoints2)
+    val lcsLength: Int = lcs.length
+
+    assert(lcsLength == 3)
+    assert(new String(lcs, 0, lcsLength) == "ウナギ")
+
+    val recall: Double = divide(lcsLength, length1)
+
+    val precision: Double = divide(lcsLength, length2)
+
+    val f1: Double = divide(recall * precision * 2, recall + precision)
+
+    assert(recall    == 0.375D)
+    assert(precision == 0.3D)
+    assert(f1        == 0.33333333333333326D)
+  }
+
+  private def divide(numerator: Double, denominator: Double): Double = {
+    if (denominator == 0) {
+      return 0D
+    }
+    numerator.toDouble / denominator
+  }
+```
 <h4>2.8.3　レーベンシュタイン距離（自作）</h4>
 <h4>2.8.4　ベクトル化（自作）</h4>
 <table>
