@@ -1208,13 +1208,13 @@ LCS (Longest Common Subsequence)
 </tr>
 </table>
 N-gramの読み方については、<a href="#コラムn-gramの読み方">コラム：N-gramの読み方</a>をご参照ください。
-<h4>2.8.2　文字LCS（自作）</h4>
+<h4>2.8.2　文字LCSによるF1値</h4>
 LCSの長さで類似度を計測することができます。
 ```scala
   @Test
-  def testLCSBasedSimilarity(): Unit = {
-    val source: String = "$ウ$ナ$ギ$は"
-    val target: String = "ウ#ナ#ギ#だ#。#"
+  def testLCSBasedF1(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
 
     val codePointsOfSource: Array[Int] = source.codePoints.toArray
     val codePointsOfTarget: Array[Int] = target.codePoints.toArray
@@ -1222,11 +1222,14 @@ LCSの長さで類似度を計測することができます。
     val lengthOfSource: Int = codePointsOfSource.length
     val lengthOfTarget: Int = codePointsOfTarget.length
 
+    assert(lengthOfSource == 11)
+    assert(lengthOfTarget == 13)
+
     val lcs: Array[Int] = codePointsOfSource.intersect(codePointsOfTarget)
     val lcsLength: Int = lcs.length
 
-    assert(lcsLength == 3)
-    assert(new String(lcs, 0, lcsLength) == "ウナギ")
+    assert(lcsLength == 6)
+    assert(new String(lcs, 0, lcsLength) == "ウウナナギギ")
 
     val recall: Double = divide(lcsLength, lengthOfSource)
 
@@ -1234,9 +1237,9 @@ LCSの長さで類似度を計測することができます。
 
     val f1: Double = divide(recall * precision * 2, recall + precision)
 
-    assert(recall    == 0.375D)
-    assert(precision == 0.3D)
-    assert(f1        == 0.33333333333333326D)
+    assert(recall    == 0.5454545454545454D)
+    assert(precision == 0.46153846153846156D)
+    assert(f1        == 0.4999999999999999D)
   }
 
   private def divide(numerator: Double, denominator: Double): Double = {
@@ -1246,8 +1249,59 @@ LCSの長さで類似度を計測することができます。
     numerator / denominator
   }
 ```
-<h4>2.8.3　レーベンシュタイン距離（自作）</h4>
-<h4>2.8.4　ベクトル化（自作）</h4>
+<h4>2.8.3　文字N-gramによるF1値</h4>
+```scala
+  @Test
+  def testNGramBasedF1(): Unit = {
+    val n: Int = 2
+
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
+
+    val codePointNGramsOfSource: Array[Array[Int]] = codePointsOfSource.sliding(n).toArray
+    val codePointNGramsOfTarget: Array[Array[Int]] = codePointsOfTarget.sliding(n).toArray
+
+    val nGramsOfSource: Array[String] = codePointNGramsOfSource.map(codePoints => new String(codePoints, 0, codePoints.length))
+    val nGramsOfTarget: Array[String] = codePointNGramsOfTarget.map(codePoints => new String(codePoints, 0, codePoints.length))
+
+    assert(nGramsOfSource sameElements Array[String]("$ウ", "ウウ", "ウ$", "$ナ", "ナナ", "ナ$", "$ギ", "ギギ", "ギ$", "$は"))
+    assert(nGramsOfTarget sameElements Array[String]("ウウ", "ウ#", "#ナ", "ナナ", "ナ#", "#ギ", "ギギ", "ギ#", "#だ", "だ#", "#。", "。#"))
+
+    val lengthOfSource: Int = codePointNGramsOfSource.length
+    val lengthOfTarget: Int = codePointNGramsOfTarget.length
+
+    assert(lengthOfSource == 10)
+    assert(lengthOfTarget == 12)
+
+    val lcs: Array[String] = nGramsOfSource.intersect(nGramsOfTarget)
+    val lcsLength: Int = lcs.length
+
+    assert(lcsLength == 3)
+    assert(lcs sameElements Array[String]("ウウ", "ナナ", "ギギ"))
+
+    val recall: Double = divide(lcsLength, lengthOfSource)
+
+    val precision: Double = divide(lcsLength, lengthOfTarget)
+
+    val f1: Double = divide(recall * precision * 2, recall + precision)
+
+    assert(recall    == 0.3D)
+    assert(precision == 0.25D)
+    assert(f1        == 0.2727272727272727D)
+  }
+  
+  private def divide(numerator: Double, denominator: Double): Double = {
+    if (denominator == 0) {
+      return 0D
+    }
+    numerator / denominator
+  }
+```
+<h4>2.8.4　レーベンシュタイン距離（自作）</h4>
+<h4>2.8.5　ベクトル化（自作）</h4>
 <table>
 <tr><th>ベクトルの種類</th><th>説明</th></tr>
 <tr><td>頻度ベクトル</td><td>重複したら頻度としてカウントして作成するベクトル</td></tr>
