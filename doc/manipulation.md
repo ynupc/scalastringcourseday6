@@ -925,7 +925,8 @@ LCS (Longest Common Subsequence)
     assert(indices.step  == 1)
     assert(indices == Seq[Int](0, 1, 2, 3, 4, 5, 6, 7, 8))
   }
-
+```
+```scala
   @Test
   def testZipWithIndex(): Unit = {
     assert(tautology.zipWithIndex == Seq[(Char, Int)](
