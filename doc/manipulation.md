@@ -858,11 +858,82 @@ LCS (Longest Common Subsequence)
 ```
 <h4>2.6.3　正方向に解析して条件を最初に満たしたindexを取得</h4>
 ```scala
+  @Test
+  def testPrefixLength(): Unit = {
+    assert(tautology.prefixLength(judge) == 2)
+
+    def judge(char: Char): Boolean = {
+      char != 'ギ'
+    }
+  }
+
+  @Test
+  def testSegmentLength(): Unit = {
+    assert(tautology.segmentLength(judge, 1) == 1)
+
+    def judge(char: Char): Boolean = {
+      char != 'ギ'
+    }
+  }
+
+  @Test
+  def testIndexWhere1(): Unit = {
+    assert(tautology.indexWhere(where) == 2)
+
+    def where(char: Char): Boolean = {
+      char == 'ギ'
+    }
+  }
+
+  @Test
+  def testIndexWhere2(): Unit = {
+    assert(tautology.indexWhere(where) == 2)
+
+    def where(char: Char): Boolean = {
+      char == 'ギ'
+    }
+  }
 ```
 <h4>2.6.4　逆方向に解析して条件を最初に満たしたindexを取得</h4>
 ```scala
+  @Test
+  def testLastIndexWhere1(): Unit = {
+    assert(tautology.lastIndexWhere(where) == 6)
+
+    def where(char: Char): Boolean = {
+      char == 'ギ'
+    }
+  }
+
+  @Test
+  def testLastIndexWhere2(): Unit = {
+    assert(tautology.lastIndexWhere(where) == 6)
+
+    def where(char: Char): Boolean = {
+      char == 'ギ'
+    }
+  }
 ```
-<h4>2.6.5　indexが定義されているか</h4>
+<h4>2.6.5　indexを全て取得</h4>
+```scala
+  @Test
+  def testIndices(): Unit = {
+    val indices: Range = tautology.indices
+    assert(indices.nonEmpty)
+    assert(indices.start == 0)
+    assert(indices.end   == 9)
+    assert(indices.step  == 1)
+    assert(indices == Seq[Int](0, 1, 2, 3, 4, 5, 6, 7, 8))
+  }
+
+  @Test
+  def testZipWithIndex(): Unit = {
+    assert(tautology.zipWithIndex == Seq[(Char, Int)](
+      ('ウ', 0), ('ナ', 1), ('ギ', 2), ('は', 3),
+      ('ウ', 4), ('ナ', 5), ('ギ', 6), ('だ', 7), ('。', 8)))
+  }
+```
+<h4>2.6.6　indexが定義されているか</h4>
 ```scala
   @Test
   def testIsDefinedAt(): Unit = {
