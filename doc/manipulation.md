@@ -705,6 +705,7 @@ GHI
   }
 ```
 <h4>2.5.5　union</h4>
+unionメソッドにより文字列の結合ができますが、concatや+演算子の方が高速です。
 ```scala
   @Test
   def testUnion(): Unit = {
@@ -751,6 +752,7 @@ GHI
   }
 ```
 <h4>2.5.8　intersect</h4>
+LCS (Longest Common Subsequence)
 ```scala
   @Test
   def testIntersect(): Unit = {
