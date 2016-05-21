@@ -494,11 +494,31 @@ GHI
       "以", "宇", "安", "於", "衣",
       "𠮷", "，", "．"
     ))
+    
+    assert(list.sortWith(_ < _) == Seq[String](
+      "A", "A", "AA", "AB", "B", "BA", "C", "D", "E", "F",
+      "a", "b", "c", "d", "e", "f",
+      "、", "。",
+      "あ", "い", "う", "え", "お",
+      "ア", "イ", "ウ", "エ", "オ",
+      "以", "宇", "安", "於", "衣",
+      "𠮷", "，", "．"
+    ))
   }
 
   @Test
   def testSort3(): Unit = {
     assert(list.sortWith((a, b) => a <= b) == Seq[String](
+      "A", "A", "AA", "AB", "B", "BA", "C", "D", "E", "F",
+      "a", "b", "c", "d", "e", "f",
+      "、", "。",
+      "あ", "い", "う", "え", "お",
+      "ア", "イ", "ウ", "エ", "オ",
+      "以", "宇", "安", "於", "衣",
+      "𠮷", "，", "．"
+    ))
+    
+    assert(list.sortWith(_ <= _) == Seq[String](
       "A", "A", "AA", "AB", "B", "BA", "C", "D", "E", "F",
       "a", "b", "c", "d", "e", "f",
       "、", "。",
@@ -585,11 +605,31 @@ GHI
       "f", "e", "d", "c", "b", "a",
       "F", "E", "D", "C", "BA", "B", "AB", "AA", "A", "A"
     ))
+    
+    assert(list.sortWith(_ > _) == Seq[String](
+      "．", "，", "𠮷",
+      "衣", "於", "安", "宇", "以",
+      "オ", "エ", "ウ", "イ", "ア",
+      "お", "え", "う", "い", "あ",
+      "。", "、",
+      "f", "e", "d", "c", "b", "a",
+      "F", "E", "D", "C", "BA", "B", "AB", "AA", "A", "A"
+    ))
   }
 
   @Test
   def testReverse4(): Unit = {
     assert(list.sortWith((a, b) => a >= b) == Seq[String](
+      "．", "，", "𠮷",
+      "衣", "於", "安", "宇", "以",
+      "オ", "エ", "ウ", "イ", "ア",
+      "お", "え", "う", "い", "あ",
+      "。", "、",
+      "f", "e", "d", "c", "b", "a",
+      "F", "E", "D", "C", "BA", "B", "AB", "AA", "A", "A"
+    ))
+    
+    assert(list.sortWith(_ >= _) == Seq[String](
       "．", "，", "𠮷",
       "衣", "於", "安", "宇", "以",
       "オ", "エ", "ウ", "イ", "ア",
@@ -610,6 +650,11 @@ GHI
     assert(str.sorted == "以宇安於衣\uD842\uDFB7")
     assert(str.reverse != "\uD842\uDFB7於以宇衣安")
     assert(str.reverse == "\uDFB7\uD842於以宇衣安")
+    
+    val builder: StringBuilder = new StringBuilder(str)
+    val reverse: String = builder.reverse.result
+    assert(reverse == "\uD842\uDFB7於以宇衣安")
+    assert(reverse != "\uDFB7\uD842於以宇衣安")
   }
 ```
 ---
