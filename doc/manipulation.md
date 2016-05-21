@@ -1023,7 +1023,7 @@ LCS (Longest Common Subsequence)
   }
 ```
 ---
-<h3>2.7　イテレータ</h3>
+<h3>2.7　イテレーション</h3>
 <h4>2.7.1　イテレータ</h4>
 ```scala
   @Test
