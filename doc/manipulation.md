@@ -1243,7 +1243,7 @@ LCSの長さで類似度を計測することができます。
     if (denominator == 0) {
       return 0D
     }
-    numerator.toDouble / denominator
+    numerator / denominator
   }
 ```
 <h4>2.8.3　レーベンシュタイン距離（自作）</h4>
