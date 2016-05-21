@@ -1024,7 +1024,140 @@ LCS (Longest Common Subsequence)
 ```
 ---
 <h3>2.7　イテレータ</h3>
+<h4>2.7.1　</h4>
+```scala
+  @Test
+  def testForeach(): Unit = {
+    val result1: ListBuffer[Char] = ListBuffer[Char]()
+    unagiCopula foreach result1.+=
 
+    assert(result1 == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
+
+    val result2: ListBuffer[Char] = ListBuffer[Char]()
+    unagiCopula foreach {
+      char =>
+        result2 += char
+    }
+
+    assert(result2 == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
+  }
+
+  @Test
+  def testCharacterIterator(): Unit = {
+    val result: ListBuffer[Char] = ListBuffer[Char]()
+    val iterator: CharacterIterator = new StringCharacterIterator(unagiCopula)
+    var char: Char = iterator.first
+    while (char != CharacterIterator.DONE) {
+      result += char
+      char = iterator.next
+    }
+    assert(result == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
+  }
+```
+<h4>2.7.2　</h4>
+```scala
+  @Test
+  def testIterator(): Unit = {
+    assert(unagiCopula.iterator.toSeq == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
+  }
+
+  @Test
+  def testReverseIterator(): Unit = {
+    assert(unagiCopula.reverseIterator.toSeq == Seq[Char]('ギ', 'ナ', 'ウ', 'は', '僕'))
+  }
+
+  @Test
+  def testMap(): Unit = {
+    assert(unagiCopula.map(char => char) == "僕はウナギ")
+  }
+
+  @Test
+  def testReverseMap(): Unit = {
+    assert(unagiCopula.reverseMap(char => char) == "ギナウは僕")
+  }
+
+  @Test
+  def testSliding1(): Unit = {
+    val n: Int = 2
+    val nGrams: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n)) {
+      nGrams += nGram
+    }
+
+    assert(nGrams == Seq[String]("僕は", "はウ", "ウナ", "ナギ"))
+  }
+
+  @Test
+  def testSliding2(): Unit = {
+    val n: Int = 2
+
+    val nGrams1: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n, 1)) {
+      nGrams1 += nGram
+    }
+
+    assert(nGrams1 == Seq[String]("僕は", "はウ", "ウナ", "ナギ"))
+
+    val nGrams2: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n, 2)) {
+      nGrams2 += nGram
+    }
+
+    assert(nGrams2 == Seq[String]("僕は", "ウナ", "ギ"))
+
+    val nGrams3: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n, 3)) {
+      nGrams3 += nGram
+    }
+
+    assert(nGrams3 == Seq[String]("僕は", "ナギ"))
+
+    val nGrams4: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n, 4)) {
+      nGrams4 += nGram
+    }
+
+    assert(nGrams4 == Seq[String]("僕は", "ギ"))
+
+    val nGrams5: ListBuffer[String] = ListBuffer[String]()
+    for (nGram <- unagiCopula.sliding(n, 5)) {
+      nGrams5 += nGram
+    }
+
+    assert(nGrams5 == Seq[String]("僕は"))
+  }
+
+  @Test
+  def testGrouped(): Unit = {
+    val n: Int = 2
+    val groups: ListBuffer[String] = ListBuffer[String]()
+    for (group <- unagiCopula.grouped(n)) {
+      groups += group
+    }
+
+    assert(groups == Seq[String]("僕は", "ウナ", "ギ"))
+  }
+
+  @Test
+  def testLines(): Unit = {
+    val str: String = "\nUnigram\nBigram\r\nTrigram\n\n"
+    val result: ListBuffer[String] = ListBuffer[String]()
+    for (line <- str.lines) {
+      result += line
+    }
+    assert(result == Seq[String]("", "Unigram", "Bigram", "Trigram", ""))
+  }
+
+  @Test
+  def testLinesWithSeparators(): Unit = {
+    val str: String = "\nUnigram\nBigram\r\nTrigram\n\n"
+    val result: ListBuffer[String] = ListBuffer[String]()
+    for (line <- str.linesWithSeparators) {
+      result += line
+    }
+    assert(result == Seq[String]("\n", "Unigram\n", "Bigram\r\n", "Trigram\n", "\n"))
+  }
+```
 ---
 <h3>2.8　文字列間の文字に注目した類似度</h3>
 <h4>2.8.1　文字列間の文字に注目した比較単位</h4>
