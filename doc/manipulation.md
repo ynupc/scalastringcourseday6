@@ -1330,7 +1330,7 @@ LCSの長さで類似度を計測することができます。
     assert(LevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
   }
 ```
-<h4>2.8.6　ダメラウ・レーベンシュタイン距離（自作）</h4>
+<h4>2.8.6　ダメラオウ・レーベンシュタイン距離（自作）</h4>
 ```scala
   @Test
   def testDamerauLevenshteinDistance(): Unit = {
