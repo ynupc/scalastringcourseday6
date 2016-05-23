@@ -1441,7 +1441,7 @@ LCSの長さで類似度を計測することができます。
 </tr>
 <tr>
 <td>ジャロ・ウィンクラー距離</td>
-<td>類似度</td>
+<th>類似度</th>
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
@@ -1496,7 +1496,7 @@ LCSの長さで類似度を計測することができます。
 <td>text.similarity.Similarity</td>
 </tr>
 <tr>
-<td>リン98</td>
+<td>リン98類似度</td>
 <td>類似度</td>
 <td>正規</td>
 <td>頻度ベクトル</td>
@@ -1504,7 +1504,7 @@ LCSの長さで類似度を計測することができます。
 <td>text.similarity.Similarity</td>
 </tr>
 <tr>
-<td>ミハルシア04</td>
+<td>ミハルシア04類似度</td>
 <td>類似度</td>
 <td>非正規</td>
 <td>頻度ベクトル</td>
