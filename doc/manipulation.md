@@ -1310,8 +1310,47 @@ LCSの長さで類似度を計測することができます。
     numerator / denominator
   }
 ```
-<h4>2.8.4　レーベンシュタイン距離（自作）</h4>
-<h4>2.8.5　ベクトル化（自作）</h4>
+<h4>2.8.4　ハミング距離（自作）</h4>
+```scala
+  @Test
+  def testHammingDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(HammingDistance.calculate(source, target.substring(0, source.length)) == 0.7272727272727273D)
+  }
+```
+<h4>2.8.5　レーベンシュタイン距離（自作）</h4>
+```scala
+  @Test
+  def testLevenshteinDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(LevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
+  }
+```
+<h4>2.8.6　ダメラウ・レーベンシュタイン距離（自作）</h4>
+```scala
+  @Test
+  def testDamerauLevenshteinDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(DamerauLevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
+  }
+```
+<h4>2.8.7　ジャロ・ウィンクラー距離（自作）</h4>
+```scala
+  @Test
+  def testJaroWinklerDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(JaroWinklerDistance.calculate(source, target) == 0.668997668997669D)
+  }
+```
+<h4>2.8.8　ベクトル化（自作）</h4>
 <table>
 <tr><th>ベクトルの種類</th><th>説明</th></tr>
 <tr><td>頻度ベクトル</td><td>重複したら頻度としてカウントして作成するベクトル</td></tr>
@@ -1340,7 +1379,7 @@ LCSの長さで類似度を計測することができます。
     assert(SimilarityCalculator.calculate(vector1, vector2) == 0.27386127875258304D)
   }
 ```
-<h4>2.8.6　ベクトル間の距離（自作）</h4>
+<h4>2.8.9　ベクトル間の距離（自作）</h4>
 ```scala
   @Test
   def testBagOfBigramsEuclideanDistance(): Unit = {
@@ -1353,7 +1392,7 @@ LCSの長さで類似度を計測することができます。
     assert(Dissimilarity.calculateEuclidean(vector1, vector2) == 4.0D)
   }
 ```
-<h4>2.8.7　ベクトル間の包含度（自作）</h4>
+<h4>2.8.10　ベクトル間の包含度（自作）</h4>
 ```scala
   @Test
   def testBigramsInclusion(): Unit = {
