@@ -1664,7 +1664,7 @@ LCSの長さで類似度を計測することができます。
 <td>text.similarity.Overlap</td>
 </tr>
 <tr>
-<td>Rus05</td>
+<td>Rus05包含度</td>
 <td>類似度</td>
 <td>正規</td>
 <td>二値ベクトル</td>
