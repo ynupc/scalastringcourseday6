@@ -7,6 +7,9 @@ import java.util.regex.{Matcher, Pattern}
 
 import org.junit.Test
 import org.scalatest.junit.AssertionsForJUnit
+import text.parser.Tokenizer
+import text.similarity._
+import text.vector.{BinaryVector, BinaryVectorGenerator, FrequencyVector, FrequencyVectorGenerator}
 
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
@@ -1749,5 +1752,170 @@ GHI
       result += line
     }
     assert(result == Seq[String]("\n", "Unigram\n", "Bigram\r\n", "Trigram\n", "\n"))
+  }
+
+  private def divide(numerator: Double, denominator: Double): Double = {
+    if (denominator == 0) {
+      return 0D
+    }
+    numerator / denominator
+  }
+
+  @Test
+  def testLCSBasedF1(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
+
+    val lengthOfSource: Int = codePointsOfSource.length
+    val lengthOfTarget: Int = codePointsOfTarget.length
+
+    assert(lengthOfSource == 11)
+    assert(lengthOfTarget == 13)
+
+    val lcs: Array[Int] = codePointsOfSource.intersect(codePointsOfTarget)
+    val lcsLength: Int = lcs.length
+
+    assert(lcsLength == 6)
+    assert(new String(lcs, 0, lcsLength) == "ウウナナギギ")
+
+    val recall: Double = divide(lcsLength, lengthOfSource)
+
+    val precision: Double = divide(lcsLength, lengthOfTarget)
+
+    val f1: Double = divide(recall * precision * 2, recall + precision)
+
+    assert(recall    == 0.5454545454545454D)
+    assert(precision == 0.46153846153846156D)
+    assert(f1        == 0.4999999999999999D)
+  }
+
+  @Test
+  def testNGramBasedF1(): Unit = {
+    val n: Int = 2
+
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val codePointsOfSource: Array[Int] = source.codePoints.toArray
+    val codePointsOfTarget: Array[Int] = target.codePoints.toArray
+
+    val codePointNGramsOfSource: Array[Array[Int]] = codePointsOfSource.sliding(n).toArray
+    val codePointNGramsOfTarget: Array[Array[Int]] = codePointsOfTarget.sliding(n).toArray
+
+    val nGramsOfSource: Array[String] = {
+      codePointNGramsOfSource map {
+        codePoints =>
+          new String(codePoints, 0, codePoints.length)
+      }
+    }.distinct
+    val nGramsOfTarget: Array[String] = {
+      codePointNGramsOfTarget map {
+        codePoints =>
+          new String(codePoints, 0, codePoints.length)
+      }
+    }.distinct
+
+    assert(nGramsOfSource sameElements Array[String]("$ウ", "ウウ", "ウ$", "$ナ", "ナナ", "ナ$", "$ギ", "ギギ", "ギ$", "$は"))
+    assert(nGramsOfTarget sameElements Array[String]("ウウ", "ウ#", "#ナ", "ナナ", "ナ#", "#ギ", "ギギ", "ギ#", "#だ", "だ#", "#。", "。#"))
+
+    val lengthOfSource: Int = nGramsOfSource.length
+    val lengthOfTarget: Int = nGramsOfTarget.length
+
+    assert(lengthOfSource == 10)
+    assert(lengthOfTarget == 12)
+
+    val lcs: Array[String] = nGramsOfSource.intersect(nGramsOfTarget)
+    val lcsLength: Int = lcs.length
+
+    assert(lcsLength == 3)
+    assert(lcs sameElements Array[String]("ウウ", "ナナ", "ギギ"))
+
+    val recall: Double = divide(lcsLength, lengthOfSource)
+
+    val precision: Double = divide(lcsLength, lengthOfTarget)
+
+    val f1: Double = divide(recall * precision * 2, recall + precision)
+
+    assert(recall    == 0.3D)
+    assert(precision == 0.25D)
+    assert(f1        == 0.2727272727272727D)
+  }
+
+  @Test
+  def testHammingDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(HammingDistance.calculate(source, target.substring(0, source.length)) == 0.7272727272727273D)
+  }
+
+  @Test
+  def testLevenshteinDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(LevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
+  }
+
+  @Test
+  def testDamerauLevenshteinDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(DamerauLevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
+  }
+
+  @Test
+  def testJaroWinklerDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(JaroWinklerDistance.calculate(source, target) == 0.668997668997669D)
+  }
+
+  @Test
+  def testF1WithLCS(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(Overlap.calculateF1WithLCS(
+      Tokenizer.tokenize(Option(source)),
+      Tokenizer.tokenize(Option(target))) == 0.2727272727272727D)
+  }
+
+  @Test
+  def testBagOfBigramsCosineSimilarity(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(source)
+    val vector2: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(target)
+
+    assert(SimilarityCalculator.calculate(vector1, vector2) == 0.27386127875258304D)
+  }
+
+  @Test
+  def testBagOfBigramsEuclideanDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(source)
+    val vector2: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(target)
+
+    assert(Dissimilarity.calculateEuclidean(vector1, vector2) == 4.0D)
+  }
+
+  @Test
+  def testBigramsInclusion(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: BinaryVector = BinaryVectorGenerator.getVectorFromText(source)
+    val vector2: BinaryVector = BinaryVectorGenerator.getVectorFromText(target)
+
+    assert(OverlapCalculator.calculate(vector1, vector2) == 0.3D)
   }
 }
