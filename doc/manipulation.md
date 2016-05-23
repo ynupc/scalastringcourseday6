@@ -1318,8 +1318,54 @@ LCSの長さで類似度を計測することができます。
 <tr><td>二値ベクトル</td><td>重複してもカウントしないので、存在するか否かの二値で作成するベクトル</td></tr>
 </table>
 <h4>2.8.5　ベクトル間の類似度（自作）</h4>
+```scala
+  @Test
+  def testF1WithLCS(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(Overlap.calculateF1WithLCS(
+      Tokenizer.tokenize(Option(source)),
+      Tokenizer.tokenize(Option(target))) == 0.2727272727272727D)
+  }
+
+  @Test
+  def testBagOfBigramsCosineSimilarity(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(source)
+    val vector2: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(target)
+
+    assert(SimilarityCalculator.calculate(vector1, vector2) == 0.27386127875258304D)
+  }
+```
 <h4>2.8.6　ベクトル間の距離（自作）</h4>
+```scala
+  @Test
+  def testBagOfBigramsEuclideanDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(source)
+    val vector2: FrequencyVector = FrequencyVectorGenerator.getVectorFromText(target)
+
+    assert(Dissimilarity.calculateEuclidean(vector1, vector2) == 4.0D)
+  }
+```
 <h4>2.8.7　ベクトル間の包含度（自作）</h4>
+```scala
+  @Test
+  def testBigramsInclusion(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    val vector1: BinaryVector = BinaryVectorGenerator.getVectorFromText(source)
+    val vector2: BinaryVector = BinaryVectorGenerator.getVectorFromText(target)
+
+    assert(OverlapCalculator.calculate(vector1, vector2) == 0.3D)
+  }
+```
 ***
 <h3>コラム：N-gramの読み方</h3>
 N-gramの数字Nはラテン語の接頭辞表現が使用されます。
