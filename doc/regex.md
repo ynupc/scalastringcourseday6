@@ -640,26 +640,6 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 
   @Test
   def testExtractByPattern3(): Unit = {
-    val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
-    val matcher: Matcher = pattern.matcher(tautology)
-
-    while (matcher.find) {
-      val group0: String = matcher.group(0)
-      val group1: String = matcher.group(1)
-      val group2: String = matcher.group(2)
-      val group3: String = matcher.group(3)
-      //java.lang.IndexOutOfBoundsException: No group 4
-      //val group3: String = matcher.group(4)
-
-      assert(group0 == "ウナギ")
-      assert(group1 == "ナギ")
-      assert(group2 == "ナ")
-      assert(group3 == "ギ")
-    }
-  }
-
-  @Test
-  def testExtractByPattern4(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -677,7 +657,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExtractByPattern5(): Unit = {
+  def testExtractByPattern4(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
