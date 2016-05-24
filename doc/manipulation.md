@@ -92,7 +92,9 @@
   @Test
   def testNthCharInString4(): Unit = {
     //Char
-    assert(tautology.applyOrElse(3, char => 'を') == 'は')
+    assert(tautology.applyOrElse(3, (index: Int) => 'を') == 'は')
+    assert(tautology.applyOrElse(20, (index: Int) => s"${index}は${tautology.length}以上なのでCharは存在しません。") == "20は9以上なのでCharは存在しません。")
+
   }
 
   @Test
