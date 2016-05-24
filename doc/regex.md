@@ -211,7 +211,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
     val pattern: Pattern = Pattern.compile("僕はウナギ")
     val matcher: Matcher = pattern.matcher(unagiCopula)
 
-    assert(matcher.matches())
+    assert(matcher.matches)
   }
 
   @Test
