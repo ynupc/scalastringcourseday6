@@ -207,7 +207,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExactMatch4(): Unit = {
+  def testExactMatch3(): Unit = {
     val pattern: Pattern = Pattern.compile("僕はウナギ")
     val matcher: Matcher = pattern.matcher(unagiCopula)
 
@@ -215,7 +215,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
   }
 
   @Test
-  def testExactMatch5(): Unit = {
+  def testExactMatch4(): Unit = {
     val regex: Regex = """僕はウナギ""".r
     unagiCopula match {
       case regex() =>
