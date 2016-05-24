@@ -64,7 +64,7 @@ class Day6TestSuite extends AssertionsForJUnit {
   }
 
   @Test
-  def testExactMatch4(): Unit = {
+  def testExactMatch3(): Unit = {
     val pattern: Pattern = Pattern.compile("僕はウナギ")
     val matcher: Matcher = pattern.matcher(unagiCopula)
 
@@ -72,7 +72,7 @@ class Day6TestSuite extends AssertionsForJUnit {
   }
 
   @Test
-  def testExactMatch5(): Unit = {
+  def testExactMatch4(): Unit = {
     val regex: Regex = """僕はウナギ""".r
     unagiCopula match {
       case regex() =>
@@ -325,26 +325,6 @@ class Day6TestSuite extends AssertionsForJUnit {
 
   @Test
   def testExtractByPattern3(): Unit = {
-    val pattern: Pattern = Pattern.compile("ウ((ナ)(ギ))")
-    val matcher: Matcher = pattern.matcher(tautology)
-
-    while (matcher.find) {
-      val group0: String = matcher.group(0)
-      val group1: String = matcher.group(1)
-      val group2: String = matcher.group(2)
-      val group3: String = matcher.group(3)
-      //java.lang.IndexOutOfBoundsException: No group 4
-      //val group3: String = matcher.group(4)
-
-      assert(group0 == "ウナギ")
-      assert(group1 == "ナギ")
-      assert(group2 == "ナ")
-      assert(group3 == "ギ")
-    }
-  }
-
-  @Test
-  def testExtractByPattern4(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -362,7 +342,7 @@ class Day6TestSuite extends AssertionsForJUnit {
   }
 
   @Test
-  def testExtractByPattern5(): Unit = {
+  def testExtractByPattern4(): Unit = {
     val pattern: Pattern = Pattern.compile("ウ(?<first>(?<second>ナ)(?<third>ギ))")
     val matcher: Matcher = pattern.matcher(tautology)
 
@@ -787,11 +767,25 @@ class Day6TestSuite extends AssertionsForJUnit {
   @Test
   def testNthCharInString2(): Unit = {
     //Char
-    assert(tautology.charAt(3) == 'は')
+    assert(tautology.apply(3) == 'は')
   }
 
   @Test
   def testNthCharInString3(): Unit = {
+    //Char
+    assert(tautology.charAt(3) == 'は')
+  }
+
+  @Test
+  def testNthCharInString4(): Unit = {
+    //Char
+    assert(tautology.applyOrElse(3, (index: Int) => 'を') == 'は')
+    assert(tautology.applyOrElse(20, (index: Int) => s"${index}は${tautology.length}以上なのでCharは存在しません。")
+      == "20は9以上なのでCharは存在しません。")
+  }
+
+  @Test
+  def testNthCodePointInString(): Unit = {
     //コードポイント
     assert(tautology.codePointAt(3) == 'は')
   }
@@ -1574,7 +1568,7 @@ GHI
 
   @Test
   def testIndexWhere2(): Unit = {
-    assert(tautology.indexWhere(where) == 2)
+    assert(tautology.indexWhere(where, 3) == 6)
 
     def where(char: Char): Boolean = {
       char == 'ギ'
@@ -1592,7 +1586,7 @@ GHI
 
   @Test
   def testLastIndexWhere2(): Unit = {
-    assert(tautology.lastIndexWhere(where) == 6)
+    assert(tautology.lastIndexWhere(where, 3) == 2)
 
     def where(char: Char): Boolean = {
       char == 'ギ'
