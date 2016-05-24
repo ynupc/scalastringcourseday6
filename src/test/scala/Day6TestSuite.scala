@@ -599,7 +599,7 @@ class Day6TestSuite extends AssertionsForJUnit {
 
     //文字列に一致した全ての箇所を置換
     val replace2: String = tautology.replace("ウナギ", "かめ")
-    assert(replace2             == "かめはかめだ。")
+    assert(replace2 == "かめはかめだ。")
 
     //文字列に一致した全ての箇所を置換
     val replace3: String = tautology.replaceAllLiterally("ウナギ", "かめ")
