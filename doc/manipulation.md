@@ -980,7 +980,7 @@ LCS (Longest Common Subsequence)
 
   @Test
   def testIndexWhere2(): Unit = {
-    assert(tautology.indexWhere(where) == 2)
+    assert(tautology.indexWhere(where, 3) == 6)
 
     def where(char: Char): Boolean = {
       char == 'ギ'
@@ -1000,7 +1000,7 @@ LCS (Longest Common Subsequence)
 
   @Test
   def testLastIndexWhere2(): Unit = {
-    assert(tautology.lastIndexWhere(where) == 6)
+    assert(tautology.lastIndexWhere(where, 3) == 2)
 
     def where(char: Char): Boolean = {
       char == 'ギ'
