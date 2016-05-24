@@ -80,11 +80,23 @@
   @Test
   def testNthCharInString2(): Unit = {
     //Char
-    assert(tautology.charAt(3) == 'は')
+    assert(tautology.apply(3) == 'は')
   }
 
   @Test
   def testNthCharInString3(): Unit = {
+    //Char
+    assert(tautology.charAt(3) == 'は')
+  }
+
+  @Test
+  def testNthCharInString4(): Unit = {
+    //Char
+    assert(tautology.applyOrElse(3, char => 'を') == 'は')
+  }
+
+  @Test
+  def testNthCodePointInString(): Unit = {
     //コードポイント
     assert(tautology.codePointAt(3) == 'は')
   }
