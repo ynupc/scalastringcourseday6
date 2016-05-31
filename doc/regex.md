@@ -338,6 +338,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h3>1.2　分割</h3>
+<h4>1.2.1　区切り文字で分割</h4>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
@@ -415,7 +416,8 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
   }
 ```
-次の例では、StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
+<h4>1.2.2　分割位置をインデックスで指定した分割</h4>
+StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
 ```scala
   @Test
   def testSplitAt(): Unit = {
@@ -431,7 +433,8 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(swappedPair._2 == "A,B")
   }
 ```
-次の例では、Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
+<h4>1.2.3　条件に従わなくなった位置で分割</h4>
+Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
 ```scala
   @Test
   def testSpan(): Unit = {
@@ -446,6 +449,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(pair._2 == "C,D,E,F")
   }
 ```
+<h4>1.2.4　行末文字で分割</h4>
 次の例では、linesメソッドやlinesWithSeparatorsメソッドを用いて行末文字で分割します。
 行末文字とは、改行文字LF（Line Feed）のU+000Aと改ページFF（Form Feed）のU+000Cを指します。
 linesメソッドは分割後に分割された文字列から行末文字を削除しますが、linesWithSeparatorsメソッドは分割後も行末文字が残ります。
