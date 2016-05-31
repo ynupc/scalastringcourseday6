@@ -196,7 +196,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
 ```
 ***
 <h4>1.1.2　完全一致（正規表現）</h4>
-パターンマッチの完全一致を正規表現を用いて見る場合は、Stringクラスのmatchesメソッド、Patternクラスのメソッドmatches、Regexクラスを用いる方法があります。Stringクラスのmatchesメソッドは処理速度が遅いです。PatternクラスとRegexクラスではPatternクラスを使用する方が処理速度が速いです。何度も同じパターンで一致を見る場合は、Patternクラスは一度compileしてPatternのインスタンスを生成しておいて、それを何度も使用する方が高速ですし、Regexクラスについても、一度StringクラスのrメソッドでRegexインスタンスを生成しておいて、それを何度も使用する方が高速です。
+パターンマッチの完全一致を正規表現を用いて見る場合は、Stringクラスのmatchesメソッド、Patternクラスのmatchesメソッド、Matcherクラスのmatchesメソッド、Regexクラスを用いる方法があります。Stringクラスのmatchesメソッドは処理速度が遅いです。PatternクラスのmatchesメソッドとRegexクラスではPatternクラスを使用する方が処理速度が速いです。何度も同じパターンで一致を見る場合は、Patternクラスは一度compileメソッドでコンパイルしてPatternのインスタンスを生成しておいて、それを何度も使用する方が高速ですし、Regexクラスについても、一度StringクラスのrメソッドでRegexインスタンスを生成しておいて、それを何度も使用する方が高速です。この場合でもPatternインスタンスを使用する方がRegexインスタンスを使用するより高速です。コンパイルされたPatternインスタンスはmatcherメソッドで対象の文字列を与え、Matcherクラスのインスタンスを生成し、Matcherクラスのmatchesメソッドを使用することで完全一致したかを確認できます。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -235,7 +235,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
 containsメソッドは同じくStringクラスのindexOfメソッドを使用して実装されています。indexOfメソッドは先頭から順番に一つずつ見ていき一致したらその位置インデックスを返すメソッドです。もし見つからなかった場合はindexOfメソッドから-1が返ってきますので、返り値が-1ではなければcontainsメソッドはtrueを返し、-1の場合はfalseを返します。
 containsSliceメソッドはSeqLikeクラスのindexOfSliceメソッドを使用して、containsメソッドと同様にindexOfSliceメソッドの返り値が-1でなければtrue、-1の場合はfalseを返します。indexOfSliceメソッドは<a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%8C%E3%83%BC%E3%82%B9%E2%80%93%E3%83%A2%E3%83%AA%E3%82%B9%E2%80%93%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E6%B3%95" target="_blank">クヌース–モリス–プラット法</a>（以下、KMP法）を用いて実装されています。
 処理速度は基本的にはcontainsメソッドの方がcontainsSliceメソッドより速いです。
-containsSliceはKMP法で実装されているので、その分のオーバーヘッドが乗ります。しかし、もしも一致ではないが似ている文字列が多く含まれているような場合（例えば、DNA中に特定の遺伝子配列が含まれているか調べる場合）にはKMP法で実装されているcontainsSliceメソッドの方がcontainsメソッドより効率的に処理を行います。KMP法のような文字列探索アルゴリズムについてはコラム：文字列探索アルゴリズムをご参照ください。
+containsSliceはKMP法で実装されているので、その分のオーバーヘッドが乗ります。しかし、もしも一致ではないが似ている文字列が多く含まれているような場合（例えば、DNA中に特定の遺伝子配列が含まれているか調べる場合）にはKMP法で実装されているcontainsSliceメソッドの方がcontainsメソッドより効率的に処理を行います。KMP法のような文字列探索アルゴリズムについては<a href="#コラム文字列探索アルゴリズム">コラム：文字列探索アルゴリズム</a>をご参照ください。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -247,7 +247,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.4　部分一致（正規表現）</h4>
-
+一回だけ部分一致をみたい場合は、Patternクラスのfindメソッドを使用する方法とRegexクラスのfindFirstInメソッドを使用する方法とRegexクラスのfindFirstMatchInメソッドを使用する方法があります。全ての部分一致を見たい場合は、Patternクラスのfindメソッドとnextメソッドを使用する方法とRegexクラスのfindAllInメソッドを使用する方法とRegexクラスのfindAllMatchInメソッドを使用する方法があります。RegexクラスのfindFirstInメソッドとfindAllInメソッドはそれぞれOption[String]とMatchIteratorを返します。RegexクラスのfindFirstMatchInメソッドやfindAllMatchInメソッドはOption[Match]とIterator[Match]を返します。RegexクラスとMatchクラスの関係はJava由来のPatternクラスに対するMatcherクラスの関係と似ており、Matchクラスの多くのメソッドはMatcherクラスにも同様に存在します。
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
