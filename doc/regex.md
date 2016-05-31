@@ -232,9 +232,10 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
 ***
 <h4>1.1.3　部分一致（表層文字列）</h4>
 表層文字列の部分一致を見るためには、Java由来のcontainsメソッドとScala由来のcontainsSliceメソッドがあります。
-処理速度は少なくとも小規模な文字列ではcontainsメソッドの方がcontainsSliceメソッドより速いです。
-containsメソッドは同じくStringクラスのindexOfメソッドを使用して実装されています。indexOfメソッドは先頭から順番に見ていき一致したらその位置インデックスを返すメソッドです。もし見つからなかった場合はindexOfメソッドから-1が返ってきますので、返り値が-1ではなければcontainsメソッドはtrueを返し、-1の場合はfalseを返します。
+containsメソッドは同じくStringクラスのindexOfメソッドを使用して実装されています。indexOfメソッドは先頭から順番に一つずつ見ていき一致したらその位置インデックスを返すメソッドです。もし見つからなかった場合はindexOfメソッドから-1が返ってきますので、返り値が-1ではなければcontainsメソッドはtrueを返し、-1の場合はfalseを返します。
 containsSliceメソッドはSeqLikeクラスのindexOfSliceメソッドを使用して、containsメソッドと同様にindexOfSliceメソッドの返り値が-1でなければtrue、-1の場合はfalseを返します。indexOfSliceメソッドは<a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%8C%E3%83%BC%E3%82%B9%E2%80%93%E3%83%A2%E3%83%AA%E3%82%B9%E2%80%93%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E6%B3%95" target="_blank">クヌース–モリス–プラット法</a>を用いて実装されています。
+処理速度は基本的にはcontainsメソッドの方がcontainsSliceメソッドより速いです。
+containsSliceはKMP法で実装されているので、余計なオーバーヘッドが乗ります。しかし、もしも一致ではないが似ている文字列が多く含まれているような場合にはKMP法で実装されているcontainsSliceメソッドの方が処理速度が上がると考えられます。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
