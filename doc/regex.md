@@ -304,7 +304,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.6　前方一致（正規表現）</h4>
-パターンマッチによる前方一致を見る場合は、PatternクラスとMatcherクラスを用いて、MatcherクラスのlookingAtメソッドを使用することができます。
+パターンマッチによる前方一致を見る場合は、PatternクラスとMatcherクラスを用いて、MatcherクラスのlookingAtメソッドを使用することができます。部分一致の方法を用いて、正規表現で書いたパターンに対して前方一致を示す「^」を先頭に加える方法もあります。
 ```scala
   @Test
   def testForwardMatch(): Unit = {
@@ -326,7 +326,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h4>1.1.8　後方一致（正規表現）</h4>
 正規表現で後方一致を見る場合は、専用のメソッドがありません。
-例えば、一致を見たい文字列を逆順にして、MatcherクラスのlookingAtメソッドで一致が見れるようなパターンを用意しておき、後方一致を前方一致の方法で見る方法もあります。部分一致の方法を用いて、正規表現で書いたパターンに後方一致を示す「$」を末尾に加える方法もあります。
+例えば、一致を見たい文字列を逆順にして、MatcherクラスのlookingAtメソッドで一致が見れるようなパターンを用意しておき、後方一致を前方一致の方法で見る方法もあります。部分一致の方法を用いて、正規表現で書いたパターンに対して後方一致を示す「$」を末尾に加える方法もあります。
 ```scala
   @Test
   def testBackwardMatch(): Unit = {
@@ -415,7 +415,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
   }
 ```
-分割位置を指定して分割します。
+次の例では、StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
 ```scala
   @Test
   def testSplitAt(): Unit = {
@@ -431,7 +431,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(swappedPair._2 == "A,B")
   }
 ```
-条件に従わなくなった位置で分割します。
+次の例では、Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
 ```scala
   @Test
   def testSpan(): Unit = {
@@ -446,7 +446,9 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(pair._2 == "C,D,E,F")
   }
 ```
-行末文字で分割します。
+次の例では、linesメソッドやlinesWithSeparatorsメソッドを用いて行末文字で分割します。
+行末文字とは、改行文字LF（Line Feed）のU+000Aと改ページFF（Form Feed）のU+000Cを指します。
+linesメソッドは分割後に分割された文字列から行末文字を削除しますが、linesWithSeparatorsメソッドは分割後も行末文字が残ります。
 ```scala
   @Test
   def testSeparateLines1(): Unit = {
