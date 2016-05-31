@@ -295,6 +295,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.5　前方一致（表層文字列）</h4>
+表層文字列の前方一致を見る場合はStringクラスのstartsWithメソッドを使用します。
 ```scala
   @Test
   def testStartsWith(): Unit = {
@@ -303,7 +304,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.6　前方一致（正規表現）</h4>
-
+パターンマッチによる前方一致を見る場合は、PatternクラスとMatcherクラスを用いて、MatcherクラスのlookingAtメソッドを使用することができます。
 ```scala
   @Test
   def testForwardMatch(): Unit = {
@@ -315,6 +316,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.7　後方一致（表層文字列）</h4>
+表層文字列の後方一致を見る場合はStringクラスのendsWithメソッドを使用します。
 ```scala
   @Test
   def testEndsWith(): Unit = {
@@ -323,7 +325,8 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ```
 ***
 <h4>1.1.8　後方一致（正規表現）</h4>
-
+正規表現で後方一致を見る場合は、専用のメソッドがありません。
+例えば、一致を見たい文字列を逆順にして、MatcherクラスのlookingAtメソッドで一致が見れるようなパターンを用意しておき、後方一致を前方一致の方法で見る方法もあります。部分一致の方法を用いて、正規表現で書いたパターンに後方一致を示す「$」を末尾に加える方法もあります。
 ```scala
   @Test
   def testBackwardMatch(): Unit = {
