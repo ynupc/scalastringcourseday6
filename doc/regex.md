@@ -339,7 +339,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h3>1.2　分割</h3>
 文字列を分割するためには分割位置の与える必要があります。分割位置を与える方法として、文字列中の区切り文字の存在を利用する方法、区切り文字の特殊な例として行末文字を用いる方法、インデックスで直接指定する方法、文字列中のCharを前方から見てある条件を満たさなくなった位置を使用する方法があります。それぞれについて下記で説明します。
-<h4>1.2.1　区切り文字で分割</h4>
+<h4>1.2.1　区切り文字による分割</h4>
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
@@ -417,7 +417,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
   }
 ```
-<h4>1.2.2　行末文字で分割</h4>
+<h4>1.2.2　行末文字による分割</h4>
 linesメソッドやlinesWithSeparatorsメソッドを用いて行末文字で分割します。
 行末文字とは、改行文字LF（Line Feed）のU+000Aと改ページFF（Form Feed）のU+000Cを指します。
 linesメソッドは分割後に分割された文字列から行末文字を削除しますが、linesWithSeparatorsメソッドは分割後も行末文字が残ります。
@@ -458,7 +458,7 @@ linesメソッドは分割後に分割された文字列から行末文字を削
     assert(buffer == Seq[String]("A,B\n", "C,D,E\f", "F"))
   }
 ```
-<h4>1.2.3　分割位置をインデックスで指定した分割</h4>
+<h4>1.2.3　分割位置をインデックスによる指定した分割</h4>
 StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
 ```scala
   @Test
@@ -475,7 +475,7 @@ StringクラスのsplitAtメソッドを用いて分割位置を指定して分�
     assert(swappedPair._2 == "A,B")
   }
 ```
-<h4>1.2.4　条件に従わなくなった位置で分割</h4>
+<h4>1.2.4　条件に従わなくなった位置による分割</h4>
 Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
 ```scala
   @Test
