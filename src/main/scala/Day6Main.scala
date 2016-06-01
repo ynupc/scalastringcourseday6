@@ -75,11 +75,11 @@ object Day6Main {
     val csv: String = "A,B,C,D,E,F"
     val delimiter: String = ","
     executionTime.printlnAverageExecutionTime(csv.split(delimiter))
-    executionTime.printlnAverageExecutionTime(Pattern.compile(",").split(csv))
-    val patternDelimiter: Pattern = Pattern.compile(",")
+    executionTime.printlnAverageExecutionTime(Pattern.compile(delimiter).split(csv))
+    val patternDelimiter: Pattern = Pattern.compile(delimiter)
     executionTime.printlnAverageExecutionTime(patternDelimiter.split(csv))
     executionTime.printlnAverageExecutionTime {
-      Pattern.compile(",").splitAsStream(csv) forEach {
+      Pattern.compile(delimiter).splitAsStream(csv) forEach {
         new Consumer[String]() {
           override def accept(str: String): Unit = {
 
@@ -104,7 +104,7 @@ object Day6Main {
     }
     println("split with limit")
     executionTime.printlnAverageExecutionTime(csv.split(delimiter, 3))
-    executionTime.printlnAverageExecutionTime(Pattern.compile(",").split(csv, 3))
+    executionTime.printlnAverageExecutionTime(Pattern.compile(delimiter).split(csv, 3))
     executionTime.printlnAverageExecutionTime(patternDelimiter.split(csv, 3))
     println("replace all")
     executionTime.printlnAverageExecutionTime(tautology.replace("ウナギ", "かめ"))
