@@ -524,6 +524,7 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
 ```
 
 <h4>1.3.2　正規表現の一致による置換</h4>
+正規表現の一致で、最初に一致した箇所で置換する場合はStringクラスかMatcherクラスのreplaceFirstメソッド、一致した全ての箇所で置換する場合はStringクラスかMatcherクラスのreplaceAllメソッドを使用します。Stringクラスのメソッドは内部的にはMatcherクラスのメソッドを呼び出しているため、一度使用する場合は処理速度に違いはありません。複数回同じ置換処理を行う場合は、Patternインスタンスを生成しそれを使い回してMatcherインスタンスを生成すると処理を高速化できます。
 ```scala
   @Test
   def testReplace2(): Unit = {
@@ -560,7 +561,10 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
     assert(replaceAll == "ウサギはウサギだ。")
   }
 ```
-位置を指定して置換する。
+<h4>1.3.3　インデックスで範囲を指定して置換</h4>
+位置や範囲をインデックスで指定して置換をします。
+一文字のみを置換したい場合はupdatedメソッドを使用します。
+文字を複数含む範囲で置換したい場合はpatchメソッドを使用します。
 ```scala
   @Test
   def testUpdated(): Unit = {
@@ -585,7 +589,9 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
     assert(result    == "ウナギはイヌだ。")
   }
 ```
-一致した文字を別の文字に変換する
+<h4>1.3.4　複数のCharの同時置換</h4>
+collectFirstメソッドやcollectメソッドを使用することで、一致した文字を別の文字に変換します。
+replaceメソッドによる文字の置換を複数回用いる場合は、replaceメソッドを呼び出す順序により結果が異なる可能性がある点と、replaceメソッドを使うたびにStringが生成されて非効率である点で異なります。
 ```scala
   @Test
   def testCollectFirst(): Unit = {
