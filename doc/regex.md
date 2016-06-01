@@ -343,7 +343,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
-
+処理速度の面では、非推奨のStringTokenizerを使用した場合が最速で、次にStringクラスのsplitメソッドが高速です。Patternクラスを用いる場合は、何度もsplitメソッドを呼び出すとき、最初にcompileメソッドで区切り文字の正規表現をコンパイルしてPatternインスタンスを生成し、そのインスタンスを使い回す方がインスタンス生成のためのオーバーヘッドがなく、処理速度とさらにメモリ効率の面でも好ましいです。
 ```scala
   @Test
   def testSplit1(): Unit = {
@@ -496,6 +496,12 @@ Stringクラスからspanメソッドを使用して条件に従わなくなっ�
 文字列がパターンにマッチしたらマッチした箇所を他の文字列に置き換えます。置き換える文字列を空文字列にすることでマッチした箇所を削除することも可能です。
 
 <h4>1.3.1　表層文字列の一致による置換</h4>
+Charの置換はStringクラスのreplaceメソッドで行います。
+Stringの置換はJava由来のStringクラスのreplaceメソッドで行うか、Scala由来のreplaceAllLiterallyメソッドで行います。
+replaceメソッドもreplaceAllLiterallyメソッドも内部では最終的にMatcherクラスのreplaceAllに投げますが、途中過程が異なるためreplaceメソッドの方がreplaceAllLiterallyメソッドよりも高速です。
+replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッドで読み込めるように修正しますが、置換文字列はどちらもMatcherクラスのquoteReplacementメソッドを用いて置換文字列中の"\"や"$"の直前に"\"を挿入してエスケープシーケンスにしています。被置換文字列はreplaceメソッドの場合PatternクラスのcompileメソッドでPatternインスタンス生成するときにPattern.LITERALフラグを渡して生成し、そのPatternインスタンスからmatcherメソッドでMatcherインスタンスを生成します。そして、そのMatcherインスタンスのreplaceAllメソッドを使用して置換します。一方で、replaceAllLiterallyメソッドでは、Pattern.LITERALフラグを使用せずに、Patternクラスのquoteメソッドを使用して、正規表現の先頭と末尾にそれぞれ"\\Q"と"\\E"を付け加えて、エスケープシーケンスの"\"を二重に書かずに済むような正規表現をStringとして取得します。StringクラスのreplaceAllメソッドにそれらを投げることでStringクラスのreplaceAllメソッドの内部でMatcherクラスのreplaceAllメソッドが呼び出される仕組みです。
+Pattern.LITERALフラグにより直接Patternインスタンスを生成するのか、正規表現の先頭と末尾にそれぞれ"\\Q"と"\\E"を付け加えてPatternインスタンスを生成するのかの処理の差分によりreplaceメソッドの方がreplaceAllLiterallyメソッドより高速です。
+処理速度とは別の観点としてプログラムの可読性を高めるためにreplaceAllLiterallyメソッドを使用するという考え方もあります。
 ```scala
   @Test
   def testReplace1(): Unit = {
