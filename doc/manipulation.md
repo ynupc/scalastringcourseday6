@@ -1898,7 +1898,7 @@ LCSの長さで類似度を計測することができます。
 <td>ghani</td><td>Ⴖ</td><td>ⴖ</td><td></td><td>&nbsp;</td>
 </tr>
 <tr>
-<td>q'ari</td><td>Ⴗ</td><td>ⴗ</td><td></td><td>現在は不使用</td>
+<td>q'ari</td><td>Ⴗ</td><td>ⴗ</td><td></td><td>&nbsp;</td>
 </tr>
 <tr>
 <td>shini</td><td>Ⴘ</td><td>ⴘ</td><td></td><td>&nbsp;</td>
@@ -1922,7 +1922,7 @@ LCSの長さで類似度を計測することができます。
 <td>khani</td><td>Ⴞ</td><td>ⴞ</td><td></td><td>&nbsp;</td>
 </tr>
 <tr>
-<td>qari</td><td>Ⴤ</td><td>ⴤ</td><td></td><td>&nbsp;</td>
+<td>qari</td><td>Ⴤ</td><td>ⴤ</td><td></td><td>現在は不使用</td>
 </tr>
 <tr>
 <td>jani</td><td>Ⴟ</td><td>ⴟ</td><td></td><td>&nbsp;</td>
