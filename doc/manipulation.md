@@ -112,7 +112,14 @@ private static class CaseInsensitiveComparator
     private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
 }
 ```
-OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a>
+OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a><br>
+<ol>
+<li>Stringと引数のStringの参照が一致したらtrue</li>
+<li>引数のStringがnullだったらfalse</li>
+<li>Stringと引数のStringの長さが一致しなかったらfalse</li>
+<li>regionMatchesメソッドの結果がfalseならfalse</li>
+</ol>
+
 ```java
 public boolean equalsIgnoreCase(String anotherString) {
   return (this == anotherString) ? true
@@ -120,23 +127,45 @@ public boolean equalsIgnoreCase(String anotherString) {
               && (anotherString.value.length == value.length)
               && regionMatches(true, 0, anotherString, 0, value.length);
   }
-public boolean regionMatches(int toffset, String other, int ooffset, int len) {
-  char ta[] = value;
-  int to = toffset;
-  char pa[] = other.value;
-  int po = ooffset;
-  // Note: toffset, ooffset, or len might be near -1>>>1.
-  if ((ooffset < 0) || (toffset < 0)
-        || (toffset > (long)value.length - len)
-        || (ooffset > (long)other.value.length - len)) {
-    return false;
-  }
-  while (len-- > 0) {
-    if (ta[to++] != pa[po++]) {
-      return false;
+public boolean regionMatches(boolean ignoreCase, int toffset,
+        String other, int ooffset, int len) {
+    char ta[] = value;
+    int to = toffset;
+    char pa[] = other.value;
+    int po = ooffset;
+    // Note: toffset, ooffset, or len might be near -1>>>1.
+    if ((ooffset < 0) || (toffset < 0)
+            || (toffset > (long)value.length - len)
+            || (ooffset > (long)other.value.length - len)) {
+        return false;
     }
-  }
-  return true;
+    while (len-- > 0) {
+        char c1 = ta[to++];
+        char c2 = pa[po++];
+        if (c1 == c2) {
+            continue;
+        }
+        if (ignoreCase) {
+            // If characters don't match but case may be ignored,
+            // try converting both characters to uppercase.
+            // If the results match, then the comparison scan should
+            // continue.
+            char u1 = Character.toUpperCase(c1);
+            char u2 = Character.toUpperCase(c2);
+            if (u1 == u2) {
+                continue;
+            }
+            // Unfortunately, conversion to uppercase does not work properly
+            // for the Georgian alphabet, which has strange rules about case
+            // conversion.  So we need to make one last check before
+            // exiting.
+            if (Character.toLowerCase(u1) == Character.toLowerCase(u2)) {
+                continue;
+            }
+        }
+        return false;
+    }
+    return true;
 }
 ```
 ---
