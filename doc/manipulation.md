@@ -1812,8 +1812,7 @@ LCSの長さで類似度を計測することができます。
 中世に開発されたグルジア文字はかつてupper caseとlower caseの２種類の文字セットが存在しましたが、後に、２つの文字セットに代わり、１つの文字セットが用いられるようになりました。
 かつてはクツリ（Khutsuri）と呼ばれる文字がキリスト教で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。ムルグロヴァニは西暦430年頃から使用されていました。９世紀の間に、徐々にムルグロヴァニがヌスフリに置き換えられていきました。今日使用されている文字はムヘドルリ（Mkhedruli「騎兵文字」）と呼ばれるもので１１世紀から１３世紀の間に開発され現在も使用されています。このようにグルジア文字には３種類の文字セットが存在します。
 ムルグロヴァニとヌスフリはupper caseとlower caseの関係にあり、ムヘドルリはletter caseが１種類しかないためtoUpperCaseメソッドを使ってもtoLowerCaseメソッドを使っても文字は変わりません。
-StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッドでCharacter.toUpperCaseメソッドでupper caseに変換した後Character.toLowerCaseメソッドでlower caseに変換してletter caseが無視できているかをグルジア文字のために念入りにチェックしているとOpenJDKのJavadocに書かれていますが、私が調べた限りではそれをする必要はないようです。
-
+StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッドでCharacter.toUpperCaseメソッドでupper caseに変換した後Character.toLowerCaseメソッドでlower caseに変換してletter caseが無視できているかをグルジア文字のために念入りにチェックしているとOpenJDKのJavadocに書かれていますが、私が調べた限りでは（調査に使った<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/test/scala/Day6GeorgianAlphabetTestSuite.scala">ソースコード</a>）それをする必要はないようです。
 <table>
 <tr>
 <th rowspan="2">読み</th><th colspan="2">bicameral alphabet</th><th>unicameral alphabet</th><th rowspan="2">備考</th>
