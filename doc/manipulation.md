@@ -1810,11 +1810,14 @@ LCSの長さで類似度を計測することができます。
 ***
 <h3>コラム：グルジア文字のletter case</h3>
 中世に開発されたグルジア文字はかつてupper caseとlower caseの２種類の文字セットが存在しましたが、後に、２つの文字セットに代わり、１つの文字セットが用いられるようになりました。
-かつてはクツリ（Khutsuri）と呼ばれる文字がキリスト教で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。ムルグロヴァニは西暦430年頃から使用されていました。９世紀の間に、徐々にムルグロヴァニがヌスフリに置き換えられていきました。今日使用されている文字はムヘドルリ（Mkhedruli「騎兵文字」）と呼ばれるもので１１世紀から１３世紀の間に開発され現在も使用されています。このようにグルジア文字には３種類の文字セットが存在します。それらをupper caseに変換した場合、lower caseに変換した場合それぞれどのように変換されるのか、さらにupper caseに変換してからlower caseに変換した場合、lower caseに変換してからupper caseに変換した場合はそれぞれどのように変換されるのかを調査し、まとめます。
-グルジア文字は３８文字あります。そのうち５文字は現在使用されていません。
+かつてはクツリ（Khutsuri）と呼ばれる文字がキリスト教で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。ムルグロヴァニは西暦430年頃から使用されていました。９世紀の間に、徐々にムルグロヴァニがヌスフリに置き換えられていきました。今日使用されている文字はムヘドルリ（Mkhedruli「騎兵文字」）と呼ばれるもので１１世紀から１３世紀の間に開発され現在も使用されています。このようにグルジア文字には３種類の文字セットが存在します。
+ムルグロヴァニとヌスフリはupper caseとlower caseの関係にあり、ムヘドルリはletter caseが１種類しかないためtoUpperCaseメソッドを使ってもtoLowerCaseメソッドを使っても文字は変わりません。
 <table>
 <tr>
-<th></th><th>ムルグロヴァニ</th><th>ヌスフリ</th><th>ムヘドルリ</th><th>備考</th>
+<th colspan="2">bicameral alphabet</th><th>unicameral alphabet</th><th rowspan="2">備考</th>
+</tr>
+<tr>
+<th></th><th>ムルグロヴァニ<br>（upper case）</th><th>ヌスフリ<br>（lower case）</th><th>ムヘドルリ</th>
 </tr>
 <tr>
 <td>ani</td><td>Ⴀ</td><td>ⴀ</td><td>ა</td><td>&nbsp;</td>
