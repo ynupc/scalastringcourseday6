@@ -177,15 +177,31 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
   def testStringEqualExpression(): Unit = {
     assert(unagiCopula == "僕はウナギ")
     assert(unagiCopula.equals("僕はウナギ"))
+    assert(unagiCopula.compare("僕はウナギ") == 0)
+    assert(unagiCopula.compareTo("僕はウナギ") == 0)
 
     assert(unagiCopula != "僕はウサギ")
     assert(!unagiCopula.equals("僕はウサギ"))
+    assert(unagiCopula.compare("僕はウサギ") != 0)
+    assert(unagiCopula.compareTo("僕はウサギ") != 0)
+
+    assert(unagiCopula != null)
+    assert(!unagiCopula.equals(null))
+    //java.lang.NullPointerException
+    //assert(unagiCopula.compare(null) != 0)
+    //java.lang.NullPointerException
+    //assert(unagiCopula.compareTo(null) != 0)
   }
 
   @Test
   def testStringEqualExpressionIngnoreCase(): Unit = {
     assert(!"I am Unagi.".equals("i am unagi."))
     assert("I am Unagi.".equalsIgnoreCase("i am unagi."))
+    assert("I am Unagi.".compareToIgnoreCase("i am unagi.") == 0)
+
+    assert(!"I am Unagi.".equalsIgnoreCase(null))
+    //java.lang.NullPointerException
+    //assert("I am Unagi.".compareToIgnoreCase(null) != 0)
   }
 
   @Test
