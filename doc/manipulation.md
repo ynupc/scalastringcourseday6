@@ -113,6 +113,7 @@ private static class CaseInsensitiveComparator
 }
 ```
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a><br>
+equalsIgnoreCaseメソッドはletter caseを無視した等値を見るために次の順で判定する。
 <ol>
 <li>Stringと引数のStringの参照が一致したらtrue</li>
 <li>引数のStringがnullだったらfalse</li>
