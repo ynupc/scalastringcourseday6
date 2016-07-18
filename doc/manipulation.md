@@ -6,7 +6,7 @@
 'A'と'B'は'A'より'B'の方がChar順で後ろにあるため、'A' &lt; 'B'はtrueで、'A' &lt; 'A'や'B' &lt; 'A'はfalseです。
 "AA" &lt; "AB"はtrueです。"B"と"BA"のように先頭が一致するが長さが違う場合は短い方が前、長い方が後ろになります。つまり、"B" &lt; "BA"はtrueです。
 &lt;=演算子（&gt;=演算子）は&lt;演算子（&gt;演算子）に一致を加えた機能です。<br>
-compareToメソッドとcompareメソッドは名前が違いますが、機能としては同じです。compareToメソッドは２つの文字や文字列を比較した結果を、0より小さいか、0か、もしくは0より大きいかの３値によって、Char順に基づいて比較することができます。
+compareToメソッドとcompareメソッドは名前が違いますが、compareメソッドはcompareToメソッドを呼び出すだけなので機能としては同じです。compareToメソッドは２つの文字や文字列を比較した結果を、0より小さいか、0か、もしくは0より大きいかの３値によって、Char順に基づいて比較することができます。
 例えば、"A".compareTo("B")の場合は、compareToメソッドを理解する上で便宜上compareToを「-」に置換すると、"A" - "B"となりますが、"A"より"B"の方がChar順で後ろにあるため"A" - "B" &lt; 0です。この「-」をcompareToに元に戻すと、"A".compareTo("B") &lt; 0になりますが、これはtrueです。
 compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、全ての文字のletter caseを無視した（例えば、lower caseに揃えた）状態でcompareToメソッドを使ったのと同等の機能です。
 ```scala
@@ -71,6 +71,73 @@ compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、�
     assert("A".compareToIgnoreCase("a") == 0)
     assert("a".compareToIgnoreCase("A") == 0)
   }
+```
+OpenJDK 8u40-b25のcompareToIgnoreCaseメソッド
+```java
+public int compareToIgnoreCase(String str) {
+    return CASE_INSENSITIVE_ORDER.compare(this, str);
+}
+
+public static final Comparator<String> CASE_INSENSITIVE_ORDER
+                                     = new CaseInsensitiveComparator();
+private static class CaseInsensitiveComparator
+        implements Comparator<String>, java.io.Serializable {
+    // use serialVersionUID from JDK 1.2.2 for interoperability
+    private static final long serialVersionUID = 8575799808933029326L;
+
+    public int compare(String s1, String s2) {
+        int n1 = s1.length();
+        int n2 = s2.length();
+        int min = Math.min(n1, n2);
+        for (int i = 0; i < min; i++) {
+            char c1 = s1.charAt(i);
+            char c2 = s2.charAt(i);
+            if (c1 != c2) {
+                c1 = Character.toUpperCase(c1);
+                c2 = Character.toUpperCase(c2);
+                if (c1 != c2) {
+                    c1 = Character.toLowerCase(c1);
+                    c2 = Character.toLowerCase(c2);
+                    if (c1 != c2) {
+                        // No overflow because of numeric promotion
+                        return c1 - c2;
+                    }
+                }
+            }
+        }
+        return n1 - n2;
+    }
+
+    /** Replaces the de-serialized object. */
+    private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
+}
+```
+OpenJDK 8u40-b25のequalsIgnoreCaseメソッド
+```java
+public boolean equalsIgnoreCase(String anotherString) {
+  return (this == anotherString) ? true
+        : (anotherString != null)
+              && (anotherString.value.length == value.length)
+              && regionMatches(true, 0, anotherString, 0, value.length);
+  }
+public boolean regionMatches(int toffset, String other, int ooffset, int len) {
+  char ta[] = value;
+  int to = toffset;
+  char pa[] = other.value;
+  int po = ooffset;
+  // Note: toffset, ooffset, or len might be near -1>>>1.
+  if ((ooffset < 0) || (toffset < 0)
+        || (toffset > (long)value.length - len)
+        || (ooffset > (long)other.value.length - len)) {
+    return false;
+  }
+  while (len-- > 0) {
+    if (ta[to++] != pa[po++]) {
+      return false;
+    }
+  }
+  return true;
+}
 ```
 ---
 <h3>2.2　パスフィルタ</h3>
