@@ -169,6 +169,8 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 <h4>1.1.1　完全一致（表層文字列）</h4>
 表層文字列の完全一致は==演算子かJava由来のequalsメソッドを使用します。
 Javaでは、==演算子を使用すると参照の一致を見てしまい、文字列としては等値であってもfalseを返してしまう可能性があります。そのため、文字列としての等値を正しく返すためにequalsメソッドを使用しました。
+letter caseを無視して（例えば、全てlower caseに揃えて）から完全一致を見る場合はequalsIgnoreCaseメソッドを使用します。
+==演算子やequalsメソッドの代替にcompareメソッド、compareToメソッドや、equalsIgnoreCaseメソッドの代わりにcompareToIgnoreCaseメソッドを使用することができますが、==演算子やequalsメソッドはnullを比較する場合でもBooleanを返しますが、compare系メソッドはnullに対してjava.lang.NullPointerExceptionを返します。
 Scalaでは、==演算子を使用すると文字列としての等値を見ることができます。その代わり、Javaの==演算子のように参照の一致を知りたい場合は、一致を見る場合はeq演算子、不一致を見る場合はne演算子を使用します。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
