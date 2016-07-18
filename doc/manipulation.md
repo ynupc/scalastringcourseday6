@@ -82,7 +82,7 @@ equalsIgnoreCaseメソッドはletter caseを無視した等値を見るため�
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
 <li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するため）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>）</li>
 </ol>
 </li>
 </ol>
@@ -141,7 +141,7 @@ OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/jav
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
 <li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するため）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>）</li>
 </ol>
 </li>
 <li>Stringの長さから引数のStringの長さを引いた値を返す。</li>
@@ -1812,6 +1812,8 @@ LCSの長さで類似度を計測することができます。
 中世に開発されたグルジア文字はかつてupper caseとlower caseの２種類の文字セットが存在しましたが、後に、２つの文字セットに代わり、１つの文字セットが用いられるようになりました。
 かつてはクツリ（Khutsuri）と呼ばれる文字がキリスト教で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。ムルグロヴァニは西暦430年頃から使用されていました。９世紀の間に、徐々にムルグロヴァニがヌスフリに置き換えられていきました。今日使用されている文字はムヘドルリ（Mkhedruli「騎兵文字」）と呼ばれるもので１１世紀から１３世紀の間に開発され現在も使用されています。このようにグルジア文字には３種類の文字セットが存在します。
 ムルグロヴァニとヌスフリはupper caseとlower caseの関係にあり、ムヘドルリはletter caseが１種類しかないためtoUpperCaseメソッドを使ってもtoLowerCaseメソッドを使っても文字は変わりません。
+StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッドでCharacter.toUpperCaseメソッドでupper caseに変換した後Character.toLowerCaseメソッドでlower caseに変換してletter caseが無視できているかをグルジア文字のために念入りにチェックしているとOpenJDKのJavadocに書かれていましたが、私が調べた限りではそれをする必要がなく見えます。
+
 <table>
 <tr>
 <th rowspan="2">読み</th><th colspan="2">bicameral alphabet</th><th>unicameral alphabet</th><th rowspan="2">備考</th>
