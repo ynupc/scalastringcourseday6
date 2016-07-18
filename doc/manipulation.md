@@ -72,7 +72,7 @@ compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、�
     assert("a".compareToIgnoreCase("A") == 0)
   }
 ```
-OpenJDK 8u40-b25のcompareToIgnoreCaseメソッド
+OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.compareToIgnoreCase%28java.lang.String%29" target="_blank">compareToIgnoreCaseメソッド</a>
 ```java
 public int compareToIgnoreCase(String str) {
     return CASE_INSENSITIVE_ORDER.compare(this, str);
@@ -112,7 +112,7 @@ private static class CaseInsensitiveComparator
     private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
 }
 ```
-OpenJDK 8u40-b25のequalsIgnoreCaseメソッド
+OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a>
 ```java
 public boolean equalsIgnoreCase(String anotherString) {
   return (this == anotherString) ? true
