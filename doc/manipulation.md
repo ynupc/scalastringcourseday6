@@ -1814,10 +1814,10 @@ LCSの長さで類似度を計測することができます。
 ムルグロヴァニとヌスフリはupper caseとlower caseの関係にあり、ムヘドルリはletter caseが１種類しかないためtoUpperCaseメソッドを使ってもtoLowerCaseメソッドを使っても文字は変わりません。
 <table>
 <tr>
-<th colspan="2">bicameral alphabet</th><th>unicameral alphabet</th><th rowspan="2">備考</th>
+<th rowspan="2">読み</th><th colspan="2">bicameral alphabet</th><th>unicameral alphabet</th><th rowspan="2">備考</th>
 </tr>
 <tr>
-<th></th><th>ムルグロヴァニ<br>（upper case）</th><th>ヌスフリ<br>（lower case）</th><th>ムヘドルリ</th>
+<th>ムルグロヴァニ<br>（upper case）</th><th>ヌスフリ<br>（lower case）</th><th>ムヘドルリ</th>
 </tr>
 <tr>
 <td>ani</td><td>Ⴀ</td><td>ⴀ</td><td>ა</td><td>&nbsp;</td>
