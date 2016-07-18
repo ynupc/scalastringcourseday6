@@ -121,7 +121,7 @@ OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/jav
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
 <li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけではGeorgian alphabetに対してはletter caseを無視できていないため、さらにlower caseに変換することでGeorgian alphabetのletter caseを無視するため）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するため）</li>
 </ol>
 </li>
 </ol>
