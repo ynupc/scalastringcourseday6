@@ -1838,7 +1838,7 @@ LCSの長さで類似度を計測することができます。
 <td>zeni</td><td>Ⴆ</td><td>ⴆ</td><td>ზ</td><td>&nbsp;</td>
 </tr>
 <tr>
-<td>he</td><td>Ⴡ</td><td>ⴡ</td><td></td>ჱ<td>現在は不使用</td>
+<td>he</td><td>Ⴡ</td><td>ⴡ</td><td>ჱ</td><td>現在は不使用</td>
 </tr>
 <tr>
 <td>tani</td><td>Ⴇ</td><td>ⴇ</td><td>თ</td><td>&nbsp;</td>
@@ -1883,10 +1883,10 @@ LCSの長さで類似度を計測することができます。
 <td>vie</td><td>Ⴣ</td><td>ⴣ</td><td>ჳ</td><td>現在は不使用</td>
 </tr>
 <tr>
-<td rowspan="2">uni</td><td>ႭჃ</td><td>ⴍⴣ </td><td rowspan="2">უ</td><td>&nbsp;</td>
+<td rowspan="2">uni</td><td>ႭჃ</td><td>ⴍⴣ </td><td rowspan="2">უ</td><td rowspan="2">&nbsp;</td>
 </tr>
 <tr>
-<td>Ⴓ</td><td>ⴓ</td><td>&nbsp;</td>
+<td>Ⴓ</td><td>ⴓ</td>
 </tr>
 <tr>
 <td>pari</td><td>Ⴔ</td><td>ⴔ</td><td>ფ</td><td>&nbsp;</td>
