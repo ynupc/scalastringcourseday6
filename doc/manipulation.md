@@ -120,8 +120,8 @@ OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/jav
 <li>Stringと引数のStringの両方に対し（この時Stringと引数のStringの両方の長さは一致している）、先頭のCharから順に観察し全てのCharに対し次の条件を全て満たした場合はtrue、１回でも違反した場合はfalse
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけではGeorgian alphabetに対してはletter caseを無視できていないため、さらにlower caseに変換することでGeorgian alphabetのletter caseを無視するため）</li>
 </ol>
 </li>
 </ol>
