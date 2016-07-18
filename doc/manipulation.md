@@ -6,7 +6,7 @@
 'A'と'B'は'A'より'B'の方がChar順で後ろにあるため、'A' &lt; 'B'はtrueで、'A' &lt; 'A'や'B' &lt; 'A'はfalseです。
 "AA" &lt; "AB"はtrueです。"B"と"BA"のように先頭が一致するが長さが違う場合は短い方が前、長い方が後ろになります。つまり、"B" &lt; "BA"はtrueです。
 &lt;=演算子（&gt;=演算子）は&lt;演算子（&gt;演算子）に一致を加えた機能です。<br>
-compareメソッドとcompareToメソッドは名前が違いますが、機能としては同じです。
+compareToメソッドとcompareメソッドは名前が違いますが、機能としては同じです。compareToメソッドは２つの文字や文字列を比較した結果を、0より小さいか、0か、もしくは0より大きいかの３値によって、Char順に基づいて比較することができます。
 例えば、"A".compareTo("B")の場合は、"A" &lt; "B"ですがこの式をcompareToメソッドを理解する上で便宜上式変形すると、"A" - "B" &lt; 0です。この「-」をcompareToに置き換えると、"A".compareTo("B") &lt; 0になりますが、これはtrueです。
 compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、全ての文字のletter caseを無視した（例えば、lower caseに揃えた）状態でcompareToメソッドを使ったのと同等の機能です。
 ```scala
