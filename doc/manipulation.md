@@ -1808,6 +1808,10 @@ LCSの長さで類似度を計測することができます。
 </table>
 
 ***
+<h3>コラム：グルジア文字のletter case</h3>
+中世に開発されたグルジア文字はかつてupper caseとlower caseの２種類の文字セットが存在しましたが、後に、２つの文字セットに代わり、１つの文字セットが用いられるようになりました。
+かつてはクツリ（Khutsuri）と呼ばれる文字が教会で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。今日使用されている文字はムヘドルリ（Mkhedruli「戦士文字」）と呼ばれるもので１１世紀から使用されています。
+***
 <h3>コラム：N-gramの読み方</h3>
 N-gramの数字Nはラテン語の接頭辞表現が使用されます。
 例えば1-gram、2-gram、3-gramはラテン語のそれぞれuni、bi、triを用いてunigram、bigram、trigramで表現されます。
