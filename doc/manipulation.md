@@ -72,46 +72,6 @@ compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、�
     assert("a".compareToIgnoreCase("A") == 0)
   }
 ```
-OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.compareToIgnoreCase%28java.lang.String%29" target="_blank">compareToIgnoreCaseメソッド</a>
-```java
-public int compareToIgnoreCase(String str) {
-    return CASE_INSENSITIVE_ORDER.compare(this, str);
-}
-
-public static final Comparator<String> CASE_INSENSITIVE_ORDER
-                                     = new CaseInsensitiveComparator();
-private static class CaseInsensitiveComparator
-        implements Comparator<String>, java.io.Serializable {
-    // use serialVersionUID from JDK 1.2.2 for interoperability
-    private static final long serialVersionUID = 8575799808933029326L;
-
-    public int compare(String s1, String s2) {
-        int n1 = s1.length();
-        int n2 = s2.length();
-        int min = Math.min(n1, n2);
-        for (int i = 0; i < min; i++) {
-            char c1 = s1.charAt(i);
-            char c2 = s2.charAt(i);
-            if (c1 != c2) {
-                c1 = Character.toUpperCase(c1);
-                c2 = Character.toUpperCase(c2);
-                if (c1 != c2) {
-                    c1 = Character.toLowerCase(c1);
-                    c2 = Character.toLowerCase(c2);
-                    if (c1 != c2) {
-                        // No overflow because of numeric promotion
-                        return c1 - c2;
-                    }
-                }
-            }
-        }
-        return n1 - n2;
-    }
-
-    /** Replaces the de-serialized object. */
-    private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
-}
-```
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a><br>
 equalsIgnoreCaseメソッドはletter caseを無視した等値を見るために次の順で判定する。
 <ol>
@@ -173,6 +133,56 @@ public boolean regionMatches(boolean ignoreCase, int toffset,
         return false;
     }
     return true;
+}
+```
+OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.compareToIgnoreCase%28java.lang.String%29" target="_blank">compareToIgnoreCaseメソッド</a><br>
+<ol>
+<li>Stringと引数のStringを先頭からCharを一つずつ取り出し、両方のStringにCharが存在するインデックスまで観察する。次の条件を満たすさない場合は、そのインデックスのStringのCharから引数のStringのCharを引いた値を返す。
+<ol>
+<li>Stringと引数のStringの同じインデックスのCharが一致する</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するため）</li>
+</ol>
+</li>
+<li>Stringの長さから引数のStringの長さを引いた値を返す。</li>
+</ol>
+```java
+public int compareToIgnoreCase(String str) {
+    return CASE_INSENSITIVE_ORDER.compare(this, str);
+}
+
+public static final Comparator<String> CASE_INSENSITIVE_ORDER
+                                     = new CaseInsensitiveComparator();
+private static class CaseInsensitiveComparator
+        implements Comparator<String>, java.io.Serializable {
+    // use serialVersionUID from JDK 1.2.2 for interoperability
+    private static final long serialVersionUID = 8575799808933029326L;
+
+    public int compare(String s1, String s2) {
+        int n1 = s1.length();
+        int n2 = s2.length();
+        int min = Math.min(n1, n2);
+        for (int i = 0; i < min; i++) {
+            char c1 = s1.charAt(i);
+            char c2 = s2.charAt(i);
+            if (c1 != c2) {
+                c1 = Character.toUpperCase(c1);
+                c2 = Character.toUpperCase(c2);
+                if (c1 != c2) {
+                    c1 = Character.toLowerCase(c1);
+                    c2 = Character.toLowerCase(c2);
+                    if (c1 != c2) {
+                        // No overflow because of numeric promotion
+                        return c1 - c2;
+                    }
+                }
+            }
+        }
+        return n1 - n2;
+    }
+
+    /** Replaces the de-serialized object. */
+    private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
 }
 ```
 ---
