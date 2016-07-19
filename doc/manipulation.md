@@ -82,7 +82,7 @@ equalsIgnoreCaseメソッドはletter caseを無視した等値を見るため�
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
 <li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>。しかし、グルジア文字とは別の文字にはletter caseの変換に非対称性が存在します。参照：<a href="#コラムletter-caseの変換の非対称性">コラム：letter caseの変換の非対称性</a>。）</li>
 </ol>
 </li>
 </ol>
@@ -141,7 +141,7 @@ OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/jav
 <ol>
 <li>Stringと引数のStringの同じインデックスのCharが一致する</li>
 <li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharが一致する（letter caseを無視するため）</li>
-<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>）</li>
+<li>または、Stringと引数のStringの同じインデックスのCharをupper caseに変換したCharをlower caseに変換したCharが一致する（upper caseに変換しただけでは<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AB%E3%82%B8%E3%82%A2%E6%96%87%E5%AD%97" target="_blank">グルジア文字</a>に対してはletter caseを無視できていないため、さらにlower caseに変換することでグルジア文字のletter caseを無視するためだそうですが、私が調べた限りではそのような問題は起こらないように見えます。参照：<a href="#コラムグルジア文字のletter-case">コラム：グルジア文字のletter case</a>。しかし、グルジア文字とは別の文字にはletter caseの変換に非対称性が存在します。参照：<a href="#コラムletter-caseの変換の非対称性">コラム：letter caseの変換の非対称性</a>。）</li>
 </ol>
 </li>
 <li>Stringの長さから引数のStringの長さを引いた値を返す。</li>
