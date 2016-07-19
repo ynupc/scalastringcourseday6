@@ -1940,6 +1940,8 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
 </table>
 ***
 <h3>コラム：letter caseの変換の非対称性</h3>
+<h4>（１）LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVE</h4>
+LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを無視した時に同一視したいとすると、それらはどちらもupper caseなのでtoUpperCaseメソッドを実行しても変わらないため等値判定してもfalseが返ります。これらのlower caseはいずれもLATIN SMALL LETTER Iなので、等値判定するとtrueが返ります。なお、Day 7で解説するUnicode文字正規化をLATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEに対してそれぞれ行ってもどちらも変化しません。従って、LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEを同一視するためにはlower caseに変換する必要があります。
 ```scala
   @Test
   def testI(): Unit = {
@@ -2056,7 +2058,7 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
     assert(Normalizer.normalize(Character.toLowerCase(char73).toString, Normalizer.Form.NFKC) == Normalizer.normalize(Character.toLowerCase(char304).toString, Normalizer.Form.NFKC))
   }
 ```
-
+<h4>（２）GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOL</h4>
 ```scala
   @Test
   @Test
