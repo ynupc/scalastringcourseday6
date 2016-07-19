@@ -1967,7 +1967,7 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
     printf("%s %d%n", char73LowerCase, char73LowerCase.toInt)
     printf("%s %d%n", char304LowerCase, char304LowerCase.toInt)
     assert(char73LowerCase == 'i')
-    assert(char73LowerCase.toInt == 105)
+    assert(char73LowerCase.toInt == 105) //LATIN SMALL LETTER I
     assert(char304LowerCase == 'i')
     assert(char304LowerCase.toInt == 105)
     println("toUpperCase.toLowerCase")
@@ -2059,9 +2059,10 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
 
 ```scala
   @Test
+  @Test
   def testTheta(): Unit = {
-    val char977: Char = 977.toChar
-    val char1012: Char = 1012.toChar
+    val char977: Char = 977.toChar //GREEK THETA SYMBOL
+    val char1012: Char = 1012.toChar //GREEK CAPITAL THETA SYMBOL
 
     printf("%s %d%n", char977, char977.toInt)
     printf("%s %d%n", char1012, char1012.toInt)
@@ -2075,7 +2076,7 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
     printf("%s %d%n", char977UpperCase, char977UpperCase.toInt)
     printf("%s %d%n", char1012UpperCase, char1012UpperCase.toInt)
     assert(char977UpperCase == 'Θ')
-    assert(char977UpperCase.toInt == 920)
+    assert(char977UpperCase.toInt == 920) //GREEK CAPITAL LETTER THETA
     assert(char1012UpperCase == 'ϴ')
     assert(char1012UpperCase.toInt == 1012)
     println("toLowerCase")
@@ -2086,7 +2087,7 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
     assert(char977LowerCase == 'ϑ')
     assert(char977LowerCase.toInt == 977)
     assert(char1012LowerCase == 'θ')
-    assert(char1012LowerCase.toInt == 952)
+    assert(char1012LowerCase.toInt == 952) //GREEK SMALL LETTER THETA
     println("toUpperCase.toLowerCase")
     val char977UpperCaseLowerCase: Char = Character.toLowerCase(char977UpperCase)
     val char1012UpperCaseLowerCase: Char = Character.toLowerCase(char1012UpperCase)
