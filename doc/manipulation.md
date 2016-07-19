@@ -2224,6 +2224,9 @@ GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時�
   }
 ```
 ***
+<h3>コラム：配列と線形リスト</h3>
+
+***
 <h3>コラム：N-gramの読み方</h3>
 N-gramの数字Nはラテン語の接頭辞表現が使用されます。
 例えば1-gram、2-gram、3-gramはラテン語のそれぞれuni、bi、triを用いてunigram、bigram、trigramで表現されます。
