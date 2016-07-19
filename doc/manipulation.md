@@ -853,7 +853,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
 ```
 ---
 <h3>2.5　集合演算</h3>
-<h4>2.5.1　max</h4>
+<h4>2.5.1　最大</h4>
 ```scala
   @Test
   def testMax(): Unit = {
@@ -883,7 +883,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
     }
   }
 ```
-<h4>2.5.2　min</h4>
+<h4>2.5.2　最小</h4>
 ```scala
   @Test
   def testMin(): Unit = {
@@ -913,7 +913,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
     }
   }
 ```
-<h4>2.5.3　sum</h4>
+<h4>2.5.3　総和</h4>
 ```scala
   @Test
   def testSum(): Unit = {
@@ -928,7 +928,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
     //println(list.sum)
   }
 ```
-<h4>2.5.4　product</h4>
+<h4>2.5.4　相乗</h4>
 ```scala
   @Test
   def testProduct(): Unit = {
@@ -943,7 +943,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
     //println(list.product)
   }
 ```
-<h4>2.5.5　union</h4>
+<h4>2.5.5　和集合</h4>
 unionメソッドにより文字列の結合ができますが、concatや+演算子の方が高速です。
 ```scala
   @Test
@@ -959,7 +959,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
     assert(list1.union(list2) == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
   }
 ```
-<h4>2.5.6　diff</h4>
+<h4>2.5.6　差集合</h4>
 ```scala
   @Test
   def testDiff(): Unit = {
@@ -979,7 +979,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
       == Seq[String]("衣", "安", "宇", "以", "於", "𠮷"))
   }
 ```
-<h4>2.5.7　distinct</h4>
+<h4>2.5.7　重複排除</h4>
 ```scala
   @Test
   def testDistinct(): Unit = {
@@ -990,7 +990,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
     assert(list.distinct == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
   }
 ```
-<h4>2.5.8　intersect</h4>
+<h4>2.5.8　積集合</h4>
 LCS (Longest Common Subsequence)
 ```scala
   @Test
@@ -1004,7 +1004,7 @@ LCS (Longest Common Subsequence)
     println(list1.intersect(list2) == Seq[String]("安", "衣", "安", "𠮷"))
   }
 ```
-<h4>2.5.9　combinations</h4>
+<h4>2.5.9　組合せ</h4>
 ```scala
   @Test
   def testCombinations(): Unit = {
@@ -1021,7 +1021,7 @@ LCS (Longest Common Subsequence)
     assert(listCombo == Seq[Seq[String]](Seq("𠮷", "野"), Seq("𠮷", "家"), Seq("野", "家")))
   }
 ```
-<h4>2.5.10　permutations</h4>
+<h4>2.5.10　順列</h4>
 ```scala
   @Test
   def testPermutations(): Unit = {
