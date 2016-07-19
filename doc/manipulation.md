@@ -1659,7 +1659,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Dissimilarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Dissimilarity.scala">text.similarity.Dissimilarity</a></td>
 </tr>
 <tr>
 <td>チェビシェフ距離の逆数</td>
@@ -1675,7 +1675,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Dissimilarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Dissimilarity.scala">text.similarity.Dissimilarity</a></td>
 </tr>
 <tr>
 <td>ユークリッド距離の逆数</td>
@@ -1691,7 +1691,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Dissimilarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Dissimilarity.scala">text.similarity.Dissimilarity</a></td>
 </tr>
 <tr>
 <td>マンハッタン距離の逆数</td>
@@ -1707,7 +1707,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Dissimilarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Dissimilarity.scala">text.similarity.Dissimilarity</a></td>
 </tr>
 <tr>
 <td>ミンコフスキー距離の逆数</td>
@@ -1739,7 +1739,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>LCSのF1値</td>
@@ -1747,7 +1747,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>LCSの適合率（Precision）</td>
@@ -1755,7 +1755,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>LCSの再現率（Recall）</td>
@@ -1763,7 +1763,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>F値</td>
@@ -1771,7 +1771,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>二値ベクトル</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>F1値</td>
@@ -1779,7 +1779,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>二値ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>適合率（Precision）</td>
@@ -1787,7 +1787,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>二値ベクトル</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>再現率（Recall）</td>
@@ -1795,7 +1795,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>二値ベクトル</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 <tr>
 <td>Rus05包含度</td>
@@ -1803,7 +1803,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>二値ベクトル</td>
 <td>交換不可能</td>
-<td>text.similarity.Overlap</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
 </table>
 
