@@ -2225,7 +2225,15 @@ GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時�
 ```
 ***
 <h3>コラム：配列と線形リスト</h3>
-
+説明はWikipediaの記事「<a href="https://ja.wikipedia.org/wiki/%E9%80%A3%E7%B5%90%E3%83%AA%E3%82%B9%E3%83%88#.E9.80.A3.E7.B5.90.E3.83.AA.E3.82.B9.E3.83.88.E3.81.A8.E9.85.8D.E5.88.97" target="_blank">連結リストと配列</a>」を読んでください。<br>
+実際の実装に関しては次を読んでください。
+<ul>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/collection/index.html" target="_blank">Scalaコレクション</a></li>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/collection/seq.html" target="_blank">Scala Seq</a></li>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/collection/list.html" target="_blank">Scala List</a></li>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/collection/map.html" target="_blank">Scala Map</a></li>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/java/collection.html" target="_blank">Java コレクションクラス</a></li>
+</ul>
 ***
 <h3>コラム：N-gramの読み方</h3>
 N-gramの数字Nはラテン語の接頭辞表現が使用されます。
