@@ -1555,7 +1555,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td>text.similarity.HammingDistance</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/HammingDistance.scala">text.similarity.HammingDistance</a></td>
 </tr>
 <tr>
 <td>レーベンシュタイン距離</td>
