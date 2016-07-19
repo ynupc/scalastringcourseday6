@@ -73,7 +73,7 @@ compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、�
   }
 ```
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a><br>
-equalsIgnoreCaseメソッドはletter caseを無視した等値を見るために次の順で判定する。
+equalsIgnoreCaseメソッドはletter caseを無視した等値を見るために次の順で判定します。
 <ol>
 <li>Stringと引数のStringの参照が一致したらtrue</li>
 <li>引数のStringがnullだったらfalse</li>
@@ -136,6 +136,7 @@ public boolean regionMatches(boolean ignoreCase, int toffset,
 }
 ```
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.compareToIgnoreCase%28java.lang.String%29" target="_blank">compareToIgnoreCaseメソッド</a><br>
+compareToIgnoreCaseメソッドはletter caseを無視して比較するために次の順で判定します。
 <ol>
 <li>Stringと引数のStringを先頭からCharを一つずつ取り出し、両方のStringにCharが存在するインデックスまで観察する。次の条件を満たすさない場合は、そのインデックスのStringのCharから引数のStringのCharを引いた値を返す。
 <ol>
@@ -187,6 +188,16 @@ private static class CaseInsensitiveComparator
 ```
 ---
 <h3>2.2　パスフィルタ</h3>
+本節では、Stringを入力してその一部を取り出すStringのパスフィルタについて説明します。
+Stringのパスフィルタには、
+N番目の文字を取得する方法、
+ある位置からある位置までの部分文字列を取得する方法、
+先頭の一文字を取得する方法、
+先頭のN文字を取得する方法、
+末尾の一文字を取得する方法、
+末尾のN文字を取得する方法、
+条件式を満たす文字や文字列を取得する方法についてそれぞれわけて説明します。
+
 <h4>2.2.1　N番目の文字の取得</h4>
 
 ```scala
