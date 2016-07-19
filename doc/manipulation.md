@@ -1563,7 +1563,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td>text.similarity.LevenshteinDistance</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/LevenshteinDistance.scala">text.similarity.LevenshteinDistance</a></td>
 </tr>
 <tr>
 <td>ダメラオウ・レーベンシュタイン距離</td>
@@ -1571,7 +1571,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td>text.similarity.DamerauLevenshteinDistance</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/DamerauLevenshteinDistance.scala">text.similarity.DamerauLevenshteinDistance</a></td>
 </tr>
 <tr>
 <td>ジャロ・ウィンクラー距離</td>
@@ -1579,7 +1579,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td>text.similarity.JaroWinklerDistance</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/JaroWinklerDistance.scala">text.similarity.JaroWinklerDistance</a></td>
 </tr>
 <tr>
 <td>コサイン類似度</td>
@@ -1587,7 +1587,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>共分散</td>
@@ -1595,7 +1595,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ダイス係数</td>
@@ -1603,7 +1603,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>内積</td>
@@ -1611,7 +1611,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ヤッカード係数</td>
@@ -1619,7 +1619,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ヤッカード・シンプソン係数</td>
@@ -1627,7 +1627,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>リン98類似度</td>
@@ -1635,7 +1635,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ミハルシア04類似度</td>
@@ -1643,7 +1643,7 @@ LCSの長さで類似度を計測することができます。
 <td>非正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ピアソンの積率相関係数</td>
@@ -1651,7 +1651,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>チェビシェフ距離</td>
@@ -1667,7 +1667,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ユークリッド距離</td>
@@ -1683,7 +1683,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>マンハッタン距離</td>
@@ -1699,7 +1699,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>ミンコフスキー距離</td>
@@ -1715,7 +1715,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>シンプソン係数</td>
@@ -1723,7 +1723,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>トベルスキー係数</td>
@@ -1731,7 +1731,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>頻度ベクトル</td>
 <td>交換可能</td>
-<td>text.similarity.Similarity</td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Similarity.scala">text.similarity.Similarity</a></td>
 </tr>
 <tr>
 <td>LCSのF値</td>
