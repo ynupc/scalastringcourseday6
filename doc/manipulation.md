@@ -2059,6 +2059,8 @@ LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを�
   }
 ```
 <h4>（２）GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOL</h4>
+GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時に同一視したいとすると、GREEK THETA SYMBOLはlower caseでGREEK CAPITAL THETA SYMBOLはupper caseであり、GREEK THETA SYMBOLのupper caseはGREEK CAPITAL LETTER THETA、GREEK CAPITAL THETA SYMBOLのlower caseはGREEK SMALL LETTER THETAであるため、一度upper caseやlower caseに揃えただけでは一致しません。ところが、GREEK CAPITAL LETTER THETAとGREEK SMALL LETTER THETAはbicameralな関係にあり、つまりGREEK CAPITAL LETTER THETAのlower caseがGREEK SMALL LETTER、GREEK SMALL LETTERのupper caseがGREEK CAPITAL LETTER THETAであるため、GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLはlower caseへの変換とupper caseへの変換の２回変換を行えば、その変換の順序に関係なく一致を見ることができます。
+ちなみに、Day 7で解説するUnicode文字正規化をGREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLに行うと、それぞれGREEK SMALL LETTERとGREEK CAPITAL LETTER THETAに変換されるため、lower caseへの変換とUnicode文字正規化、あるいはupper caseへの変換とUnicode文字正規化を行っても、これらも変換の順序に関係なく一致を見ることができます。
 ```scala
   @Test
   @Test
