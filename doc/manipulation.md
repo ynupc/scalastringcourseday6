@@ -1047,7 +1047,7 @@ LCS (Longest Common Subsequence)
 ```
 ---
 <h3>2.6　インデックス</h3>
-<h4>2.6.1　正方向に解析して最初に現れたindexを取得</h4>
+<h4>2.6.1　正方向に解析して最初に現れたインデックスを取得</h4>
 ```scala
   @Test
   def testIndexOf1(): Unit = {
@@ -1071,7 +1071,7 @@ LCS (Longest Common Subsequence)
     assert(tautology.indexOfSlice("ナギ", 3) == 5)
   }
 ```
-<h4>2.6.2　逆方向に解析して最初に現れたindexを取得</h4>
+<h4>2.6.2　逆方向に解析して最初に現れたインデックスを取得</h4>
 ```scala
   @Test
   def testLastIndexOf1(): Unit = {
@@ -1095,7 +1095,7 @@ LCS (Longest Common Subsequence)
     assert(tautology.lastIndexOfSlice("ナギ", 3) == 1)
   }
 ```
-<h4>2.6.3　正方向に解析して条件を最初に満たしたindexを取得</h4>
+<h4>2.6.3　正方向に解析して条件を最初に満たしたインデックスを取得</h4>
 ```scala
   @Test
   def testPrefixLength(): Unit = {
@@ -1133,7 +1133,7 @@ LCS (Longest Common Subsequence)
     }
   }
 ```
-<h4>2.6.4　逆方向に解析して条件を最初に満たしたindexを取得</h4>
+<h4>2.6.4　逆方向に解析して条件を最初に満たしたインデックスを取得</h4>
 ```scala
   @Test
   def testLastIndexWhere1(): Unit = {
@@ -1153,7 +1153,7 @@ LCS (Longest Common Subsequence)
     }
   }
 ```
-<h4>2.6.5　indexを全て取得</h4>
+<h4>2.6.5　インデックスを全て取得</h4>
 ```scala
   @Test
   def testIndices(): Unit = {
@@ -1173,7 +1173,7 @@ LCS (Longest Common Subsequence)
       ('ウ', 4), ('ナ', 5), ('ギ', 6), ('だ', 7), ('。', 8)))
   }
 ```
-<h4>2.6.6　indexが定義されているか</h4>
+<h4>2.6.6　インデックスが定義されているか</h4>
 ```scala
   @Test
   def testIsDefinedAt(): Unit = {
