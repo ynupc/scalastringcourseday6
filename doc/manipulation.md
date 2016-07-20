@@ -237,7 +237,7 @@ applyElseOptionメソッドはインデックスが定義されていない場�
   }
 ```
 <h4>2.2.2　部分文字列の取得</h4>
-substringメソッドはStringからインデックスからオフセットまでの範囲の部分文字列を取得します。
+Stringからインデックスからオフセットまでの範囲の部分文字列はsubstringメソッドで取得できます。
 ```scala
   @Test
   def testSubstring(): Unit = {
@@ -246,7 +246,7 @@ substringメソッドはStringからインデックスからオフセットま�
   }
 ```
 <h4>2.2.3　先頭の一文字の取得</h4>
-headメソッドは先頭のCharを取得します。
+先頭のCharはheadメソッドで取得できます。
 headOptionメソッドは先頭のCharをSomeで包んで返します。もし先頭のCharが存在しない場合はNoneを返します。
 ```scala
   @Test
@@ -265,7 +265,7 @@ headOptionメソッドは先頭のCharをSomeで包んで返します。もし�
   }
 ```
 <h4>2.2.4　先頭のN文字の取得</h4>
-takeメソッドでStringの先頭からN個のCharを取得することができます。
+Stringの先頭からN個のCharはtakeメソッドで取得できます。
 substringメソッドやdropRightメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
@@ -290,7 +290,7 @@ substringメソッドやdropRightメソッドでも同様の処理を書くこ�
   }
 ```
 <h4>2.2.5　末尾の一文字の取得</h4>
-lastメソッドは末尾のCharを取得します。
+末尾のCharはlastメソッドで取得できます。
 lastOptionメソッドは末尾のCharをSomeで包んで返します。もし末尾のCharが存在しない場合はNoneを返します。
 ```scala
   @Test
@@ -309,7 +309,7 @@ lastOptionメソッドは末尾のCharをSomeで包んで返します。もし�
   }
 ```
 <h4>2.2.6　末尾のN文字の取得</h4>
-takeRightメソッドでStringの末尾からN個のCharを取得することができます。
+Stringの末尾からN個のCharはtakeRightメソッドで取得できます。
 substringメソッドやdropメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
@@ -336,7 +336,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
-takeWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を取得します。
+先頭から条件式を満たさなくなるまでの部分文字列はtakeWhileメソッドで取得します。
 ```scala
   @Test
   def testTakeWhile(): Unit = {
@@ -354,7 +354,7 @@ takeWhileメソッドは先頭から条件式を満たさなくなるまでの�
     assert(result == "ウナギ")
   }
 ```
-filterメソッドは条件を満たすCharだけ取り出して繋いだ文字列を取得します。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を取得します。
+条件を満たすCharだけ取り出して繋いだ文字列はfilterメソッドで取得できます。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を返します。
 ```scala
   @Test
   def testFilter(): Unit = {
@@ -386,7 +386,7 @@ filterメソッドは条件を満たすCharだけ取り出して繋いだ文字�
     assert(result == "ウナギウナギ")
   }
 ```
-findメソッドは先頭から見て条件式を満たしたCharを返します。
+先頭から見て条件式を満たしたCharはfindメソッドで取得できます。
 ```scala
   @Test
   def testFind(): Unit = {
@@ -404,7 +404,7 @@ findメソッドは先頭から見て条件式を満たしたCharを返します
     assert(resultOpt.get == 'は')
   }
 ```
-partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に取得します。
+partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に返します。
 ```scala
   @Test
   def testPartition(): Unit = {
@@ -452,7 +452,7 @@ N番目の文字を削除する方法、
 末尾の改行文字を削除する方法、
 条件式を満たす文字や文字列を削除する方法についてそれぞれ説明します。
 <h4>2.3.1　N番目の文字の削除</h4>
-
+先頭からN番目のCharはStringBuilderのdeleteCharAtメソッドで削除します。 
 ```scala
   @Test
   def testDeleteNthCharInString(): Unit = {
@@ -464,7 +464,7 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.2　部分文字列の削除</h4>
-
+StringBuilderのdeleteメソッドはインデックスからオフセットまでの範囲の部分文字列を削除します。
 ```scala
   @Test
   def testDeleteSubstringInString(): Unit = {
@@ -475,6 +475,7 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.3　先頭の一文字の削除</h4>
+tailメソッドは先頭のCharを削除します。
 ```scala
   @Test
   def testDropHeadChar(): Unit = {
@@ -482,6 +483,8 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.4　先頭のN文字の削除</h4>
+dropメソッドは先頭からN個のCharを削除します。
+substringメソッドやtakeRightメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
   def testDropHeadString1(): Unit = {
@@ -514,6 +517,7 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
+stripPrefixメソッドは先頭の文字列が引数と一致したら削除します。
 ```scala
   @Test
   def testStripPrefix(): Unit = {
@@ -523,6 +527,7 @@ N番目の文字を削除する方法、
 
 ```
 <h4>2.3.6　末尾の一文字の削除</h4>
+initメソッドは末尾のCharを削除します。
 ```scala
   @Test
   def testDropLastChar(): Unit = {
@@ -530,6 +535,8 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.7　末尾のN文字の削除</h4>
+dropRightメソッドは末尾からN個のCharを削除します。
+substringメソッドやtakeメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
   def testDropLastString1(): Unit = {
@@ -561,8 +568,8 @@ N番目の文字を削除する方法、
     assert(result    == "ウナギはウナ")
   }
 ```
-
 <h4>2.3.8　末尾の文字列が一致したら削除</h4>
+stripSuffixメソッドは末尾の文字列が引数と一致したら削除します。
 ```scala
   @Test
   def testStripSuffix(): Unit = {
@@ -570,6 +577,7 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.9　先頭・末尾の空白文字削除</h4>
+trimメソッドは先頭や末尾の空白文字を削除します。空白文字の定義は' '（U+0020）より小さいコードポイントの文字、つまりU+0000からU+0019の２０文字です。
 ```scala
   @Test
   def testTrim(): Unit = {
@@ -579,6 +587,7 @@ N番目の文字を削除する方法、
   }
 ```
 <h4>2.3.10　末尾改行文字削除</h4>
+stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削除します。
 ```scala
   @Test
   def testStripLineEnd(): Unit = {
