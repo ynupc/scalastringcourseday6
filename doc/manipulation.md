@@ -1653,7 +1653,7 @@ LCSの長さで類似度を計測することができます。
 <td>正規</td>
 <td>シーケンス</td>
 <td>交換可能</td>
-<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/JaroWinklerDistance.scala">text.similarity.JaroWinklerDistance</a></td>
+<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/JaroWinklerDistance.scala">text.similarity.JaroDistance</a></td>
 </tr>
 <tr>
 <td>ジャロ・ウィンクラー距離</td>
