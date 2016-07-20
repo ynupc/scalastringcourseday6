@@ -10,7 +10,7 @@ import scala.util.control.Breaks
   */
 object JaroWinklerDistance extends JaroWinklerDistance(Config.jaroWinklerThreshold, Config.jaroWinklerScalingFactor)
 
-object JaroDistance extends Distance {
+class JaroDistance extends JaroWinklerDistance(Config.jaroWinklerThreshold, Config.jaroWinklerScalingFactor) {
   override def calculate[Element](array1: Array[Element], array2: Array[Element]): Double = {
     JaroWinklerDistance.calculateJaroDistance(array1, array2)
   }
@@ -25,11 +25,19 @@ class JaroWinklerDistance(threshold: Double, scalingFactor: Double) extends Dist
     if (jaro < threshold) jaro else jaro + math.min(scalingFactor, 1D / prefixScale) * prefixLength * (1 - jaro)
   }
 
-  def calculateOneMinusJWDistance[Element](array1: Array[Element], array2: Array[Element]): Double = {
+  def calculateOneMinusDistance(text1: String, text2: String): Double = {
+    calculateOneMinusDistance[Int](text1.codePoints.toArray, text2.codePoints.toArray)
+  }
+
+  def calculateOneMinusDistance[Element](array1: Array[Element], array2: Array[Element]): Double = {
     1D - calculate(array1, array2)
   }
 
-  def calculateReciprocalJWDistance[Element](array1: Array[Element], array2: Array[Element]): Double = {
+  def calculateReciprocalDistance(text1: String, text2: String): Double = {
+    calculateReciprocalDistance[Int](text1.codePoints.toArray, text2.codePoints.toArray)
+  }
+
+  def calculateReciprocalDistance[Element](array1: Array[Element], array2: Array[Element]): Double = {
     val jw: Double = calculate(array1, array2)
     if (jw == 0D) {
       1D
