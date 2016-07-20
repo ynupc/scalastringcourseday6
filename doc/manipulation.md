@@ -336,7 +336,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
-
+takeWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を取得します。
 ```scala
   @Test
   def testTakeWhile(): Unit = {
@@ -354,7 +354,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(result == "ウナギ")
   }
 ```
-
+filterメソッドは条件を満たすCharだけ取り出して繋いだ文字列を取得します。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を取得します。
 ```scala
   @Test
   def testFilter(): Unit = {
@@ -386,7 +386,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(result == "ウナギウナギ")
   }
 ```
-
+findメソッドは先頭から見て条件式を満たしたCharを返します。
 ```scala
   @Test
   def testFind(): Unit = {
@@ -404,7 +404,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(resultOpt.get == 'は')
   }
 ```
-
+partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に取得します。
 ```scala
   @Test
   def testPartition(): Unit = {
