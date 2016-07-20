@@ -608,7 +608,7 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
   }
 ```
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
-
+dropWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を削除します。
 ```scala
   @Test
   def testDropWhile(): Unit = {
@@ -626,7 +626,7 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
     assert(result == "はウナギだ。")
   }
 ```
-
+条件を満たすCharだけ削除して繋いだ文字列はfilterNotメソッドで取得できます。
 ```scala
   @Test
   def testFilterNot(): Unit = {
@@ -643,7 +643,9 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
     assert(result == "はだ。")
   }
 ```
-
+stripMarginメソッドは各行の先頭（改行文字の次の文字）から'|'までの文字列を削除します。
+stripMarginメソッドに引数を与える場合は各行の先頭から引数までの文字列を削除します。
+主に改行を含む生文字リテラルのインデントを揃えるために使用されます。
 ```scala
   @Test
   def testStripMargin(): Unit = {
