@@ -1533,6 +1533,15 @@ LCSの長さで類似度を計測することができます。
 <li>m/|s2|</li>
 <li>s1とs2の不一致部分で、それぞれで交換するとs1とs2が一致する文字数の合計を２で割った値tとする。例えば、MARTHAとMARHTAの場合はH/TとT/Hの二文字を２で割って、t=1。このとき、(m-t)/m</li>
 </ul>
+```scala
+  @Test
+  def testJaroDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(JaroDistance.calculate(source, target) == 0.668997668997669D)
+  }
+```
 <h4>2.8.8　ジャロ・ウィンクラー距離（自作）</h4>
 ジャロ・ウィンクラー距離は、先頭の方の文字列が末尾の方の文字列より重要視したジャロ距離の拡張です。
 ```scala
