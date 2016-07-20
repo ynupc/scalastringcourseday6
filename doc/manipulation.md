@@ -199,7 +199,9 @@ N番目の文字を取得する方法、
 条件式を満たす文字や文字列を取得する方法についてそれぞれ説明します。
 
 <h4>2.2.1　N番目の文字の取得</h4>
-
+先頭からN番目のCharはapplyメソッド（applyは省略可能）、charAtメソッド、applyElseOptionメソッドのいずれかで取得できます。
+applyElseOptionメソッドはインデックスが定義されていない場合はNoneを返し、定義されている場合はapplyメソッドの結果をSomeで包んで返します。
+先頭からN番目の文字目のコードポイントはcodePointAtメソッドで取得できます。
 ```scala
   @Test
   def testNthCharInString1(): Unit = {
@@ -235,7 +237,7 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.2　部分文字列の取得</h4>
-
+substringメソッドはStringからインデックスからオフセットまでの範囲の部分文字列を取得します。
 ```scala
   @Test
   def testSubstring(): Unit = {
@@ -244,7 +246,8 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.3　先頭の一文字の取得</h4>
-
+headメソッドは先頭のCharを取得します。
+headOptionメソッドは先頭のCharをSomeで包んで返します。もし先頭のCharが存在しない場合はNoneを返します。
 ```scala
   @Test
   def testTakeHeadChar(): Unit = {
@@ -262,6 +265,8 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.4　先頭のN文字の取得</h4>
+takeメソッドでStringの先頭からN個のCharを取得することができます。
+substringメソッドやdropRightメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
   def testTakeHeadString1(): Unit = {
@@ -285,7 +290,8 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.5　末尾の一文字の取得</h4>
-
+lastメソッドは末尾のCharを取得します。
+lastOptionメソッドは末尾のCharをSomeで包んで返します。もし末尾のCharが存在しない場合はNoneを返します。
 ```scala
   @Test
   def testTakeLastChar(): Unit = {
@@ -303,7 +309,8 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.6　末尾のN文字の取得</h4>
-
+takeRightメソッドでStringの末尾からN個のCharを取得することができます。
+substringメソッドやdropメソッドでも同様の処理を書くことはできます。
 ```scala
   @Test
   def testTakeLastString1(): Unit = {
@@ -329,6 +336,7 @@ N番目の文字を取得する方法、
   }
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
+
 ```scala
   @Test
   def testTakeWhile(): Unit = {
