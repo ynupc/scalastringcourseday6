@@ -10,6 +10,12 @@ import scala.util.control.Breaks
   */
 object JaroWinklerDistance extends JaroWinklerDistance(Config.jaroWinklerThreshold, Config.jaroWinklerScalingFactor)
 
+object JaroDistance extends Distance {
+  override def calculate[Element](array1: Array[Element], array2: Array[Element]): Double = {
+    JaroWinklerDistance.calculateJaroDistance(array1, array2)
+  }
+}
+
 class JaroWinklerDistance(threshold: Double, scalingFactor: Double) extends Distance {
   private var prefixLength: Int = 0
   private var prefixScale: Int = 0

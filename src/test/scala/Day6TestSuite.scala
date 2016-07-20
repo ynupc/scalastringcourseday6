@@ -1879,6 +1879,14 @@ GHI
   }
 
   @Test
+  def testJaroDistance(): Unit = {
+    val source: String = "$ウウ$ナナ$ギギ$は"
+    val target: String = "ウウ#ナナ#ギギ#だ#。#"
+
+    assert(JaroDistance.calculate(source, target) == 0.668997668997669D)
+  }
+
+  @Test
   def testJaroWinklerDistance(): Unit = {
     val source: String = "$ウウ$ナナ$ギギ$は"
     val target: String = "ウウ#ナナ#ギギ#だ#。#"
