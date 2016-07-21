@@ -1099,7 +1099,7 @@ permutationsメソッドで順列を得ることができます。
 インデックスが定義されているかを確認する方法について説明します。
 
 <h4>2.6.1　正方向に解析して最初に現れたインデックスを取得</h4>
-indexOfメソッドで与えた引数（CharまたはString）が先頭から見て最初に現れた位置を取得します。
+indexOfメソッドで先頭から見て最初に与えた引数（CharまたはString）が現れた位置を取得できます。
 indexOfメソッドに第二引数として探索開始位置を与えることも可能です。
 indexOfSliceメソッドもindexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
 詳しくは、前章の<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/doc/regex.md#113部分一致表層文字列">1.1.3　部分一致（表層文字列）</a>を読んでください。
@@ -1129,7 +1129,13 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
   }
 ```
 <h4>2.6.2　逆方向に解析して最初に現れたインデックスを取得</h4>
+lastIndexOfメソッドで末尾から見て最初に与えた引数（CharまたはString）が現れた位置を取得できます。
+lastIndexOfメソッドに第二引数として探索開始位置を与えることも可能です。
+lastIndexOfSliceメソッドもlastIndexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
+詳しくは、前章の<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/doc/regex.md#113部分一致表層文字列">1.1.3　部分一致（表層文字列）</a>を読んでください。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testLastIndexOf1(): Unit = {
     assert(tautology.lastIndexOf('ギ') == 6)
@@ -1153,7 +1159,13 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
   }
 ```
 <h4>2.6.3　正方向に解析して条件を最初に満たしたインデックスを取得</h4>
+prefixLengthメソッドで先頭から見て最初に与えた条件式を満たした位置を取得できます。
+segmentLengthメソッドで与えた探索開始位置から見て最初に与えた条件式を満たした位置までの長さを返します。例えば、探索開始位置が1で条件式を満たした位置が2の場合は長さは1（=2-1）です。
+indexWhereメソッドで先頭から見て最初に与えた条件式を満たした位置を取得できます。
+indexWhereメソッドに第二引数として探索開始位置を与えることも可能です。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testPrefixLength(): Unit = {
     assert(tautology.prefixLength(where) == 2)
@@ -1191,7 +1203,11 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
   }
 ```
 <h4>2.6.4　逆方向に解析して条件を最初に満たしたインデックスを取得</h4>
+indexWhereメソッドで末尾から見て最初に与えた条件式を満たした位置を取得できます。
+indexWhereメソッドに第二引数として探索開始位置を与えることも可能です。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testLastIndexWhere1(): Unit = {
     assert(tautology.lastIndexWhere(where) == 6)
@@ -1211,7 +1227,10 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
   }
 ```
 <h4>2.6.5　インデックスを全て取得</h4>
+indicesメソッドで全てのインデックスを取得できます。これは主にfor文でfor (i <- 0 until str.length)と表記する場合にfor (i <- str.indices)と簡略に書く目的で使用されます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testIndices(): Unit = {
     val indices: Range = tautology.indices
@@ -1222,7 +1241,10 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
     assert(indices == Seq[Int](0, 1, 2, 3, 4, 5, 6, 7, 8))
   }
 ```
+zipWithIndexメソッドで文字列内のCharとインデックスの対を全て取得することができます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testZipWithIndex(): Unit = {
     assert(tautology.zipWithIndex == Seq[(Char, Int)](
@@ -1231,7 +1253,10 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
   }
 ```
 <h4>2.6.6　インデックスが定義されているか</h4>
+isDefinedAtメソッドでインデックスが定義されているかを確認することができます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testIsDefinedAt(): Unit = {
     assert(!tautology.isDefinedAt(-1))
