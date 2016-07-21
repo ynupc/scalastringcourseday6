@@ -203,6 +203,8 @@ N番目の文字を取得する方法、
 applyElseOptionメソッドはインデックスが定義されていない場合はNoneを返し、定義されている場合はapplyメソッドの結果をSomeで包んで返します。
 先頭からN番目の文字目のコードポイントはcodePointAtメソッドで取得できます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testNthCharInString1(): Unit = {
     //Char
@@ -249,6 +251,8 @@ Stringからインデックスからオフセットまでの範囲の部分文�
 先頭のCharはheadメソッドで取得できます。
 headOptionメソッドは先頭のCharをSomeで包んで返します。もし先頭のCharが存在しない場合はNoneを返します。
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testTakeHeadChar(): Unit = {
     assert(unagiCopula.head == '僕')
@@ -268,6 +272,8 @@ headOptionメソッドは先頭のCharをSomeで包んで返します。もし�
 Stringの先頭からN個のCharはtakeメソッドで取得できます。
 substringメソッドやdropRightメソッドでも同様の処理を書くことはできます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testTakeHeadString1(): Unit = {
     val numOfChars: Int = 3
@@ -293,6 +299,8 @@ substringメソッドやdropRightメソッドでも同様の処理を書くこ�
 末尾のCharはlastメソッドで取得できます。
 lastOptionメソッドは末尾のCharをSomeで包んで返します。もし末尾のCharが存在しない場合はNoneを返します。
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testTakeLastChar(): Unit = {
     assert(unagiCopula.last == 'ギ')
@@ -312,6 +320,8 @@ lastOptionメソッドは末尾のCharをSomeで包んで返します。もし�
 Stringの末尾からN個のCharはtakeRightメソッドで取得できます。
 substringメソッドやdropメソッドでも同様の処理を書くことはできます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+
   @Test
   def testTakeLastString1(): Unit = {
     val numOfChars: Int = 3
@@ -338,6 +348,8 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
 先頭から条件式を満たさなくなるまでの部分文字列はtakeWhileメソッドで取得します。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testTakeWhile(): Unit = {
     val result: String = tautology takeWhile {
@@ -356,6 +368,8 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
 ```
 条件を満たすCharだけ取り出して繋いだ文字列はfilterメソッドで取得できます。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を返します。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testFilter(): Unit = {
     val result: String = tautology filter {
@@ -388,6 +402,8 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
 ```
 先頭から見て条件式を満たしたCharはfindメソッドで取得できます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testFind(): Unit = {
     val resultOpt: Option[Char] = tautology find {
@@ -406,6 +422,8 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
 ```
 partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に返します。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testPartition(): Unit = {
     val pair1: (String, String) = tautology partition {
@@ -454,6 +472,8 @@ N番目の文字を削除する方法、
 <h4>2.3.1　N番目の文字の削除</h4>
 先頭からN番目のCharはStringBuilderのdeleteCharAtメソッドで削除します。 
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDeleteNthCharInString(): Unit = {
     val n: Int = 3
@@ -466,6 +486,8 @@ N番目の文字を削除する方法、
 <h4>2.3.2　部分文字列の削除</h4>
 StringBuilderのdeleteメソッドはインデックスからオフセットまでの範囲の部分文字列を削除します。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDeleteSubstringInString(): Unit = {
     val builder: StringBuilder = new StringBuilder(tautology.length).append(tautology)
@@ -477,6 +499,8 @@ StringBuilderのdeleteメソッドはインデックスからオフセットま�
 <h4>2.3.3　先頭の一文字の削除</h4>
 tailメソッドは先頭のCharを削除します。
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testDropHeadChar(): Unit = {
     assert(unagiCopula.tail == "はウナギ")
@@ -486,6 +510,8 @@ tailメソッドは先頭のCharを削除します。
 dropメソッドは先頭からN個のCharを削除します。
 substringメソッドやtakeRightメソッドでも同様の処理を書くことはできます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDropHeadString1(): Unit = {
     val numOfChars: Int = 3
@@ -519,6 +545,8 @@ substringメソッドやtakeRightメソッドでも同様の処理を書くこ�
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
 stripPrefixメソッドは先頭の文字列が引数と一致したら削除します。
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testStripPrefix(): Unit = {
     assert("横浜国立大学".stripPrefix("横浜") == "国立大学")
@@ -529,6 +557,8 @@ stripPrefixメソッドは先頭の文字列が引数と一致したら削除し
 <h4>2.3.6　末尾の一文字の削除</h4>
 initメソッドは末尾のCharを削除します。
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testDropLastChar(): Unit = {
     assert(unagiCopula.init == "僕はウナ")
@@ -538,6 +568,8 @@ initメソッドは末尾のCharを削除します。
 dropRightメソッドは末尾からN個のCharを削除します。
 substringメソッドやtakeメソッドでも同様の処理を書くことはできます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDropLastString1(): Unit = {
     val numOfChars: Int = 3
@@ -610,6 +642,8 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
 dropWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を削除します。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDropWhile(): Unit = {
     val result: String = tautology dropWhile {
@@ -628,6 +662,8 @@ dropWhileメソッドは先頭から条件式を満たさなくなるまでの�
 ```
 条件を満たすCharだけ削除して繋いだ文字列はfilterNotメソッドで取得できます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testFilterNot(): Unit = {
     val result: String = tautology filterNot {
@@ -1003,6 +1039,8 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
 <h4>2.5.6　差集合</h4>
 diffメソッドで引数として与えた文字をStringの先頭から順に削除していくことができます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDiff(): Unit = {
     assert(tautology == "ウナギはウナギだ。")
@@ -1024,6 +1062,8 @@ diffメソッドで引数として与えた文字をStringの先頭から順に�
 <h4>2.5.7　重複排除</h4>
 distinctメソッドで重複を排除することができます。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testDistinct(): Unit = {
     assert(tautology == "ウナギはウナギだ。")
@@ -1227,7 +1267,7 @@ indexWhereメソッドに第二引数として探索開始位置を与えるこ�
   }
 ```
 <h4>2.6.5　インデックスを全て取得</h4>
-indicesメソッドで全てのインデックスを取得できます。これは主にfor文でfor (i <- 0 until str.length)と表記する場合にfor (i <- str.indices)と簡略に書く目的で使用されます。
+indicesメソッドで全てのインデックスを取得できます。これは主にfor文でfor (i &lt;- 0 until str.length)と表記する場合にfor (i &lt;- str.indices)と簡略に書く目的で使用されます。
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -1275,6 +1315,8 @@ N-gramを生成する方法、
 Stringを行に分割する方法について説明します。
 <h4>2.7.1　イテレータ</h4>
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testForeach(): Unit = {
     val result1: ListBuffer[Char] = ListBuffer[Char]()
@@ -1317,6 +1359,8 @@ Stringを行に分割する方法について説明します。
 <h4>2.7.2　写像</h4>
 
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+
   @Test
   def testMap(): Unit = {
     assert(unagiCopula.map(char => char) == "僕はウナギ")
@@ -1329,6 +1373,8 @@ Stringを行に分割する方法について説明します。
 ```
 <h4>2.7.3　N-gramの生成</h4>
 ```scala
+  private val unagiCopula: String = "僕はウナギ"
+  
   @Test
   def testSliding1(): Unit = {
     val n: Int = 2
