@@ -889,6 +889,8 @@ String内のCharの総和・相乗を求める方法、
 Charのリストや文字列のリストの２つのリストの和集合、差集合、重複を排除した集合、積集合を求める方法、
 Charのリストや文字列のリストの組合せ・順列を求める方法を説明します。
 <h4>2.5.1　最大</h4>
+Charの順序で最大の要素をmaxメソッドで取り出すことができます。
+maxByメソッドで要素を変換した上で最大の要素を取り出すことができます。
 ```scala
   @Test
   def testMax(): Unit = {
@@ -919,6 +921,8 @@ Charのリストや文字列のリストの組合せ・順列を求める方法�
   }
 ```
 <h4>2.5.2　最小</h4>
+Charの順序で最小の要素をmaxメソッドで取り出すことができます。
+maxByメソッドで要素を変換した上で最小の要素を取り出すことができます。
 ```scala
   @Test
   def testMin(): Unit = {
@@ -949,6 +953,7 @@ Charのリストや文字列のリストの組合せ・順列を求める方法�
   }
 ```
 <h4>2.5.3　総和</h4>
+sumメソッドでString内のCharの整数値の総和を得ることができます。
 ```scala
   @Test
   def testSum(): Unit = {
@@ -964,6 +969,7 @@ Charのリストや文字列のリストの組合せ・順列を求める方法�
   }
 ```
 <h4>2.5.4　相乗</h4>
+productメソッドでString内のCharの整数値の相乗を得ることができます。
 ```scala
   @Test
   def testProduct(): Unit = {
@@ -995,6 +1001,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
   }
 ```
 <h4>2.5.6　差集合</h4>
+diffメソッドで引数として与えた文字をStringの先頭から順に削除していくことができます。
 ```scala
   @Test
   def testDiff(): Unit = {
@@ -1015,6 +1022,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
   }
 ```
 <h4>2.5.7　重複排除</h4>
+distinctメソッドで重複を排除することができます。
 ```scala
   @Test
   def testDistinct(): Unit = {
@@ -1026,7 +1034,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
   }
 ```
 <h4>2.5.8　積集合</h4>
-LCS (Longest Common Subsequence)
+intersectメソッドでLCS (Longest Common Subsequence)を得ることができます。
 ```scala
   @Test
   def testIntersect(): Unit = {
@@ -1040,6 +1048,7 @@ LCS (Longest Common Subsequence)
   }
 ```
 <h4>2.5.9　組合せ</h4>
+combinationsメソッドで組合せを得ることができます。
 ```scala
   @Test
   def testCombinations(): Unit = {
@@ -1057,6 +1066,7 @@ LCS (Longest Common Subsequence)
   }
 ```
 <h4>2.5.10　順列</h4>
+permutationsメソッドで順列を得ることができます。
 ```scala
   @Test
   def testPermutations(): Unit = {
