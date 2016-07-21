@@ -2000,14 +2000,6 @@ LCSの長さで類似度を計測することができます。
 <td>交換不可能</td>
 <td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
 </tr>
-<tr>
-<td>Rus05包含度</td>
-<td>類似度</td>
-<td>正規</td>
-<td>二値ベクトル</td>
-<td>交換不可能</td>
-<td><a href="https://github.com/ynupc/scalastringcourseday6/blob/master/src/main/scala/text/similarity/Overlap.scala">text.similarity.Overlap</a></td>
-</tr>
 </table>
 
 ***
