@@ -1099,7 +1099,13 @@ permutationsメソッドで順列を得ることができます。
 インデックスが定義されているかを確認する方法について説明します。
 
 <h4>2.6.1　正方向に解析して最初に現れたインデックスを取得</h4>
+indexOfメソッドで与えた引数（CharまたはString）が先頭から見て最初に現れた位置を取得します。
+indexOfメソッドに第二引数として探索開始位置を与えることも可能です。
+indexOfSliceメソッドもindexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
+詳しくは、前章の<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/doc/regex.md#113部分一致表層文字列">1.1.3　部分一致（表層文字列）</a>を読んでください。
 ```scala
+  private val tautology: String = "ウナギはウナギだ。"
+  
   @Test
   def testIndexOf1(): Unit = {
     assert(tautology.indexOf('ギ') == 2)
