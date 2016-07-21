@@ -1314,6 +1314,7 @@ isDefinedAtメソッドでインデックスが定義されているかを確認
 N-gramを生成する方法、
 Stringを行に分割する方法について説明します。
 <h4>2.7.1　イテレータ</h4>
+foreachメソッドやStringCharacterIteratorクラスを用いて先頭からCharを一つひとつ取り出すことができます。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -1345,6 +1346,7 @@ Stringを行に分割する方法について説明します。
     assert(result == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
   }
 ```
+iteratorメソッドでStringからCharを単位としたIteratorを作成することができます。逆順のIteratorを作成したい場合はreverseIteratorメソッドを使用して作成することができます。
 ```scala
   @Test
   def testIterator(): Unit = {
@@ -1357,7 +1359,7 @@ Stringを行に分割する方法について説明します。
   }
 ```
 <h4>2.7.2　写像</h4>
-
+mapメソッドにより、Stringの中のCharに対して変換処理を加えることができます。逆順にした上で変換処理を加えたい場合はreverseMapメソッドを使用することができます。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
 
@@ -1372,6 +1374,7 @@ Stringを行に分割する方法について説明します。
   }
 ```
 <h4>2.7.3　N-gramの生成</h4>
+slidingメソッドでChar N-gramを作成することができます。探索開始位置をslidingメソッドに第二引数として与えることができます。
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -1438,6 +1441,8 @@ Stringを行に分割する方法について説明します。
   }
 ```
 <h4>2.7.4　行分割</h4>
+linesメソッドかlinesWithSeparatorsメソッドにより改行文字（"\n"と"\r\n"）を基に文字列を行に分割することができます。
+linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソッドは改行文字を行末に残します。
 ```scala
   @Test
   def testLines(): Unit = {
