@@ -1,5 +1,3 @@
-package day6
-
 import java.text.{CharacterIterator, StringCharacterIterator}
 import java.util.StringTokenizer
 import java.util.function.Consumer
