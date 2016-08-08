@@ -5,21 +5,22 @@ package util
   *         Created on 2016/08/07
   */
 object StringUtils {
-  implicit def stringToStringUtils(repr: CharSequence): StringUtils = new StringUtils(repr)
+  implicit def stringToStringUtils(repr: CharSequence): StringUtils = {
+    new StringUtils(repr)
+  }
 }
 
 class StringUtils(repr: CharSequence) {
-  private def charSequence2String: String = {
+  private val str: String = {
     repr match {
-      case str: String =>
-        str
+      case s: String => s
       case otherwise =>
         otherwise.toString
     }
   }
 
   def replaceAllLiteratim(target: CharSequence, replacement: CharSequence): String = {
-    charSequence2String.replace(target, replacement)
+    str.replace(target, replacement)
   }
 
   def quote(quotation: (String, String)): String = {
@@ -31,7 +32,7 @@ class StringUtils(repr: CharSequence) {
   }
 
   def codePointCount: Int = {
-    toCodePointArray.length
+    str.codePointCount(0, str.length)
   }
 
   def toCodePointArray: Array[Int] = {
@@ -39,7 +40,7 @@ class StringUtils(repr: CharSequence) {
       throw new NullPointerException
     }
 
-    val charArray: Array[Char] = charSequence2String.toCharArray
+    val charArray: Array[Char] = str.toCharArray
     val length: Int = charArray.length
     var surrogatePairCount: Int = 0
     var isSkipped: Boolean = false
@@ -60,9 +61,9 @@ class StringUtils(repr: CharSequence) {
       if (isSkipped) {
         isSkipped = false
       } else {
-        val currentChar = charArray(i)
+        val currentChar: Char = charArray(i)
         if (Character.isHighSurrogate(currentChar) && i + 1 < length) {
-          val nextChar = charArray(i + 1)
+          val nextChar: Char = charArray(i + 1)
           if (Character.isLowSurrogate(nextChar)) {
             codePoints(j) = Character.toCodePoint(currentChar, nextChar)
             j += 1
@@ -76,5 +77,80 @@ class StringUtils(repr: CharSequence) {
       }
     }
     codePoints
+  }
+
+  //binaryString to AnyVal
+  def binaryStringToByte: Byte = {
+    java.lang.Byte.parseByte(str, 2)
+  }
+
+  def binaryStringToShort: Short = {
+    java.lang.Short.parseShort(str, 2)
+  }
+
+  def binaryStringToInt: Int = {
+    java.lang.Integer.parseInt(str, 2)
+  }
+
+  def binaryStringToUnsignedInt: Int = {
+    java.lang.Integer.parseUnsignedInt(str, 2)
+  }
+
+  def binaryStringToLong: Long = {
+    java.lang.Long.parseLong(str, 2)
+  }
+
+  def binaryStringToUnsignedLong: Long = {
+    java.lang.Long.parseUnsignedLong(str, 2)
+  }
+
+  //octalString to AnyVal
+  def octalStringToByte: Byte = {
+    java.lang.Byte.parseByte(str, 8)
+  }
+
+  def octalStringToShort: Short = {
+    java.lang.Short.parseShort(str, 8)
+  }
+
+  def octalStringToInt: Int = {
+    java.lang.Integer.parseInt(str, 8)
+  }
+
+  def octalStringToUnsignedInt: Int = {
+    java.lang.Integer.parseUnsignedInt(str, 8)
+  }
+
+  def octalStringToLong: Long = {
+    java.lang.Long.parseLong(str, 8)
+  }
+
+  def octalStringToUnsignedLong: Long = {
+    java.lang.Long.parseUnsignedLong(str, 8)
+  }
+
+  //hexString to AnyVal
+  def hexStringToByte: Byte = {
+    java.lang.Byte.parseByte(str, 0x10)
+  }
+
+  def hexStringToShort: Short = {
+    java.lang.Short.parseShort(str, 0x10)
+  }
+
+  def hexStringToInt: Int = {
+    java.lang.Integer.parseInt(str, 0x10)
+  }
+
+  def hexStringToUnsignedInt: Int = {
+    java.lang.Integer.parseUnsignedInt(str, 0x10)
+  }
+
+  def hexStringToLong: Long = {
+    java.lang.Long.parseLong(str, 0x10)
+  }
+
+  def hexStringToUnsignedLong: Long = {
+    java.lang.Long.parseUnsignedLong(str, 0x10)
   }
 }
