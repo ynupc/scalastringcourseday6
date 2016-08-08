@@ -26,7 +26,7 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
   }
 
   def sum: Long = {
-    var summation = 0L
+    var summation: Long = 0L
     vector foreach {
       case (key, value) =>
         summation += value
@@ -35,7 +35,7 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
   }
 
   def squareSum: Long = {
-    var summation = 0L
+    var summation: Long = 0L
     vector foreach {
       case (key, value) =>
         summation += value * value
@@ -48,10 +48,10 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
   }
 
   def keySum(v2: FrequencyVector): Long = {
-    val keySet = vector.keySet
+    val keySet: scala.collection.Set[String] = vector.keySet
     var summation: Long = keySet.size
     v2.vector.keys foreach {
-      case key if keySet contains key =>
+      case key: String if keySet contains key =>
       case otherwise =>
         summation += 1
     }
@@ -63,11 +63,11 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
   }
 
   def variance: Double = {
-    val avg = average
-    var summation = 0D
+    val avg: Double = average
+    var summation: Double = 0D
     vector foreach {
       case (key, value) =>
-        val diff = value - avg
+        val diff: Double = value - avg
         summation += diff * diff
     }
     summation / vector.size
@@ -78,24 +78,24 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
   }
 
   def covariance(v2: FrequencyVector): Double = {
-    val keySet = vector.keySet | v2.vector.keySet
-    val size = keySet.size
+    val keySet: scala.collection.Set[String] = vector.keySet | v2.vector.keySet
+    val size: Int = keySet.size
 
-    val avgV1 = sum / size
-    val avgV2 = v2.sum / size
+    val avgV1: Double = sum.toDouble / size
+    val avgV2: Double = v2.sum.toDouble / size
 
-    var summation = 0D
+    var summation: Double = 0D
     keySet foreach {
-      key =>
+      key: String =>
         summation += (this(key) - avgV1) * (v2(key) - avgV2)
     }
     summation / size
   }
 
   def innerProduct(v2: FrequencyVector): Long = {
-    val vector2 = v2.vector
-    val keySetV2 = vector2.keySet
-    var summation = 0L
+    val vector2: scala.collection.mutable.Map[String, Int] = v2.vector
+    val keySetV2: scala.collection.Set[String] = vector2.keySet
+    var summation: Long = 0L
     vector foreach {
       case (key1, value1) if keySetV2 contains key1 =>
         summation += value1 * vector2(key1)

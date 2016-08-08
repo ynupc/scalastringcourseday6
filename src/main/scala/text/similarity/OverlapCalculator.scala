@@ -20,17 +20,17 @@ class OverlapCalculator(val vector: BinaryVector) {
 }
 
 class AverageOverlapCalculator(val vectors: Seq[BinaryVector]) {
-  val calculators = {
+  val calculators: Seq[OverlapCalculator] = {
     for (vector <- vectors) yield {
       new OverlapCalculator(vector)
     }
   }
-  val size = calculators.size
+  val size: Int = calculators.size
   def calculate(v2: BinaryVector): Double = {
-    var score = 0D
-    var counter = 0
+    var score: Double = 0D
+    var counter: Int = 0
     calculators foreach {
-      calculator =>
+      calculator: OverlapCalculator =>
         counter += 1
         score += calculator.calculate(v2)
     }

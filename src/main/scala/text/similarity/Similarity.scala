@@ -97,8 +97,8 @@ object Similarity extends Enumeration {
   }
 
   def calculateLin98(v1: FrequencyVector, v2: FrequencyVector): Double = {
-    val vector2 = v2.vector
-    var summation = 0D
+    val vector2: scala.collection.mutable.Map[String, Int] = v2.vector
+    var summation: Double = 0D
     v1.vector foreach {
       case (key1, value1) if vector2.contains(key1) =>
         summation += value1 + vector2(key1)

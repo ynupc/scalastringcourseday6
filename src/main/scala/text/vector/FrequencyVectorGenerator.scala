@@ -27,7 +27,7 @@ object FrequencyVectorGenerator extends VectorGenerator[FrequencyVector] {
   }
 
   def getVector(terms: Seq[(String, Int)]): FrequencyVector = {
-    val vector = mutable.Map[String, Int]()
+    val vector: mutable.Map[String, Int] = mutable.Map[String, Int]()
 
     def add(term: String, frequency: Int): Unit = {
       if (vector contains term) {
@@ -42,7 +42,7 @@ object FrequencyVectorGenerator extends VectorGenerator[FrequencyVector] {
         add(term, frequency)
     }
 
-    val frequencyVector = new FrequencyVector(vector)
+    val frequencyVector: FrequencyVector = new FrequencyVector(vector)
 
     VectorType.get match {
       case VectorType.Binary =>

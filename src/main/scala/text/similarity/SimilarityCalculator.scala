@@ -20,16 +20,16 @@ class SimilarityCalculator(val vector: FrequencyVector) {
 }
 
 class AverageSimilarityCalculator(val vectors: Seq[FrequencyVector]) {
-  val calculators = {
+  val calculators: Seq[SimilarityCalculator] = {
     for (vector <- vectors) yield {
       new SimilarityCalculator(vector)
     }
   }
   val size = calculators.size
   def calculate(v2: FrequencyVector): Double = {
-    var score = 0D
+    var score: Double = 0D
     calculators foreach {
-      calculator =>
+      calculator: SimilarityCalculator =>
         score += calculator.calculate(v2)
     }
     Divider.divide(score, size)

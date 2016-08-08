@@ -1,6 +1,7 @@
 package text.parser
 
 import util.Config
+import util.StringUtils._
 
 /**
   * @author ynupc
@@ -16,15 +17,15 @@ object Tokenizer {
           case that if that equalsIgnoreCase "CharacterNGram" =>
             characterNGram(text)
           case otherwise =>
-            characterNGram(text)
+            Nil
         }
       case otherwise =>
-        Seq()
+        Nil
     }
   }
 
   private def characterNGram(text: String): Tokens = {
-    val codePoints: Seq[Int] = text.codePoints.toArray.toSeq
+    val codePoints: Seq[Int] = text.toCodePointArray.toSeq
     codePoints.sliding(Config.nGram).toSeq map {
       codePoint =>
         val array: Array[Int] = codePoint.toArray
