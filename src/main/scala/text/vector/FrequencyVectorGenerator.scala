@@ -13,7 +13,7 @@ object FrequencyVectorGenerator extends VectorGenerator[FrequencyVector] {
     getVector(
       //Seq[Seq[(String, Int)]]からList[Set[(String, Int)]]を経由してSeq[(String, Int)]に変換した。
       {
-        for (sentence <- SentenceSplitter.parse(text)) yield {
+        for (sentence <- SentenceSplitter.split(text)) yield {
           getVectorFromSentence(sentence).vector.toSet
         }
       }.toList.flatten

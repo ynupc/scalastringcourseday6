@@ -9,7 +9,7 @@ import text.parser.{SentenceSplitter, Tokenizer}
 object BinaryVectorGenerator extends VectorGenerator[BinaryVector] {
   override def getVectorFromText(text: String): BinaryVector = {
     BinaryVectorMerger.merge(
-      for (sentence <- SentenceSplitter.parse(text)) yield {
+      for (sentence <- SentenceSplitter.split(text)) yield {
         getVectorFromSentence(sentence)
       }
     )
