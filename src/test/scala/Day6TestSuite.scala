@@ -171,6 +171,21 @@ class Day6TestSuite extends AssertionsForJUnit {
   }
 
   @Test
+  def testLongestMatchingAndShortestMatching(): Unit = {
+    val str: String = "<a>いろは</a>"
+    val longestMatchingRegex1: Regex = "<.+>".r
+    val longestMatchingRegex2: Regex = "<.*>".r
+    val shortestMatchingRegex1: Regex = "<[^>]+>".r
+    val shortestMatchingRegex2: Regex = "<[^>]*>".r
+    //最長一致
+    assert(longestMatchingRegex1.findFirstIn(str).get == "<a>いろは</a>")
+    assert(longestMatchingRegex2.findFirstIn(str).get == "<a>いろは</a>")
+    //最短一致
+    assert(shortestMatchingRegex1.findFirstIn(str).get == "<a>")
+    assert(shortestMatchingRegex2.findFirstIn(str).get == "<a>")
+  }
+
+  @Test
   def testSplit1(): Unit = {
     val csv: String = "A,B,C,D,E,F"
     val delimiter: String = ","
