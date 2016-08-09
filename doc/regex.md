@@ -360,7 +360,22 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 <li>最長一致</li>
 <li>最短一致</li>
 </ul>
-
+```scala
+  @Test
+  def testLongestMatchingAndShortestMatching(): Unit = {
+    val str: String = "<a>いろは</a>"
+    val longestMatchingRegex1: Regex = "<.+>".r
+    val longestMatchingRegex2: Regex = "<.*>".r
+    val shortestMatchingRegex1: Regex = "<[^>]+>".r
+    val shortestMatchingRegex2: Regex = "<[^>]*>".r
+    //最長一致
+    assert(longestMatchingRegex1.findFirstIn(str).get == "<a>いろは</a>")
+    assert(longestMatchingRegex2.findFirstIn(str).get == "<a>いろは</a>")
+    //最短一致
+    assert(shortestMatchingRegex1.findFirstIn(str).get == "<a>")
+    assert(shortestMatchingRegex2.findFirstIn(str).get == "<a>")
+  }
+```
 ***
 <h3>1.2　分割</h3>
 文字列を分割するためには分割位置の与える必要があります。分割位置を与える方法として、文字列中の区切り文字の存在を利用する方法、区切り文字の特殊な例として行末文字を用いる方法、インデックスで直接指定する方法、文字列中のCharを前方から見てある条件を満たさなくなった位置を使用する方法があります。それぞれについて下記で説明します。
