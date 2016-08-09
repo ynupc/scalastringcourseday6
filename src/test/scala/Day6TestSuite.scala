@@ -97,6 +97,15 @@ class Day6TestSuite extends AssertionsForJUnit {
   }
 
   @Test
+  def testExactMatch5(): Unit = {
+    assert(unagiCopula.regionMatches(2, "ウナギだ", 0, 3))
+
+    //第一引数はignoreCase: Boolean
+    assert(unagiCopula.regionMatches(true, 2, "ウナギだ", 0, 3))
+    assert(unagiCopula.regionMatches(false, 2, "ウナギだ", 0, 3))
+  }
+
+  @Test
   def testContains(): Unit = {
     assert(unagiCopula.contains("ウナギ"))
     assert(unagiCopula.containsSlice("ウナギ"))
