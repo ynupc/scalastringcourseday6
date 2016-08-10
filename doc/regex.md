@@ -997,7 +997,7 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 <li>Suffix array algorithm</li>
 <li>Suffix tree algorithm</li>
 </ul>
-<a href="http://www-igm.univ-mlv.fr/~lecroq/string/" target="_blank">EXACT STRING MATCHING ALGORITHMS Animation in Java</a>で次のアルゴリズムの説明があります。
+<a href="http://www-igm.univ-mlv.fr/~lecroq/string/" target="_blank">EXACT STRING MATCHING ALGORITHMS Animation in Java</a>に次のアルゴリズムの説明があります。
 <ul>
 <li>Brute Force algorithm</li>
 <li>Deterministic Finite Automaton algorithm</li>
@@ -1035,4 +1035,3 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 <li>KMP Skip Search algorithm</li>
 <li>Alpha Skip Search algorithm</li>
 </ul>
-クヌース–モリス–プラット法 ボイヤー-ムーア法 エイホ–コラシック法 ラビン-カープ法 Bitap法について簡単に解説する。書き途中<br>
