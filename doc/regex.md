@@ -993,7 +993,11 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 
 <h4>（２）Chomsky hierarchy</h4>
-自然言語はType-1とType-2の間かも？
+ノーム・チョムスキー
+Type-2（文脈自由文法）では不十分ではないか
+Type-1で不十分という事例は出ていない
+自然言語はType-1（１型文法）とType-2（２型文法）の間かも？
+生成文法、確率的文脈自由文法、木接合文法、主辞駆動句構造文法が生まれた。
 <table>
 <thead>
 <caption>Automata theory: formal languages and formal grammars</caption>
