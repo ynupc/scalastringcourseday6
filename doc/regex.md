@@ -992,5 +992,47 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 自然言語は１型文法と２型文法の間かも？書き途中
 ***
 <h3>コラム：文字列探索アルゴリズム</h3>
+<ul>
+<li>Aho–Corasick algorithm</li>
+<li>Suffix array algorithm</li>
+<li>Suffix tree algorithm</li>
+</ul>
+<a href="http://www-igm.univ-mlv.fr/~lecroq/string/" target="_blank">EXACT STRING MATCHING ALGORITHMS Animation in Java</a>で次のアルゴリズムの説明があります。
+<ul>
+<li>Brute Force algorithm</li>
+<li>Deterministic Finite Automaton algorithm</li>
+<li>Karp-Rabin algorithm</li>
+<li>Shift Or algorithm</li>
+<li>Morris-Pratt algorithm</li>
+<li>Knuth-Morris-Pratt algorithm</li>
+<li>Simon algorithm</li>
+<li>Colussi algorithm</li>
+<li>Galil-Giancarlo algorithm</li>
+<li>Apostolico-Crochemore algorithm</li>
+<li>Not So Naive algorithm</li>
+<li>Boyer-Moore algorithm</li>
+<li>Turbo BM algorithm</li>
+<li>Apostolico-Giancarlo algorithm</li>
+<li>Reverse Colussi algorithm</li>
+<li>Horspool algorithm</li>
+<li>Quick Search algorithm</li>
+<li>Tuned Boyer-Moore algorithm</li>
+<li>Zhu-Takaoka algorithm</li>
+<li>Berry-Ravindran algorithm</li>
+<li>Smith algorithm</li>
+<li>Raita algorithm</li>
+<li>Reverse Factor algorithm</li>
+<li>Turbo Reverse Factor algorithm</li>
+<li>Forward Dawg Matching algorithm</li>
+<li>Backward Nondeterministic Dawg Matching algorithm</li>
+<li>Backward Oracle Matching algorithm</li>
+<li>Galil-Seiferas algorithm</li>
+<li>Two Way algorithm</li>
+<li>String Matching on Ordered Alphabets algorithm</li>
+<li>Optimal Mismatch algorithm</li>
+<li>Maximal Shift algorithm</li>
+<li>Skip Search algorithm</li>
+<li>KMP Skip Search algorithm</li>
+<li>Alpha Skip Search algorithm</li>
+</ul>
 クヌース–モリス–プラット法 ボイヤー-ムーア法 エイホ–コラシック法 ラビン-カープ法 Bitap法について簡単に解説する。書き途中<br>
-<a href="http://www-igm.univ-mlv.fr/~lecroq/string/" target="_blank">EXACT STRING MATCHING ALGORITHMS Animation in Java</a>
