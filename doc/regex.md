@@ -993,7 +993,7 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 
 <h4>（２）Chomsky hierarchy</h4>
-自然言語は１型文法と２型文法の間かも？
+自然言語はType-1とType-2の間かも？
 <table>
 <thead>
 <caption>Automata theory: formal languages and formal grammars</caption>
