@@ -1018,7 +1018,7 @@ https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 <td>(no common name)</td>
 <td>Decidable</td>
 <td>Decider</td>
-<td></td>
+<td>R</td>
 </tr>
 <tr>
 <td>Type-1</td>
