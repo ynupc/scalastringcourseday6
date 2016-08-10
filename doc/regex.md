@@ -989,11 +989,11 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 
 ***
 <h3>コラム：自然言語はチョムスキー階層での何型文法？</h3>
-自然言語は１型文法と２型文法の間かも？書き途中
-Complexity Zoo
+<h4>（１）Complexity Zoo</h4>
 https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 
-Chomsky hierarchy
+<h4>（２）Chomsky hierarchy</h4>
+自然言語は１型文法と２型文法の間かも？
 <table>
 <thead>
 <caption>Automata theory: formal languages and formal grammars</caption>
