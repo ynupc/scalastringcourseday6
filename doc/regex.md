@@ -1074,7 +1074,7 @@ https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 <td>Deterministic context-free</td>
 <td>Deterministic context-free</td>
 <td>Deterministic pushdown</td>
-<td></td>
+<td>DCFL</td>
 </tr>
 <tr>
 <td>—</td>
