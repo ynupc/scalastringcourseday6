@@ -998,6 +998,7 @@ Type-2（文脈自由文法）では不十分ではないか
 Type-1で不十分という事例は出ていない
 自然言語はType-1（１型文法）とType-2（２型文法）の間かも？
 生成文法、確率的文脈自由文法、木接合文法、主辞駆動句構造文法が生まれた。
+言語やタスクに内在する複雑性を説明するための感覚的な指標としても利用できる。
 <table>
 <thead>
 <caption>Automata theory: formal languages and formal grammars</caption>
