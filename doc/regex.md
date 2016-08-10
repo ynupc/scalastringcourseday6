@@ -1126,6 +1126,8 @@ Type-1で不十分という事例は出ていない
 <h3>コラム：文字列探索アルゴリズム</h3>
 <ul>
 <li>Aho–Corasick algorithm</li>
+<li>Commentz-Walter algorithm</li>
+<li>LOUDS</li>
 <li>Suffix array algorithm</li>
 <li>Suffix tree algorithm</li>
 </ul>
