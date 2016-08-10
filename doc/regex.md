@@ -1002,6 +1002,7 @@ https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 <th>Grammars</th>
 <th>Languages</th>
 <th>Abstract machines</th>
+<th>Complexity Zoo</th>
 </tr>
 </thead>
 <tbody>
@@ -1010,84 +1011,98 @@ https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 <td>Unrestricted</td>
 <td>Recursively enumerable</td>
 <td>Turing machine</td>
+<td>ALL</td>
 </tr>
 <tr>
 <td>—</td>
 <td>(no common name)</td>
 <td>Decidable</td>
 <td>Decider</td>
+<td></td>
 </tr>
 <tr>
 <td>Type-1</td>
 <td>Context-sensitive</td>
 <td>Context-sensitive</td>
 <td>Linear-bounded</td>
+<td>CSL</td>
 </tr>
 <tr>
 <td>—</td>
 <td>Positive range concatenation</td>
 <td>Positive range concatenation*</td>
 <td>PTIME Turing Machine</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>Indexed</td>
 <td>Indexed*</td>
 <td>Nested stack</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>—</td>
 <td>—</td>
 <td>Thread automaton</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>Linear context-free rewriting systems</td>
 <td>Linear context-free rewriting language</td>
 <td>—</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>Tree-adjoining</td>
 <td>Tree-adjoining</td>
 <td>Embedded pushdown</td>
+<td></td>
 </tr>
 <tr>
 <td>Type-2</td>
 <td>Context-free</td>
 <td>Context-free</td>
 <td>Nondeterministic pushdown</td>
+<td>CFL</td>
 </tr>
 <tr>
 <td>—</td>
 <td>Deterministic context-free</td>
 <td>Deterministic context-free</td>
 <td>Deterministic pushdown</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>Visibly pushdown</td>
 <td>Visibly pushdown</td>
 <td>Visibly pushdown</td>
+<td></td>
 </tr>
 <tr>
 <td>Type-3</td>
 <td>Regular</td>
 <td>Regular</td>
 <td>Finite</td>
+<td>REG</td>
 </tr>
 <tr>
 <td>—</td>
 <td>—</td>
 <td>Star-free</td>
 <td>Counter-free (with aperiodic finite monoid)</td>
+<td></td>
 </tr>
 <tr>
 <td>—</td>
 <td>Non-recursive</td>
 <td>Finite</td>
 <td>Acyclic finite</td>
+<td></td>
 </tr>
 </tbody>
 <tfoot>
