@@ -2,6 +2,8 @@ package text.search
 
 import java.util
 
+import scala.collection.mutable.ListBuffer
+
 /**
   * @author ynupc
   *         Created on 2016/08/20
@@ -19,75 +21,75 @@ object Search {
       case Searching.BruteForce =>
         source.indexOf(target)
       case Searching.DeterministicFiniteAutomaton =>
-        -1
+        DeterministicFiniteAutomaton.indexOf[T](source, target)
       case Searching.KarpRabin =>
-        KarpRabin.indexOf(source, target)
+        KarpRabin.indexOf[T](source, target)
       case Searching.ShiftAnd =>
-        ShiftAnd.indexOf(source, target)
+        ShiftAnd.indexOf[T](source, target)
       case Searching.ShiftOr =>
-        ShiftOr.indexOf(source, target)
+        ShiftOr.indexOf[T](source, target)
       case Searching.MorrisPratt =>
-        -1
+        MorrisPratt.indexOf[T](source, target)
       case Searching.KnuthMorrisPratt =>
         source.indexOfSlice(target)
       case Searching.Simon =>
-        -1
+        Simon.indexOf[T](source, target)
       case Searching.Colussi =>
-        -1
+        Colussi.indexOf[T](source, target)
       case Searching.GalilGiancarlo =>
-        -1
+        GalilGiancarlo.indexOf[T](source, target)
       case Searching.ApostolicoCrochemore =>
-        -1
+        ApostolicoCrochemore.indexOf[T](source, target)
       case Searching.NotSoNaive =>
-        -1
+        NotSoNaive.indexOf[T](source, target)
       case Searching.BoyerMoore =>
-        -1
+        BoyerMoore.indexOf[T](source, target)
       case Searching.TurboBM =>
-        -1
+        TurboBM.indexOf[T](source, target)
       case Searching.ApostolicoGiancarlo =>
-        -1
+        ApostolicoGiancarlo.indexOf[T](source, target)
       case Searching.ReverseColussi =>
-        -1
+        ReverseColussi.indexOf[T](source, target)
       case Searching.Horspool =>
-        -1
+        Horspool.indexOf[T](source, target)
       case Searching.QuickSearch =>
-        -1
+        QuickSearch.indexOf[T](source, target)
       case Searching.TunedBoyerMoore =>
-        -1
+        TunedBoyerMoore.indexOf[T](source, target)
       case Searching.ZhuTakaoka =>
-        -1
+        ZhuTakaoka.indexOf[T](source, target)
       case Searching.BerryRavindran =>
-        -1
+        BerryRavindran.indexOf[T](source, target)
       case Searching.Smith =>
-        -1
+        Smith.indexOf[T](source, target)
       case Searching.Raita =>
-        -1
+        Raita.indexOf[T](source, target)
       case Searching.ReverseFactor =>
-        -1
+        ReverseFactor.indexOf[T](source, target)
       case Searching.TurboReverseFactor =>
-        -1
+        TurboReverseFactor.indexOf[T](source, target)
       case Searching.ForwardDawgMatching =>
-        -1
+        ForwardDawgMatching.indexOf[T](source, target)
       case Searching.BackwardNondeterministicDawgMatching =>
-        -1
+        BackwardNondeterministicDawgMatching.indexOf[T](source, target)
       case Searching.BackwardOracleMatching =>
-        -1
+        BackwardOracleMatching.indexOf[T](source, target)
       case Searching.GalilSeiferas =>
-        -1
+        GalilSeiferas.indexOf[T](source, target)
       case Searching.TwoWay =>
-        -1
+        TwoWay.indexOf[T](source, target)
       case Searching.StringMatchingOnOrderedAlphabets =>
-        -1
+        StringMatchingOnOrderedAlphabets.indexOf[T](source, target)
       case Searching.OptimalMismatch =>
-        -1
+        OptimalMismatch.indexOf[T](source, target)
       case Searching.MaximalShift =>
-        -1
+        MaximalShift.indexOf[T](source, target)
       case Searching.SkipSearch =>
-        -1
+        SkipSearch.indexOf[T](source, target)
       case Searching.KMPSkipSearch =>
-        -1
+        KMPSkipSearch.indexOf[T](source, target)
       case Searching.AlphaSkipSearch =>
-        -1
+        AlphaSkipSearch.indexOf[T](source, target)
       case otherwise =>
         throw new NoSuchSearchingAlgorithmException()
     }
@@ -103,6 +105,107 @@ object Search {
 
   def lastIndexOf[T](source: Array[T], target: Array[T], end: Int, searching: Searching.Value): Int = {
     end + lastIndexOf[T](source, target, searching)
+  }
+
+  def indicesOf[T](source: Array[T], target: Array[T], searching: Searching.Value): Array[Int] = {
+    searching match {
+      case Searching.BruteForce =>
+        //TODO: fix here
+        val buffer: ListBuffer[Int] = ListBuffer[Int]()
+        for (i <- source.indices) {
+          buffer += source.indexOf(target, i)
+        }
+        buffer.toArray
+      case Searching.DeterministicFiniteAutomaton =>
+        DeterministicFiniteAutomaton.indicesOf[T](source, target)
+      case Searching.KarpRabin =>
+        KarpRabin.indicesOf[T](source, target)
+      case Searching.ShiftAnd =>
+        ShiftAnd.indicesOf[T](source, target)
+      case Searching.ShiftOr =>
+        ShiftOr.indicesOf[T](source, target)
+      case Searching.MorrisPratt =>
+        MorrisPratt.indicesOf[T](source, target)
+      case Searching.KnuthMorrisPratt =>
+        //TODO: fix here
+        val buffer: ListBuffer[Int] = ListBuffer[Int]()
+        for (i <- source.indices) {
+          buffer += source.indexOfSlice(target, i)
+        }
+        buffer.toArray
+      case Searching.Simon =>
+        Simon.indicesOf[T](source, target)
+      case Searching.Colussi =>
+        Colussi.indicesOf[T](source, target)
+      case Searching.GalilGiancarlo =>
+        GalilGiancarlo.indicesOf[T](source, target)
+      case Searching.ApostolicoCrochemore =>
+        ApostolicoCrochemore.indicesOf[T](source, target)
+      case Searching.NotSoNaive =>
+        NotSoNaive.indicesOf[T](source, target)
+      case Searching.BoyerMoore =>
+        BoyerMoore.indicesOf[T](source, target)
+      case Searching.TurboBM =>
+        TurboBM.indicesOf[T](source, target)
+      case Searching.ApostolicoGiancarlo =>
+        ApostolicoGiancarlo.indicesOf[T](source, target)
+      case Searching.ReverseColussi =>
+        ReverseColussi.indicesOf[T](source, target)
+      case Searching.Horspool =>
+        Horspool.indicesOf[T](source, target)
+      case Searching.QuickSearch =>
+        QuickSearch.indicesOf[T](source, target)
+      case Searching.TunedBoyerMoore =>
+        TunedBoyerMoore.indicesOf[T](source, target)
+      case Searching.ZhuTakaoka =>
+        ZhuTakaoka.indicesOf[T](source, target)
+      case Searching.BerryRavindran =>
+        BerryRavindran.indicesOf[T](source, target)
+      case Searching.Smith =>
+        Smith.indicesOf[T](source, target)
+      case Searching.Raita =>
+        Raita.indicesOf[T](source, target)
+      case Searching.ReverseFactor =>
+        ReverseFactor.indicesOf[T](source, target)
+      case Searching.TurboReverseFactor =>
+        TurboReverseFactor.indicesOf[T](source, target)
+      case Searching.ForwardDawgMatching =>
+        ForwardDawgMatching.indicesOf[T](source, target)
+      case Searching.BackwardNondeterministicDawgMatching =>
+        BackwardNondeterministicDawgMatching.indicesOf[T](source, target)
+      case Searching.BackwardOracleMatching =>
+        BackwardOracleMatching.indicesOf[T](source, target)
+      case Searching.GalilSeiferas =>
+        GalilSeiferas.indicesOf[T](source, target)
+      case Searching.TwoWay =>
+        TwoWay.indicesOf[T](source, target)
+      case Searching.StringMatchingOnOrderedAlphabets =>
+        StringMatchingOnOrderedAlphabets.indicesOf[T](source, target)
+      case Searching.OptimalMismatch =>
+        OptimalMismatch.indicesOf[T](source, target)
+      case Searching.MaximalShift =>
+        MaximalShift.indicesOf[T](source, target)
+      case Searching.SkipSearch =>
+        SkipSearch.indicesOf[T](source, target)
+      case Searching.KMPSkipSearch =>
+        KMPSkipSearch.indicesOf[T](source, target)
+      case Searching.AlphaSkipSearch =>
+        AlphaSkipSearch.indicesOf[T](source, target)
+      case otherwise =>
+        throw new NoSuchSearchingAlgorithmException()
+    }
+  }
+
+  def indicesOf[T](source: Array[T], target: Array[T], start: Int, searching: Searching.Value): Array[Int] = {
+    indicesOf[T](util.Arrays.copyOf(source, start), target, searching) map (_ + start)
+  }
+
+  def lastIndicesOf[T](source: Array[T], target: Array[T], searching: Searching.Value): Array[Int] = {
+    indicesOf[T](source.reverse, target.reverse, searching)
+  }
+
+  def lastIndicesOf[T](source: Array[T], target: Array[T], end: Int, searching: Searching.Value): Array[Int] = {
+    lastIndicesOf[T](source, target, searching) map (_ + end)
   }
 
   private class NoSuchSearchingAlgorithmException extends Exception
