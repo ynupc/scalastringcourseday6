@@ -1,7 +1,5 @@
 package text.search
 
-import java.util
-
 import scala.collection.mutable.ListBuffer
 
 /**
@@ -96,7 +94,8 @@ object Search {
   }
 
   def indexOf[T](source: Array[T], target: Array[T], start: Int, searching: Searching.Value): Int = {
-    start + indexOf[T](util.Arrays.copyOf(source, start), target, searching)
+    //start + indexOf[T](util.Arrays.copyOf(source, start), target, searching)
+0
   }
 
   def lastIndexOf[T](source: Array[T], target: Array[T], searching: Searching.Value): Int = {
@@ -197,7 +196,9 @@ object Search {
   }
 
   def indicesOf[T](source: Array[T], target: Array[T], start: Int, searching: Searching.Value): Array[Int] = {
-    indicesOf[T](util.Arrays.copyOf(source, start), target, searching) map (_ + start)
+    //indicesOf[T](util.Arrays.copyOf(source, start), target, searching) map (_ + start)
+    Array.empty
+    Array()
   }
 
   def lastIndicesOf[T](source: Array[T], target: Array[T], searching: Searching.Value): Array[Int] = {

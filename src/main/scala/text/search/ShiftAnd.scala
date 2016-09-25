@@ -67,7 +67,7 @@ object ShiftAnd extends Search {
           key =>
             mask(key) >>= 1
             if (char == key) {
-              mask(key) |= finish
+//              mask(key) |= finish
             }
         }
     }
