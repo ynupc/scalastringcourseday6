@@ -18,11 +18,11 @@ BOM：
 文字：<strong>（Scala/Javaの文字）</strong>
 
 ```
-([\\x00-\\xD7\\xE0-\\xFF][\\x00-\\xFF]|[\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF][\\x00-\\xFF])
+(?:[\\x00-\\xD7\\xE0-\\xFF][\\x00-\\xFF]|[\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF][\\x00-\\xFF])
 ```
 UTF-16（ビッグエンディアン）の文字の構造がわかりやすいように正規表現に改行とインデントとコメントを加えた図：
 ```
-(
+(?:
                [\\x00-\\xD7\\xE0-\\xFF][\\x00-\\xFF]|//UCS-2
 [\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF][\\x00-\\xFF] //UTF-16代理領域（サロゲートペア）
 //（左の2オクテットがhigh surrogate、右の2オクテットがlow surrogate）
@@ -38,11 +38,11 @@ BOM：
 
 文字：
 ```
-([\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|[\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF])
+(?:[\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|[\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF])
 ```
 UTF-16（リトルエンディアン）の文字の構造がわかりやすいように正規表現に改行とインデントとコメントを加えた図：
 ```
-(
+(?:
                [\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|//UCS-2
 [\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF] //UTF-16代理領域（サロゲートペア）
 //（右の2オクテットがlow surrogate、左の2オクテットがhigh surrogate）
