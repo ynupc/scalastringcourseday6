@@ -9,6 +9,7 @@
 compareToメソッドとcompareメソッドは名前が違いますが、compareメソッドはcompareToメソッドを呼び出すだけなので機能としては同じです。compareToメソッドは２つの文字や文字列を比較した結果を、0より小さいか、0か、もしくは0より大きいかの３値によって、Char順に基づいて比較することができます。
 例えば、"A".compareTo("B")の場合は、compareToメソッドを理解する上で便宜上compareToを「-」に置換すると、"A" - "B"となりますが、"A"より"B"の方がChar順で後ろにあるため"A" - "B" &lt; 0です。この「-」をcompareToに元に戻すと、"A".compareTo("B") &lt; 0になりますが、これはtrueです。
 compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、全ての文字のletter caseを無視した（例えば、lower caseに揃えた）状態でcompareToメソッドを使ったのと同等の機能です。
+
 ```scala
   @Test
   def testAlphabeticalOrder(): Unit = {
@@ -147,6 +148,7 @@ compareToIgnoreCaseメソッドはletter caseを無視して比較するため�
 </li>
 <li>Stringの長さから引数のStringの長さを引いた値を返す。</li>
 </ol>
+
 ```java
 public int compareToIgnoreCase(String str) {
     return CASE_INSENSITIVE_ORDER.compare(this, str);
@@ -202,6 +204,7 @@ N番目の文字を取得する方法、
 先頭からN番目のCharはapplyメソッド（applyは省略可能）、charAtメソッド、applyElseOptionメソッドのいずれかで取得できます。
 applyElseOptionメソッドはインデックスが定義されていない場合はNoneを返し、定義されている場合はapplyメソッドの結果をSomeで包んで返します。
 先頭からN番目の文字目のコードポイントはcodePointAtメソッドで取得できます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -240,6 +243,7 @@ applyElseOptionメソッドはインデックスが定義されていない場�
 ```
 <h4>2.2.2　部分文字列の取得</h4>
 Stringからインデックスからオフセットまでの範囲の部分文字列はsubstringメソッドで取得できます。
+
 ```scala
   @Test
   def testSubstring(): Unit = {
@@ -250,6 +254,7 @@ Stringからインデックスからオフセットまでの範囲の部分文�
 <h4>2.2.3　先頭の一文字の取得</h4>
 先頭のCharはheadメソッドで取得できます。
 headOptionメソッドは先頭のCharをSomeで包んで返します。もし先頭のCharが存在しない場合はNoneを返します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -271,6 +276,7 @@ headOptionメソッドは先頭のCharをSomeで包んで返します。もし�
 <h4>2.2.4　先頭のN文字の取得</h4>
 Stringの先頭からN個のCharはtakeメソッドで取得できます。
 substringメソッドやdropRightメソッドでも同様の処理を書くことはできます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -298,6 +304,7 @@ substringメソッドやdropRightメソッドでも同様の処理を書くこ�
 <h4>2.2.5　末尾の一文字の取得</h4>
 末尾のCharはlastメソッドで取得できます。
 lastOptionメソッドは末尾のCharをSomeで包んで返します。もし末尾のCharが存在しない場合はNoneを返します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -319,6 +326,7 @@ lastOptionメソッドは末尾のCharをSomeで包んで返します。もし�
 <h4>2.2.6　末尾のN文字の取得</h4>
 Stringの末尾からN個のCharはtakeRightメソッドで取得できます。
 substringメソッドやdropメソッドでも同様の処理を書くことはできます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -347,6 +355,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
 ```
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
 先頭から条件式を満たさなくなるまでの部分文字列はtakeWhileメソッドで取得します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -367,6 +376,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
   }
 ```
 条件を満たすCharだけ取り出して繋いだ文字列はfilterメソッドで取得できます。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を返します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -401,6 +411,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
   }
 ```
 先頭から見て条件式を満たしたCharはfindメソッドで取得できます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -421,6 +432,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
   }
 ```
 partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に返します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -471,6 +483,7 @@ N番目の文字を削除する方法、
 条件式を満たす文字や文字列を削除する方法についてそれぞれ説明します。
 <h4>2.3.1　N番目の文字の削除</h4>
 先頭からN番目のCharはStringBuilderのdeleteCharAtメソッドで削除します。 
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -485,6 +498,7 @@ N番目の文字を削除する方法、
 ```
 <h4>2.3.2　部分文字列の削除</h4>
 StringBuilderのdeleteメソッドはインデックスからオフセットまでの範囲の部分文字列を削除します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -498,6 +512,7 @@ StringBuilderのdeleteメソッドはインデックスからオフセットま�
 ```
 <h4>2.3.3　先頭の一文字の削除</h4>
 tailメソッドは先頭のCharを削除します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -509,6 +524,7 @@ tailメソッドは先頭のCharを削除します。
 <h4>2.3.4　先頭のN文字の削除</h4>
 dropメソッドは先頭からN個のCharを削除します。
 substringメソッドやtakeRightメソッドでも同様の処理を書くことはできます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -544,6 +560,7 @@ substringメソッドやtakeRightメソッドでも同様の処理を書くこ�
 ```
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
 stripPrefixメソッドは先頭の文字列が引数と一致したら削除します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -556,6 +573,7 @@ stripPrefixメソッドは先頭の文字列が引数と一致したら削除し
 ```
 <h4>2.3.6　末尾の一文字の削除</h4>
 initメソッドは末尾のCharを削除します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -567,6 +585,7 @@ initメソッドは末尾のCharを削除します。
 <h4>2.3.7　末尾のN文字の削除</h4>
 dropRightメソッドは末尾からN個のCharを削除します。
 substringメソッドやtakeメソッドでも同様の処理を書くことはできます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -602,6 +621,7 @@ substringメソッドやtakeメソッドでも同様の処理を書くことは�
 ```
 <h4>2.3.8　末尾の文字列が一致したら削除</h4>
 stripSuffixメソッドは末尾の文字列が引数と一致したら削除します。
+
 ```scala
   @Test
   def testStripSuffix(): Unit = {
@@ -611,6 +631,7 @@ stripSuffixメソッドは末尾の文字列が引数と一致したら削除し
 <h4>2.3.9　先頭・末尾の空白文字削除</h4>
 trimメソッドは先頭や末尾の空白文字を削除します。ここでの空白文字の定義は' '（U+0020）以下のコードポイントの文字、つまりU+0000からU+0020の２１文字です。
 改行文字のU+000A（"\n"）やキャリッジ・リターンのU+000D（"\r"）も削除されます。
+
 ```scala
   @Test
   def testTrim(): Unit = {
@@ -621,6 +642,7 @@ trimメソッドは先頭や末尾の空白文字を削除します。ここで�
 ```
 <h4>2.3.10　末尾改行文字削除</h4>
 stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削除します。キャリッジ・リターン（"\r"）単体では削除されません。
+
 ```scala
   @Test
   def testStripLineEnd(): Unit = {
@@ -641,6 +663,7 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
 ```
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
 dropWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を削除します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -661,6 +684,7 @@ dropWhileメソッドは先頭から条件式を満たさなくなるまでの�
   }
 ```
 条件を満たすCharだけ削除して繋いだ文字列はfilterNotメソッドで取得できます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -682,6 +706,7 @@ dropWhileメソッドは先頭から条件式を満たさなくなるまでの�
 stripMarginメソッドは各行の先頭（改行文字の次の文字）から'|'までの文字列を削除します。
 stripMarginメソッドに引数を与える場合は各行の先頭から引数までの文字列を削除します。
 主に改行を含む生文字リテラルのインデントを揃えるために使用されます。
+
 ```scala
   @Test
   def testStripMargin(): Unit = {
@@ -713,6 +738,7 @@ Charによる文字列リストの正順ソート、Charによる文字列リス
 sortedメソッド、sortWithメソッド、sortByメソッドはCharの順序に基づく並び替えを行います。
 sortWithメソッドでは比較の条件式そのものを与えることができます。
 sortByメソッドでは比較対象を変換してから比較することができます。
+
 ```scala
   private val list: Seq[String] = Seq[String](
     "A", "B", "C", "D", "E", "F",
@@ -806,6 +832,7 @@ reverseメソッドにより逆順にソートすることができます。
 sortedメソッドを通してからreverseメソッドを通すことで逆順にソートすることができます。
 （reverseメソッドを通してからsortedメソッドを通すと単純にsortedメソッドを通したものと同じ順序になりますので、処理を通す順序に気をつける必要があります。）
 sortWithメソッドで逆順になる方に条件式を与えることで逆順にソートすることができます。
+
 ```scala
   private val list: Seq[String] = Seq[String](
     "A", "B", "C", "D", "E", "F",
@@ -900,6 +927,7 @@ sortWithメソッドで逆順になる方に条件式を与えることで逆順
 ```
 <h4>2.4.3　Charによる文字のソート</h4>
 Charによる文字のソートもsortedメソッドやreverseメソッドを使用することができます。Char単位でソートするとサロゲートペアがある場合は文字が壊れてしまう危険性があります。ちなみに、StringBuilderクラスにJava由来のreverseメソッドがあります。
+
 ```scala
   @Test
   def testSortChars(): Unit = {
@@ -927,6 +955,7 @@ Charのリストや文字列のリストの組合せ・順列を求める方法�
 <h4>2.5.1　最大</h4>
 Charの順序で最大の要素をmaxメソッドで取り出すことができます。
 maxByメソッドで要素を変換した上で最大の要素を取り出すことができます。
+
 ```scala
   @Test
   def testMax(): Unit = {
@@ -959,6 +988,7 @@ maxByメソッドで要素を変換した上で最大の要素を取り出すこ
 <h4>2.5.2　最小</h4>
 Charの順序で最小の要素をmaxメソッドで取り出すことができます。
 maxByメソッドで要素を変換した上で最小の要素を取り出すことができます。
+
 ```scala
   @Test
   def testMin(): Unit = {
@@ -990,6 +1020,7 @@ maxByメソッドで要素を変換した上で最小の要素を取り出すこ
 ```
 <h4>2.5.3　総和</h4>
 sumメソッドでString内のCharの整数値の総和を得ることができます。
+
 ```scala
   @Test
   def testSum(): Unit = {
@@ -1006,6 +1037,7 @@ sumメソッドでString内のCharの整数値の総和を得ることができ�
 ```
 <h4>2.5.4　相乗</h4>
 productメソッドでString内のCharの整数値の相乗を得ることができます。
+
 ```scala
   @Test
   def testProduct(): Unit = {
@@ -1022,6 +1054,7 @@ productメソッドでString内のCharの整数値の相乗を得ることがで
 ```
 <h4>2.5.5　和集合</h4>
 unionメソッドにより文字列の結合ができますが、concatや+演算子の方が高速です。
+
 ```scala
   @Test
   def testUnion(): Unit = {
@@ -1038,6 +1071,7 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
 ```
 <h4>2.5.6　差集合</h4>
 diffメソッドで引数として与えた文字をStringの先頭から順に削除していくことができます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -1061,6 +1095,7 @@ diffメソッドで引数として与えた文字をStringの先頭から順に�
 ```
 <h4>2.5.7　重複排除</h4>
 distinctメソッドで重複を排除することができます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -1075,6 +1110,7 @@ distinctメソッドで重複を排除することができます。
 ```
 <h4>2.5.8　積集合</h4>
 intersectメソッドでLCS (Longest Common Subsequence)を得ることができます。
+
 ```scala
   @Test
   def testIntersect(): Unit = {
@@ -1089,6 +1125,7 @@ intersectメソッドでLCS (Longest Common Subsequence)を得ることができ
 ```
 <h4>2.5.9　組合せ</h4>
 combinationsメソッドで組合せを得ることができます。
+
 ```scala
   @Test
   def testCombinations(): Unit = {
@@ -1107,6 +1144,7 @@ combinationsメソッドで組合せを得ることができます。
 ```
 <h4>2.5.10　順列</h4>
 permutationsメソッドで順列を得ることができます。
+
 ```scala
   @Test
   def testPermutations(): Unit = {
@@ -1143,6 +1181,7 @@ indexOfメソッドで先頭から見て最初に与えた引数（Charまたは
 indexOfメソッドに第二引数として探索開始位置を与えることも可能です。
 indexOfSliceメソッドもindexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
 詳しくは、前章の<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/doc/regex.md#113部分一致表層文字列">1.1.3　部分一致（表層文字列）</a>を読んでください。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -1173,6 +1212,7 @@ lastIndexOfメソッドで末尾から見て最初に与えた引数（Charま�
 lastIndexOfメソッドに第二引数として探索開始位置を与えることも可能です。
 lastIndexOfSliceメソッドもlastIndexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
 詳しくは、前章の<a href="https://github.com/ynupc/scalastringcourseday6/blob/master/doc/regex.md#113部分一致表層文字列">1.1.3　部分一致（表層文字列）</a>を読んでください。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -1203,6 +1243,7 @@ prefixLengthメソッドで先頭から見て最初に与えた条件式を満�
 segmentLengthメソッドで与えた探索開始位置から見て最初に与えた条件式を満たした位置までの長さを返します。例えば、探索開始位置が1で条件式を満たした位置が2の場合は長さは1（=2-1）です。
 indexWhereメソッドで先頭から見て最初に与えた条件式を満たした位置を取得できます。
 indexWhereメソッドに第二引数として探索開始位置を与えることも可能です。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
   
@@ -1245,6 +1286,7 @@ indexWhereメソッドに第二引数として探索開始位置を与えるこ�
 <h4>2.6.4　逆方向に解析して条件を最初に満たしたインデックスを取得</h4>
 indexWhereメソッドで末尾から見て最初に与えた条件式を満たした位置を取得できます。
 indexWhereメソッドに第二引数として探索開始位置を与えることも可能です。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -1268,6 +1310,7 @@ indexWhereメソッドに第二引数として探索開始位置を与えるこ�
 ```
 <h4>2.6.5　インデックスを全て取得</h4>
 indicesメソッドで全てのインデックスを取得できます。これは主にfor文でfor (i &lt;- 0 until str.length)と表記する場合にfor (i &lt;- str.indices)と簡略に書く目的で使用されます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -1282,6 +1325,7 @@ indicesメソッドで全てのインデックスを取得できます。これ�
   }
 ```
 zipWithIndexメソッドで文字列内のCharとインデックスの対を全て取得することができます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -1294,6 +1338,7 @@ zipWithIndexメソッドで文字列内のCharとインデックスの対を全�
 ```
 <h4>2.6.6　インデックスが定義されているか</h4>
 isDefinedAtメソッドでインデックスが定義されているかを確認することができます。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -1315,6 +1360,7 @@ N-gramを生成する方法、
 Stringを行に分割する方法について説明します。
 <h4>2.7.1　イテレータ</h4>
 foreachメソッドやStringCharacterIteratorクラスを用いて先頭からCharを一つひとつ取り出すことができます。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -1347,6 +1393,7 @@ foreachメソッドやStringCharacterIteratorクラスを用いて先頭からCh
   }
 ```
 iteratorメソッドでStringからCharを単位としたIteratorを作成することができます。逆順のIteratorを作成したい場合はreverseIteratorメソッドを使用して作成することができます。
+
 ```scala
   @Test
   def testIterator(): Unit = {
@@ -1360,6 +1407,7 @@ iteratorメソッドでStringからCharを単位としたIteratorを作成する
 ```
 <h4>2.7.2　写像</h4>
 mapメソッドにより、Stringの中のCharに対して変換処理を加えることができます。逆順にした上で変換処理を加えたい場合はreverseMapメソッドを使用することができます。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
 
@@ -1375,6 +1423,7 @@ mapメソッドにより、Stringの中のCharに対して変換処理を加え�
 ```
 <h4>2.7.3　N-gramの生成</h4>
 slidingメソッドでChar N-gramを作成することができます。探索開始位置をslidingメソッドに第二引数として与えることができます。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -1443,6 +1492,7 @@ slidingメソッドでChar N-gramを作成することができます。探索�
 <h4>2.7.4　行分割</h4>
 linesメソッドかlinesWithSeparatorsメソッドにより改行文字（"\n"と"\r\n"）を基に文字列を行に分割することができます。
 linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソッドは改行文字を行末に残します。
+
 ```scala
   @Test
   def testLines(): Unit = {
@@ -1511,6 +1561,7 @@ linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソ�
 N-gramの読み方については、<a href="#コラムn-gramの読み方">コラム：N-gramの読み方</a>をご参照ください。
 <h4>2.8.2　文字LCSによるF1値</h4>
 LCSの長さで類似度を計測することができます。
+
 ```scala
   @Test
   def testLCSBasedF1(): Unit = {
@@ -1552,6 +1603,7 @@ LCSの長さで類似度を計測することができます。
 ```
 <h4>2.8.3　文字N-gramによるF1値</h4>
 文字N-gramの重なりによって類似度を計測することができます。
+
 ```scala
   @Test
   def testNGramBasedF1(): Unit = {
@@ -1614,6 +1666,7 @@ LCSの長さで類似度を計測することができます。
 ```
 <h4>2.8.4　ハミング距離（自作）</h4>
 等しい文字数を持つ２つの文字列の中で、対応する位置にある異なった文字の数です。
+
 ```scala
   @Test
   def testHammingDistance(): Unit = {
@@ -1626,6 +1679,7 @@ LCSの長さで類似度を計測することができます。
 <h4>2.8.5　レーベンシュタイン距離（自作）</h4>
 １つの文字列を別の文字列に変形するのに必要な操作の最小回数です。
 操作は文字の挿入（insertion）、削除（deletion）、置換（substitution）の３つです。
+
 ```scala
   @Test
   def testLevenshteinDistance(): Unit = {
@@ -1638,6 +1692,7 @@ LCSの長さで類似度を計測することができます。
 <h4>2.8.6　ダメラオウ・レーベンシュタイン距離（自作）</h4>
 １つの文字列を別の文字列に変形するのに必要な操作の最小回数です。
 操作は文字の挿入（insertion）、削除（deletion）、置換（substitution）、交換（transposition）の４つです。
+
 ```scala
   @Test
   def testDamerauLevenshteinDistance(): Unit = {
@@ -1654,6 +1709,7 @@ LCSの長さで類似度を計測することができます。
 <li>m/|s2|</li>
 <li>s1とs2の不一致部分で、それぞれで交換するとs1とs2が一致する文字数の合計を２で割った値tとする。例えば、MARTHAとMARHTAの場合はH/TとT/Hの二文字を２で割って、t=1。このとき、(m-t)/m</li>
 </ul>
+
 ```scala
   @Test
   def testJaroDistance(): Unit = {
@@ -1665,6 +1721,7 @@ LCSの長さで類似度を計測することができます。
 ```
 <h4>2.8.8　ジャロ・ウィンクラー距離（自作）</h4>
 ジャロ・ウィンクラー距離は、先頭の方の文字列が末尾の方の文字列より重要視したジャロ距離の拡張です。
+
 ```scala
   @Test
   def testJaroWinklerDistance(): Unit = {
@@ -1683,6 +1740,7 @@ LCSの長さで類似度を計測することができます。
 </table>
 <h4>2.8.10　ベクトル間の類似度（自作）</h4>
 ベクトル間の類似度を計算するプログラムの例を次に示します。
+
 ```scala
   @Test
   def testF1WithLCS(): Unit = {
@@ -1707,6 +1765,7 @@ LCSの長さで類似度を計測することができます。
 ```
 <h4>2.8.11　ベクトル間の距離（自作）</h4>
 ベクトル間の非類似度を計算するプログラムの例を次に示します。
+
 ```scala
   @Test
   def testBagOfBigramsEuclideanDistance(): Unit = {
@@ -1721,6 +1780,7 @@ LCSの長さで類似度を計測することができます。
 ```
 <h4>2.8.12　ベクトル間の包含度（自作）</h4>
 ベクトル間の包含度を計算するプログラムの例を次に示します。
+
 ```scala
   @Test
   def testBigramsInclusion(): Unit = {
@@ -2137,6 +2197,7 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
 <h3>コラム：letter caseの変換の非対称性</h3>
 <h4>（１）LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVE</h4>
 LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを無視した時に同一視したいとすると、それらはどちらもupper caseなのでtoUpperCaseメソッドを実行しても変わらないため等値判定してもfalseが返ります。これらのlower caseはいずれもLATIN SMALL LETTER Iなので、等値判定するとtrueが返ります。なお、Day 7で解説するUnicode文字正規化をLATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEに対してそれぞれ行ってもどちらも変化しません。従って、LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEを同一視するためにはlower caseに変換する必要があります。
+
 ```scala
   @Test
   def testI(): Unit = {
@@ -2256,6 +2317,7 @@ LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを�
 <h4>（２）GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOL</h4>
 GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時に同一視したいとすると、GREEK THETA SYMBOLはlower caseでGREEK CAPITAL THETA SYMBOLはupper caseであり、GREEK THETA SYMBOLのupper caseはGREEK CAPITAL LETTER THETA、GREEK CAPITAL THETA SYMBOLのlower caseはGREEK SMALL LETTER THETAであるため、一度upper caseやlower caseに揃えただけでは一致しません。ところが、GREEK CAPITAL LETTER THETAとGREEK SMALL LETTER THETAはbicameralな関係にあり、つまりGREEK CAPITAL LETTER THETAのlower caseがGREEK SMALL LETTER、GREEK SMALL LETTERのupper caseがGREEK CAPITAL LETTER THETAであるため、GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLはlower caseへの変換とupper caseへの変換の２回変換を行えば、その変換の順序に関係なく一致を見ることができます。
 ちなみに、Day 7で解説するUnicode文字正規化をGREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLに行うと、それぞれGREEK SMALL LETTERとGREEK CAPITAL LETTER THETAに変換されるため、lower caseへの変換とUnicode文字正規化、あるいはupper caseへの変換とUnicode文字正規化を行っても、これらも変換の順序に関係なく一致を見ることができます。
+
 ```scala
   @Test
   @Test
