@@ -4,6 +4,7 @@
 <br>
 正規表現の例としてUCS-2（2-byte Universal Character Set）、UTF-16（ビッグエンディアン）、UTF-16（リトルエンディアン）の正規表現を次に示します。<br><br>
 例：UCS-2を表す正規表現<strong>（ScalaのChar / Javaのcharに相当）</strong>
+
 ```java
 [\\x00-\\xFF][\\x00-\\xFF]
 ```
@@ -11,6 +12,7 @@
 例：UTF-16（ビッグエンディアン）を表す正規表現
 
 BOM：
+
 ```java
 \\xFE\\xFF
 ```
@@ -32,15 +34,18 @@ UTF-16（ビッグエンディアン）の文字の構造がわかりやすい�
 例：UTF-16（リトルエンディアン）を表す正規表現
 
 BOM：
+
 ```java
 \\xFF\\xFE
 ```
 
 文字：
+
 ```java
 (?:[\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]|[\\x00-\\xFF][\\xD8-\\xDB][\\x00-\\xFF][\\xDC-\\xDF])
 ```
 UTF-16（リトルエンディアン）の文字の構造がわかりやすいように正規表現に改行とインデントとコメントを加えた図：
+
 ```java
 (?:
                [\\x00-\\xFF][\\x00-\\xD7\\xE0-\\xFF]| // UCS-2
@@ -172,6 +177,7 @@ Javaでは、==演算子を使用すると参照の一致を見てしまい、�
 letter caseを無視して（例えば、全てlower caseに揃えて）から完全一致を見る場合はequalsIgnoreCaseメソッドを使用します。
 ==演算子やequalsメソッドの代替にcompareメソッド、compareToメソッドや、equalsIgnoreCaseメソッドの代わりにcompareToIgnoreCaseメソッドを使用することができますが、==演算子やequalsメソッドはnullを比較する場合でもBooleanを返しますが、compare系メソッドはnullに対してjava.lang.NullPointerExceptionを返す点が違います。
 Scalaでは、==演算子を使用すると文字列としての等値を見ることができますが、Javaの==演算子のように参照の一致を知りたい場合は、一致を見る場合はeq演算子、不一致を見る場合はne演算子を使用します。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -215,6 +221,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
 ***
 <h4>1.1.2　完全一致（正規表現）</h4>
 パターンマッチの完全一致を正規表現を用いて見る場合は、Stringクラスのmatchesメソッド、Patternクラスのmatchesメソッド、Matcherクラスのmatchesメソッド、Regexクラスを用いる方法があります。Stringクラスのmatchesメソッドは処理速度が遅いです。PatternクラスのmatchesメソッドとRegexクラスではPatternクラスを使用する方が処理速度が速いです。何度も同じパターンで一致を見る場合は、Patternクラスは一度compileメソッドでコンパイルしてPatternのインスタンスを生成しておいて、それを何度も使用する方が高速ですし、Regexクラスについても、一度StringクラスのrメソッドでRegexインスタンスを生成しておいて、それを何度も使用する方が高速です。この場合でもPatternインスタンスを使用する方がRegexインスタンスを使用するより高速です。コンパイルされたPatternインスタンスはmatcherメソッドで対象の文字列を与え、Matcherクラスのインスタンスを生成し、Matcherクラスのmatchesメソッドを使用することで完全一致したかを確認できます。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -248,6 +255,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
   }
 ```
 regionMatchesメソッドにより、一致範囲を指定して、正規表現による完全一致を調べることができます。
+
 ```scala
   @Test
   def testExactMatch5(): Unit = {
@@ -265,6 +273,7 @@ containsメソッドはStringクラスのindexOfメソッドを使用して実�
 containsSliceメソッドはSeqLikeクラスのindexOfSliceメソッドを使用して、containsメソッドと同様にindexOfSliceメソッドの返り値が-1でなければtrue、-1の場合はfalseを返します。indexOfSliceメソッドは<a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%8C%E3%83%BC%E3%82%B9%E2%80%93%E3%83%A2%E3%83%AA%E3%82%B9%E2%80%93%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E6%B3%95" target="_blank">クヌース–モリス–プラット法</a>（以下、KMP法）を用いて実装されています。
 処理速度は基本的にはcontainsメソッドの方がcontainsSliceメソッドより速いです。
 containsSliceはKMP法で実装されているので、その分のオーバーヘッドが乗ります。しかし、もしも一致ではないが似ている文字列が多く含まれているような場合（例えば、DNA中に特定の遺伝子配列が含まれているか調べる場合）にはKMP法で実装されているcontainsSliceメソッドの方がcontainsメソッドより効率的に処理を行います。KMP法のような文字列探索アルゴリズムについては<a href="#コラム文字列探索アルゴリズム">コラム：文字列探索アルゴリズム</a>をご参照ください。
+
 ```scala
   private val unagiCopula: String = "僕はウナギ"
   
@@ -277,6 +286,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h4>1.1.4　部分一致（正規表現）</h4>
 一回だけ部分一致をみたい場合は、Patternクラスのfindメソッドを使用する方法とRegexクラスのfindFirstInメソッドを使用する方法とRegexクラスのfindFirstMatchInメソッドを使用する方法があります。全ての部分一致を見たい場合は、Patternクラスのfindメソッドとnextメソッドを使用する方法とRegexクラスのfindAllInメソッドを使用する方法とRegexクラスのfindAllMatchInメソッドを使用する方法があります。RegexクラスのfindFirstInメソッドとfindAllInメソッドはそれぞれOption[String]とMatchIteratorを返します。RegexクラスのfindFirstMatchInメソッドやfindAllMatchInメソッドはOption[Match]とIterator[Match]を返します。RegexクラスとMatchクラスの関係はJava由来のPatternクラスに対するMatcherクラスの関係と似ており、Matchクラスの多くのメソッドはMatcherクラスにも同様に存在します。
+
 ```scala
   private val tautology: String = "ウナギはウナギだ。"
 
@@ -325,6 +335,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h4>1.1.5　前方一致（表層文字列）</h4>
 表層文字列の前方一致を見る場合はStringクラスのstartsWithメソッドを使用します。
+
 ```scala
   @Test
   def testStartsWith(): Unit = {
@@ -334,6 +345,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h4>1.1.6　前方一致（正規表現）</h4>
 パターンマッチによる前方一致を見る場合は、PatternクラスとMatcherクラスを用いて、MatcherクラスのlookingAtメソッドを使用することができます。部分一致の方法を用いて、正規表現で書いたパターンに対して前方一致を示す「^」を先頭に加える方法もあります。
+
 ```scala
   @Test
   def testForwardMatch(): Unit = {
@@ -346,6 +358,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 ***
 <h4>1.1.7　後方一致（表層文字列）</h4>
 表層文字列の後方一致を見る場合はStringクラスのendsWithメソッドを使用します。
+
 ```scala
   @Test
   def testEndsWith(): Unit = {
@@ -356,6 +369,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 <h4>1.1.8　後方一致（正規表現）</h4>
 正規表現で後方一致を見る場合は、専用のメソッドがありません。
 例えば、一致を見たい文字列を逆順にして、MatcherクラスのlookingAtメソッドで一致が見れるようなパターンを用意しておき、後方一致を前方一致の方法で見る方法もあります。部分一致の方法を用いて、正規表現で書いたパターンに対して後方一致を示す「$」を末尾に加える方法もあります。
+
 ```scala
   @Test
   def testBackwardMatch(): Unit = {
@@ -371,6 +385,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 <li>最長一致</li>
 <li>最短一致</li>
 </ul>
+
 ```scala
   @Test
   def testLongestMatchingAndShortestMatching(): Unit = {
@@ -395,6 +410,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
 処理速度の面では、非推奨のStringTokenizerを使用した場合が最速で、次にStringクラスのsplitメソッドが高速です。Patternクラスを用いる場合は、何度もsplitメソッドを呼び出すとき、最初にcompileメソッドで区切り文字の正規表現をコンパイルしてPatternインスタンスを生成し、そのインスタンスを使い回す方がインスタンス生成のためのオーバーヘッドがなく、処理速度とさらにメモリ効率の面でも好ましいです。
+
 ```scala
   @Test
   def testSplit1(): Unit = {
@@ -472,6 +488,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
 linesメソッドやlinesWithSeparatorsメソッドを用いて行末文字で分割します。
 行末文字とは、改行文字LF（Line Feed）のU+000Aと改ページFF（Form Feed）のU+000Cを指します。
 linesメソッドは分割後に分割された文字列から行末文字を削除しますが、linesWithSeparatorsメソッドは分割後も行末文字が残ります。
+
 ```scala
   @Test
   def testSeparateLines1(): Unit = {
@@ -511,6 +528,7 @@ linesメソッドは分割後に分割された文字列から行末文字を削
 ```
 <h4>1.2.3　分割位置をインデックスによる指定した分割</h4>
 StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
+
 ```scala
   @Test
   def testSplitAt(): Unit = {
@@ -528,6 +546,7 @@ StringクラスのsplitAtメソッドを用いて分割位置を指定して分�
 ```
 <h4>1.2.4　条件に従わなくなった位置による分割</h4>
 Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
+
 ```scala
   @Test
   def testSpan(): Unit = {
@@ -553,6 +572,7 @@ replaceメソッドもreplaceAllLiterallyメソッドも内部では最終的に
 replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッドで読み込めるように修正しますが、置換文字列はどちらもMatcherクラスのquoteReplacementメソッドを用いて置換文字列中の"\"や"$"の直前に"\"を挿入してエスケープシーケンスにしています。被置換文字列はreplaceメソッドの場合PatternクラスのcompileメソッドでPatternインスタンス生成するときにPattern.LITERALフラグを渡して生成し、そのPatternインスタンスからmatcherメソッドでMatcherインスタンスを生成します。そして、そのMatcherインスタンスのreplaceAllメソッドを使用して置換します。一方で、replaceAllLiterallyメソッドでは、Pattern.LITERALフラグを使用せずに、Patternクラスのquoteメソッドを使用して、正規表現の先頭と末尾にそれぞれ"\\Q"と"\\E"を付け加えて、エスケープシーケンスの"\"を二重に書かずに済むような正規表現をStringとして取得します。StringクラスのreplaceAllメソッドにそれらを投げることでStringクラスのreplaceAllメソッドの内部でMatcherクラスのreplaceAllメソッドが呼び出される仕組みです。
 **Pattern.LITERALフラグにより直接Patternインスタンスを生成するのか、正規表現の先頭と末尾にそれぞれ"\\Q"と"\\E"を付け加えてPatternインスタンスを生成するのかの処理の差分によりreplaceメソッドの方がreplaceAllLiterallyメソッドより高速です。**
 処理速度とは別の観点として**プログラムの可読性を高めるためにreplaceAllLiterallyメソッドを使用するという考え方もあります。**
+
 ```scala
   @Test
   def testReplace1(): Unit = {
@@ -575,6 +595,7 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
 
 <h4>1.3.2　正規表現の一致による置換</h4>
 正規表現の一致で、最初に一致した箇所で置換する場合はStringクラスかMatcherクラスのreplaceFirstメソッド、一致した全ての箇所で置換する場合はStringクラスかMatcherクラスのreplaceAllメソッドを使用します。Stringクラスのメソッドは内部的にはMatcherクラスのメソッドを呼び出しているため、一度使用する場合は処理速度に違いはありません。複数回同じ置換処理を行う場合は、Patternインスタンスを生成しそれを使い回してMatcherインスタンスを生成すると処理を高速化できます。
+
 ```scala
   @Test
   def testReplace2(): Unit = {
@@ -615,6 +636,7 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
 位置や範囲をインデックスで指定して置換をします。
 一文字のみを置換したい場合はupdatedメソッドを使用します。
 文字を複数含む範囲で置換したい場合はpatchメソッドを使用します。
+
 ```scala
   @Test
   def testUpdated(): Unit = {
@@ -642,6 +664,7 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
 <h4>1.3.4　複数のCharの同時置換</h4>
 collectFirstメソッドやcollectメソッドを使用することで、一致した文字を別の文字に変換します。
 replaceメソッドによる文字の置換を複数回用いる場合は、replaceメソッドを呼び出す順序により結果が異なる可能性がある点と、replaceメソッドを使うたびにStringが生成されて非効率である点で異なります。
+
 ```scala
   @Test
   def testCollectFirst(): Unit = {
