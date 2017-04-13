@@ -1,5 +1,7 @@
 # 2.　文字列操作
+
 <h3>2.1　比較</h3>
+
 文字列間の等値、表層文字列による一致や正規表現によるパターンマッチについては前章で説明しました。
 ここでは、文字をアルファベット・あいうえお順（厳密にはChar順）に並べる方法を説明します。<br>
 &lt;演算子（&gt;演算子）は文字・文字列に対しては、Char順に基づいて比較されます。
@@ -73,6 +75,7 @@ compareToIgnoreCaseメソッドは、Stringクラスにあるメソッドで、�
     assert("a".compareToIgnoreCase("A") == 0)
   }
 ```
+
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.equalsIgnoreCase%28java.lang.String%29" target="_blank">equalsIgnoreCaseメソッド</a><br>
 equalsIgnoreCaseメソッドはletter caseを無視した等値を見るために次の順で判定します。
 <ol>
@@ -136,6 +139,7 @@ public boolean regionMatches(boolean ignoreCase, int toffset,
     return true;
 }
 ```
+
 OpenJDK 8u40-b25の<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/lang/String.java#String.compareToIgnoreCase%28java.lang.String%29" target="_blank">compareToIgnoreCaseメソッド</a><br>
 compareToIgnoreCaseメソッドはletter caseを無視して比較するために次の順で判定します。
 <ol>
@@ -188,8 +192,10 @@ private static class CaseInsensitiveComparator
     private Object readResolve() { return CASE_INSENSITIVE_ORDER; }
 }
 ```
----
+
+***
 <h3>2.2　パスフィルタ</h3>
+
 本節では、Stringを入力してその一部を取り出すStringのパスフィルタについて説明します。
 Stringのパスフィルタには、
 N番目の文字を取得する方法、
@@ -201,6 +207,7 @@ N番目の文字を取得する方法、
 条件式を満たす文字や文字列を取得する方法についてそれぞれ説明します。
 
 <h4>2.2.1　N番目の文字の取得</h4>
+
 先頭からN番目のCharはapplyメソッド（applyは省略可能）、charAtメソッド、applyElseOptionメソッドのいずれかで取得できます。
 applyElseOptionメソッドはインデックスが定義されていない場合はNoneを返し、定義されている場合はapplyメソッドの結果をSomeで包んで返します。
 先頭からN番目の文字目のコードポイントはcodePointAtメソッドで取得できます。
@@ -241,7 +248,9 @@ applyElseOptionメソッドはインデックスが定義されていない場�
     assert(tautology.codePointAt(3) == 'は')
   }
 ```
+
 <h4>2.2.2　部分文字列の取得</h4>
+
 Stringからインデックスからオフセットまでの範囲の部分文字列はsubstringメソッドで取得できます。
 
 ```scala
@@ -251,7 +260,9 @@ Stringからインデックスからオフセットまでの範囲の部分文�
     assert(gardenPathSentence.substring(10, 13) == "ウナギ")
   }
 ```
+
 <h4>2.2.3　先頭の一文字の取得</h4>
+
 先頭のCharはheadメソッドで取得できます。
 headOptionメソッドは先頭のCharをSomeで包んで返します。もし先頭のCharが存在しない場合はNoneを返します。
 
@@ -273,7 +284,9 @@ headOptionメソッドは先頭のCharをSomeで包んで返します。もし�
     }
   }
 ```
+
 <h4>2.2.4　先頭のN文字の取得</h4>
+
 Stringの先頭からN個のCharはtakeメソッドで取得できます。
 substringメソッドやdropRightメソッドでも同様の処理を書くことはできます。
 
@@ -301,7 +314,9 @@ substringメソッドやdropRightメソッドでも同様の処理を書くこ�
     assert(result == "ウナギ")
   }
 ```
+
 <h4>2.2.5　末尾の一文字の取得</h4>
+
 末尾のCharはlastメソッドで取得できます。
 lastOptionメソッドは末尾のCharをSomeで包んで返します。もし末尾のCharが存在しない場合はNoneを返します。
 
@@ -323,7 +338,9 @@ lastOptionメソッドは末尾のCharをSomeで包んで返します。もし�
     }
   }
 ```
+
 <h4>2.2.6　末尾のN文字の取得</h4>
+
 Stringの末尾からN個のCharはtakeRightメソッドで取得できます。
 substringメソッドやdropメソッドでも同様の処理を書くことはできます。
 
@@ -353,7 +370,9 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(result == "ギだ。")
   }
 ```
+
 <h4>2.2.7　条件式を満たす文字や文字列の取得</h4>
+
 先頭から条件式を満たさなくなるまでの部分文字列はtakeWhileメソッドで取得します。
 
 ```scala
@@ -375,6 +394,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(result == "ウナギ")
   }
 ```
+
 条件を満たすCharだけ取り出して繋いだ文字列はfilterメソッドで取得できます。withFilterメソッドはfilterメソッドにより条件を満たしたCharに対して何かしらの変換処理を加えてから繋いだ文字列を返します。
 
 ```scala
@@ -410,6 +430,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(result == "ウナギウナギ")
   }
 ```
+
 先頭から見て条件式を満たしたCharはfindメソッドで取得できます。
 
 ```scala
@@ -431,6 +452,7 @@ substringメソッドやdropメソッドでも同様の処理を書くことは�
     assert(resultOpt.get == 'は')
   }
 ```
+
 partitionメソッドは条件式を満たしたCharを繋いだ文字列と条件式を満たさなかったCharを繋いだ文字列の２つを同時に返します。
 
 ```scala
@@ -466,8 +488,9 @@ partitionメソッドは条件式を満たしたCharを繋いだ文字列と条�
   }
 ```
 
----
+***
 <h3>2.3　カットフィルタ</h3>
+
 本節では、Stringを入力してその一部を削除するStringのカットフィルタについて説明します。
 Stringのカットフィルタには、
 N番目の文字を削除する方法、
@@ -481,7 +504,9 @@ N番目の文字を削除する方法、
 先頭・末尾の空白文字を削除する方法、
 末尾の改行文字を削除する方法、
 条件式を満たす文字や文字列を削除する方法についてそれぞれ説明します。
+
 <h4>2.3.1　N番目の文字の削除</h4>
+
 先頭からN番目のCharはStringBuilderのdeleteCharAtメソッドで削除します。 
 
 ```scala
@@ -496,7 +521,9 @@ N番目の文字を削除する方法、
     assert(str == "ウナギウナギだ。")
   }
 ```
+
 <h4>2.3.2　部分文字列の削除</h4>
+
 StringBuilderのdeleteメソッドはインデックスからオフセットまでの範囲の部分文字列を削除します。
 
 ```scala
@@ -510,7 +537,9 @@ StringBuilderのdeleteメソッドはインデックスからオフセットま�
     assert(str == "ウナギだ。")
   }
 ```
+
 <h4>2.3.3　先頭の一文字の削除</h4>
+
 tailメソッドは先頭のCharを削除します。
 
 ```scala
@@ -521,7 +550,9 @@ tailメソッドは先頭のCharを削除します。
     assert(unagiCopula.tail == "はウナギ")
   }
 ```
+
 <h4>2.3.4　先頭のN文字の削除</h4>
+
 dropメソッドは先頭からN個のCharを削除します。
 substringメソッドやtakeRightメソッドでも同様の処理を書くことはできます。
 
@@ -558,7 +589,9 @@ substringメソッドやtakeRightメソッドでも同様の処理を書くこ�
     assert(result    == "はウナギだ。")
   }
 ```
+
 <h4>2.3.5　先頭の文字列が一致したら削除</h4>
+
 stripPrefixメソッドは先頭の文字列が引数と一致したら削除します。
 
 ```scala
@@ -571,7 +604,9 @@ stripPrefixメソッドは先頭の文字列が引数と一致したら削除し
   }
 
 ```
+
 <h4>2.3.6　末尾の一文字の削除</h4>
+
 initメソッドは末尾のCharを削除します。
 
 ```scala
@@ -582,7 +617,9 @@ initメソッドは末尾のCharを削除します。
     assert(unagiCopula.init == "僕はウナ")
   }
 ```
+
 <h4>2.3.7　末尾のN文字の削除</h4>
+
 dropRightメソッドは末尾からN個のCharを削除します。
 substringメソッドやtakeメソッドでも同様の処理を書くことはできます。
 
@@ -619,7 +656,9 @@ substringメソッドやtakeメソッドでも同様の処理を書くことは�
     assert(result    == "ウナギはウナ")
   }
 ```
+
 <h4>2.3.8　末尾の文字列が一致したら削除</h4>
+
 stripSuffixメソッドは末尾の文字列が引数と一致したら削除します。
 
 ```scala
@@ -628,7 +667,9 @@ stripSuffixメソッドは末尾の文字列が引数と一致したら削除し
     assert("横浜国立大学".stripSuffix("立大学") == "横浜国")
   }
 ```
+
 <h4>2.3.9　先頭・末尾の空白文字削除</h4>
+
 trimメソッドは先頭や末尾の空白文字を削除します。ここでの空白文字の定義は' '（U+0020）以下のコードポイントの文字、つまりU+0000からU+0020の２１文字です。
 改行文字のU+000A（"\n"）やキャリッジ・リターンのU+000D（"\r"）も削除されます。
 
@@ -640,7 +681,9 @@ trimメソッドは先頭や末尾の空白文字を削除します。ここで�
     assert(gardenPathSentence  == gardenPathSentence2.trim)
   }
 ```
+
 <h4>2.3.10　末尾改行文字削除</h4>
+
 stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削除します。キャリッジ・リターン（"\r"）単体では削除されません。
 
 ```scala
@@ -661,7 +704,9 @@ stripLineEndメソッドは末尾の改行文字（"\n"か"\r\n"）を一つ削�
     assert("\nUnigram\nBigram\r\nTrigram\n\n ".stripLineEnd == "\nUnigram\nBigram\r\nTrigram\n\n ")
   }
 ```
+
 <h4>2.3.11　条件式を満たす文字や文字列の削除</h4>
+
 dropWhileメソッドは先頭から条件式を満たさなくなるまでの部分文字列を削除します。
 
 ```scala
@@ -683,6 +728,7 @@ dropWhileメソッドは先頭から条件式を満たさなくなるまでの�
     assert(result == "はウナギだ。")
   }
 ```
+
 条件を満たすCharだけ削除して繋いだ文字列はfilterNotメソッドで取得できます。
 
 ```scala
@@ -703,6 +749,7 @@ dropWhileメソッドは先頭から条件式を満たさなくなるまでの�
     assert(result == "はだ。")
   }
 ```
+
 stripMarginメソッドは各行の先頭（改行文字の次の文字）から'|'までの文字列を削除します。
 stripMarginメソッドに引数を与える場合は各行の先頭から引数までの文字列を削除します。
 主に改行を含む生文字リテラルのインデントを揃えるために使用されます。
@@ -729,12 +776,15 @@ GHI
 """.stripMargin('%') == "\nABC\nDEF\nGHI\n")
   }
 ```
----
+
+***
 <h3>2.4　ソート</h3>
+
 本節では、Charの順序に基づく文字列のリストやCharのリストのソート方法について説明します。
 Charによる文字列リストの正順ソート、Charによる文字列リストの逆順ソート、Charによる文字のソートについて説明します。
 
 <h4>2.4.1　Charによる文字列リストの正順ソート</h4>
+
 sortedメソッド、sortWithメソッド、sortByメソッドはCharの順序に基づく並び替えを行います。
 sortWithメソッドでは比較の条件式そのものを与えることができます。
 sortByメソッドでは比較対象を変換してから比較することができます。
@@ -827,7 +877,9 @@ sortByメソッドでは比較対象を変換してから比較することが�
     }
   }
 ```
+
 <h4>2.4.2　Charによる文字列リストの逆順ソート</h4>
+
 reverseメソッドにより逆順にソートすることができます。
 sortedメソッドを通してからreverseメソッドを通すことで逆順にソートすることができます。
 （reverseメソッドを通してからsortedメソッドを通すと単純にsortedメソッドを通したものと同じ順序になりますので、処理を通す順序に気をつける必要があります。）
@@ -925,7 +977,9 @@ sortWithメソッドで逆順になる方に条件式を与えることで逆順
     ))
   }
 ```
+
 <h4>2.4.3　Charによる文字のソート</h4>
+
 Charによる文字のソートもsortedメソッドやreverseメソッドを使用することができます。Char単位でソートするとサロゲートペアがある場合は文字が壊れてしまう危険性があります。ちなみに、StringBuilderクラスにJava由来のreverseメソッドがあります。
 
 ```scala
@@ -944,15 +998,19 @@ Charによる文字のソートもsortedメソッドやreverseメソッドを使
     assert(reverse != "\uDFB7\uD842於以宇衣安")
   }
 ```
----
+
+***
 <h3>2.5　集合演算</h3>
+
 本節では、Charのリスト（String）や文字列のリストに対する集合演算について説明します。
 Charのリストや文字列のリストから、
 最大・最小の要素を取り出す方法、
 String内のCharの総和・相乗を求める方法、
 Charのリストや文字列のリストの２つのリストの和集合、差集合、重複を排除した集合、積集合を求める方法、
 Charのリストや文字列のリストの組合せ・順列を求める方法を説明します。
+
 <h4>2.5.1　最大</h4>
+
 Charの順序で最大の要素をmaxメソッドで取り出すことができます。
 maxByメソッドで要素を変換した上で最大の要素を取り出すことができます。
 
@@ -985,7 +1043,9 @@ maxByメソッドで要素を変換した上で最大の要素を取り出すこ
     }
   }
 ```
+
 <h4>2.5.2　最小</h4>
+
 Charの順序で最小の要素をmaxメソッドで取り出すことができます。
 maxByメソッドで要素を変換した上で最小の要素を取り出すことができます。
 
@@ -1018,7 +1078,9 @@ maxByメソッドで要素を変換した上で最小の要素を取り出すこ
     }
   }
 ```
+
 <h4>2.5.3　総和</h4>
+
 sumメソッドでString内のCharの整数値の総和を得ることができます。
 
 ```scala
@@ -1035,7 +1097,9 @@ sumメソッドでString内のCharの整数値の総和を得ることができ�
     //println(list.sum)
   }
 ```
+
 <h4>2.5.4　相乗</h4>
+
 productメソッドでString内のCharの整数値の相乗を得ることができます。
 
 ```scala
@@ -1052,7 +1116,9 @@ productメソッドでString内のCharの整数値の相乗を得ることがで
     //println(list.product)
   }
 ```
+
 <h4>2.5.5　和集合</h4>
+
 unionメソッドにより文字列の結合ができますが、concatや+演算子の方が高速です。
 
 ```scala
@@ -1069,7 +1135,9 @@ unionメソッドにより文字列の結合ができますが、concatや+演�
     assert(list1.union(list2) == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
   }
 ```
+
 <h4>2.5.6　差集合</h4>
+
 diffメソッドで引数として与えた文字をStringの先頭から順に削除していくことができます。
 
 ```scala
@@ -1093,7 +1161,9 @@ diffメソッドで引数として与えた文字をStringの先頭から順に�
       == Seq[String]("衣", "安", "宇", "以", "於", "𠮷"))
   }
 ```
+
 <h4>2.5.7　重複排除</h4>
+
 distinctメソッドで重複を排除することができます。
 
 ```scala
@@ -1108,7 +1178,9 @@ distinctメソッドで重複を排除することができます。
     assert(list.distinct == Seq[String]("安", "衣", "宇", "以", "於", "𠮷"))
   }
 ```
+
 <h4>2.5.8　積集合</h4>
+
 intersectメソッドでLCS (Longest Common Subsequence)を得ることができます。
 
 ```scala
@@ -1123,7 +1195,9 @@ intersectメソッドでLCS (Longest Common Subsequence)を得ることができ
     println(list1.intersect(list2) == Seq[String]("安", "衣", "安", "𠮷"))
   }
 ```
+
 <h4>2.5.9　組合せ</h4>
+
 combinationsメソッドで組合せを得ることができます。
 
 ```scala
@@ -1142,7 +1216,9 @@ combinationsメソッドで組合せを得ることができます。
     assert(listCombo == Seq[Seq[String]](Seq("𠮷", "野"), Seq("𠮷", "家"), Seq("野", "家")))
   }
 ```
+
 <h4>2.5.10　順列</h4>
+
 permutationsメソッドで順列を得ることができます。
 
 ```scala
@@ -1168,8 +1244,10 @@ permutationsメソッドで順列を得ることができます。
       Seq("家", "𠮷", "野"), Seq("家", "野", "𠮷")))
   }
 ```
----
+
+***
 <h3>2.6　インデックス</h3>
+
 コレクションのデータ構造はインデックスで操作すること（ランダムアクセス）を目的とした配列とイテレーションで操作すること（シーケンシャルアクセス）を目的とした連結リストに大きく分けられます。Stringの実体はCharの配列ですので、イテレーションよりインデックスで操作する方が基本的には望ましいデータ構造です。配列と連結リストについては、<a href="#コラム配列と連結リスト">コラム：配列と連結リスト</a>を参照してください。本節では、Stringのインデックスに関わる処理について説明します。
 正方向（逆方向）に解析して最初に現れたインデックスを取得する方法、
 正方向（逆方向）に解析して条件を最初に満たしたインデックスを取得する方法、
@@ -1177,6 +1255,7 @@ permutationsメソッドで順列を得ることができます。
 インデックスが定義されているかを確認する方法について説明します。
 
 <h4>2.6.1　正方向に解析して最初に現れたインデックスを取得</h4>
+
 indexOfメソッドで先頭から見て最初に与えた引数（CharまたはString）が現れた位置を取得できます。
 indexOfメソッドに第二引数として探索開始位置を与えることも可能です。
 indexOfSliceメソッドもindexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
@@ -1207,7 +1286,9 @@ indexOfSliceメソッドもindexOfメソッドと同様の結果を返します�
     assert(tautology.indexOfSlice("ナギ", 3) == 5)
   }
 ```
+
 <h4>2.6.2　逆方向に解析して最初に現れたインデックスを取得</h4>
+
 lastIndexOfメソッドで末尾から見て最初に与えた引数（CharまたはString）が現れた位置を取得できます。
 lastIndexOfメソッドに第二引数として探索開始位置を与えることも可能です。
 lastIndexOfSliceメソッドもlastIndexOfメソッドと同様の結果を返しますが、実装されているアルゴリズムが異なります。
@@ -1238,7 +1319,9 @@ lastIndexOfSliceメソッドもlastIndexOfメソッドと同様の結果を返�
     assert(tautology.lastIndexOfSlice("ナギ", 3) == 1)
   }
 ```
+
 <h4>2.6.3　正方向に解析して条件を最初に満たしたインデックスを取得</h4>
+
 prefixLengthメソッドで先頭から見て最初に与えた条件式を満たした位置を取得できます。
 segmentLengthメソッドで与えた探索開始位置から見て最初に与えた条件式を満たした位置までの長さを返します。例えば、探索開始位置が1で条件式を満たした位置が2の場合は長さは1（=2-1）です。
 indexWhereメソッドで先頭から見て最初に与えた条件式を満たした位置を取得できます。
@@ -1283,7 +1366,9 @@ indexWhereメソッドに第二引数として探索開始位置を与えるこ�
     }
   }
 ```
+
 <h4>2.6.4　逆方向に解析して条件を最初に満たしたインデックスを取得</h4>
+
 indexWhereメソッドで末尾から見て最初に与えた条件式を満たした位置を取得できます。
 indexWhereメソッドに第二引数として探索開始位置を与えることも可能です。
 
@@ -1308,7 +1393,9 @@ indexWhereメソッドに第二引数として探索開始位置を与えるこ�
     }
   }
 ```
+
 <h4>2.6.5　インデックスを全て取得</h4>
+
 indicesメソッドで全てのインデックスを取得できます。これは主にfor文でfor (i &lt;- 0 until str.length)と表記する場合にfor (i &lt;- str.indices)と簡略に書く目的で使用されます。
 
 ```scala
@@ -1336,7 +1423,9 @@ zipWithIndexメソッドで文字列内のCharとインデックスの対を全�
       ('ウ', 4), ('ナ', 5), ('ギ', 6), ('だ', 7), ('。', 8)))
   }
 ```
+
 <h4>2.6.6　インデックスが定義されているか</h4>
+
 isDefinedAtメソッドでインデックスが定義されているかを確認することができます。
 
 ```scala
@@ -1350,15 +1439,19 @@ isDefinedAtメソッドでインデックスが定義されているかを確認
     assert(!tautology.isDefinedAt(tautology.length))
   }
 ```
----
+
+***
 <h3>2.7　イテレーション</h3>
+
 コレクションのデータ構造はインデックスで操作すること（ランダムアクセス）を目的とした配列とイテレーションで操作すること（シーケンシャルアクセス）を目的とした連結リストに大きく分けられます。Stringの実体はCharの配列ですのでイテレーションよりインデックスによる処理が基本的には望ましいです。SeqやListは連結リストですので、イテレーションによる操作が基本的には望ましいです。配列と連結リストについては、<a href="#コラム配列と連結リスト">コラム：配列と連結リスト</a>を参照してください。
 本節では、イテレーションに関する処理を説明します。
 イテレータを生成する方法、
 写像する方法、
 N-gramを生成する方法、
 Stringを行に分割する方法について説明します。
+
 <h4>2.7.1　イテレータ</h4>
+
 foreachメソッドやStringCharacterIteratorクラスを用いて先頭からCharを一つひとつ取り出すことができます。
 
 ```scala
@@ -1392,6 +1485,7 @@ foreachメソッドやStringCharacterIteratorクラスを用いて先頭からCh
     assert(result == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
   }
 ```
+
 iteratorメソッドでStringからCharを単位としたIteratorを作成することができます。逆順のIteratorを作成したい場合はreverseIteratorメソッドを使用して作成することができます。
 
 ```scala
@@ -1405,7 +1499,9 @@ iteratorメソッドでStringからCharを単位としたIteratorを作成する
     assert(unagiCopula.reverseIterator.toSeq == Seq[Char]('ギ', 'ナ', 'ウ', 'は', '僕'))
   }
 ```
+
 <h4>2.7.2　写像</h4>
+
 mapメソッドにより、Stringの中のCharに対して変換処理を加えることができます。逆順にした上で変換処理を加えたい場合はreverseMapメソッドを使用することができます。
 
 ```scala
@@ -1421,7 +1517,9 @@ mapメソッドにより、Stringの中のCharに対して変換処理を加え�
     assert(unagiCopula.reverseMap(char => char) == "ギナウは僕")
   }
 ```
+
 <h4>2.7.3　N-gramの生成</h4>
+
 slidingメソッドでChar N-gramを作成することができます。探索開始位置をslidingメソッドに第二引数として与えることができます。
 
 ```scala
@@ -1489,7 +1587,9 @@ slidingメソッドでChar N-gramを作成することができます。探索�
     assert(groups == Seq[String]("僕は", "ウナ", "ギ"))
   }
 ```
+
 <h4>2.7.4　行分割</h4>
+
 linesメソッドかlinesWithSeparatorsメソッドにより改行文字（"\n"と"\r\n"）を基に文字列を行に分割することができます。
 linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソッドは改行文字を行末に残します。
 
@@ -1514,10 +1614,14 @@ linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソ�
     assert(result == Seq[String]("\n", "Unigram\n", "Bigram\r\n", "Trigram\n", "\n"))
   }
 ```
----
+
+***
 <h3>2.8　文字列間の文字に注目した類似度</h3>
+
 有名なアルゴリズムを用いた文字列間の文字に注目した類似度の計算方法について説明します。今回は文字を単位に文字列間の表層的な類似度を計算しますが、単位を文字ではなく短単位形態素N-gram、長単位形態素N-gram、内容語N-gram、Basic Element N-gramなど意味的な概念単位に変えることでアルゴリズムはそのまま用いてより意味的な類似度を計算することができます。意味的な類似度を得るためには、概念単位を用いて今回のアルゴリズムを適用させる以外にも、WordNetのようなシソーラスやWord2Vecのような分散表現ベクトルや含意関係認識や述語項構造や主題役割、TF-IDF、Okapi BM25を用いる方法などがあります。文字列間の意味的な類似度については今回のコースでは扱いません。
+
 <h4>2.8.1　文字列間の文字に注目した比較単位</h4>
+
 文字はCharではなくコードポイントで扱う方が確実です。Charは文字列にサロゲートペアを含む場合には文字を表しませんが、一般的な英語のテキストようにサロゲートペアが入らないことが保証されている場合は文字として扱うこともできます。
 <table>
 <tr><th>単位</th><th>説明</th></tr>
@@ -1559,7 +1663,9 @@ linesメソッドは改行文字を削除しますがlinesWithSeparatorsメソ�
 </tr>
 </table>
 N-gramの読み方については、<a href="#コラムn-gramの読み方">コラム：N-gramの読み方</a>をご参照ください。
+
 <h4>2.8.2　文字LCSによるF1値</h4>
+
 LCSの長さで類似度を計測することができます。
 
 ```scala
@@ -1601,7 +1707,9 @@ LCSの長さで類似度を計測することができます。
     numerator / denominator
   }
 ```
+
 <h4>2.8.3　文字N-gramによるF1値</h4>
+
 文字N-gramの重なりによって類似度を計測することができます。
 
 ```scala
@@ -1664,7 +1772,9 @@ LCSの長さで類似度を計測することができます。
     numerator / denominator
   }
 ```
+
 <h4>2.8.4　ハミング距離（自作）</h4>
+
 等しい文字数を持つ２つの文字列の中で、対応する位置にある異なった文字の数です。
 
 ```scala
@@ -1676,7 +1786,9 @@ LCSの長さで類似度を計測することができます。
     assert(HammingDistance.calculate(source, target.substring(0, source.length)) == 0.7272727272727273D)
   }
 ```
+
 <h4>2.8.5　レーベンシュタイン距離（自作）</h4>
+
 １つの文字列を別の文字列に変形するのに必要な操作の最小回数です。
 操作は文字の挿入（insertion）、削除（deletion）、置換（substitution）の３つです。
 
@@ -1689,7 +1801,9 @@ LCSの長さで類似度を計測することができます。
     assert(LevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
   }
 ```
+
 <h4>2.8.6　ダメラオウ・レーベンシュタイン距離（自作）</h4>
+
 １つの文字列を別の文字列に変形するのに必要な操作の最小回数です。
 操作は文字の挿入（insertion）、削除（deletion）、置換（substitution）、交換（transposition）の４つです。
 
@@ -1702,7 +1816,9 @@ LCSの長さで類似度を計測することができます。
     assert(DamerauLevenshteinDistance.calculate(source, target) == 0.3846153846153846D)
   }
 ```
+
 <h4>2.8.7　ジャロ距離（自作）</h4>
+
 ジャロ距離djは文字列s1、s2において次の３つの類似度の平均です。s1とs2に一致する文字数mとすると、
 <ul>
 <li>m/|s1|</li>
@@ -1719,7 +1835,9 @@ LCSの長さで類似度を計測することができます。
     assert(JaroDistance.calculate(source, target) == 0.668997668997669D)
   }
 ```
+
 <h4>2.8.8　ジャロ・ウィンクラー距離（自作）</h4>
+
 ジャロ・ウィンクラー距離は、先頭の方の文字列が末尾の方の文字列より重要視したジャロ距離の拡張です。
 
 ```scala
@@ -1731,7 +1849,9 @@ LCSの長さで類似度を計測することができます。
     assert(JaroWinklerDistance.calculate(source, target) == 0.668997668997669D)
   }
 ```
+
 <h4>2.8.9　ベクトル化（自作）</h4>
+
 数え上げてベクトルを作成する場合は、頻度ベクトルと二値ベクトルの２種類のベクトルが作成できます。
 <table>
 <tr><th>ベクトルの種類</th><th>説明</th></tr>
@@ -1763,7 +1883,9 @@ LCSの長さで類似度を計測することができます。
     assert(SimilarityCalculator.calculate(vector1, vector2) == 0.27386127875258304D)
   }
 ```
+
 <h4>2.8.11　ベクトル間の距離（自作）</h4>
+
 ベクトル間の非類似度を計算するプログラムの例を次に示します。
 
 ```scala
@@ -1778,7 +1900,9 @@ LCSの長さで類似度を計測することができます。
     assert(Dissimilarity.calculateEuclidean(vector1, vector2) == 4.0D)
   }
 ```
+
 <h4>2.8.12　ベクトル間の包含度（自作）</h4>
+
 ベクトル間の包含度を計算するプログラムの例を次に示します。
 
 ```scala
@@ -1793,7 +1917,9 @@ LCSの長さで類似度を計測することができます。
     assert(OverlapCalculator.calculate(vector1, vector2) == 0.3D)
   }
 ```
+
 <h4>2.8.13　文字列間の類似度・非類似度・包含度に関する表</h4>
+
 文字列間の類似度・非類似度・包含度についての有名なアルゴリズムについて次の表にまとめました。私が実装したプログラムの例がリンクしていますので参照してください。
 <table>
 <tr>
@@ -2064,6 +2190,7 @@ LCSの長さで類似度を計測することができます。
 
 ***
 <h3>コラム：グルジア文字のletter case</h3>
+
 中世に開発されたグルジア文字はかつてupper caseとlower caseの２種類の文字セットが存在しましたが、後に、２つの文字セットに代わり、１つの文字セットが用いられるようになりました。
 かつてはクツリ（Khutsuri）と呼ばれる文字がキリスト教で使用されていました。クツリは２つのletter caseを持っており、upper caseはムルグロヴァニ（Mrgvlovani「丸文字」。別名Asomtavruli。）、lower caseはヌスフリ（Nuskhuri「目録文字」）と呼ばれます。ムルグロヴァニは西暦430年頃から使用されていました。９世紀の間に、徐々にムルグロヴァニがヌスフリに置き換えられていきました。今日使用されている文字はムヘドルリ（Mkhedruli「騎兵文字」）と呼ばれるもので１１世紀から１３世紀の間に開発され現在も使用されています。このようにグルジア文字には３種類の文字セットが存在します。
 ムルグロヴァニとヌスフリはupper caseとlower caseの関係にあり、ムヘドルリはletter caseが１種類しかないためtoUpperCaseメソッドを使ってもtoLowerCaseメソッドを使っても文字は変わりません。
@@ -2193,9 +2320,12 @@ StringクラスのequalsIgnoreCaseメソッドやcompareToIgnoreCaseメソッド
 <td>hoe</td><td>Ⴥ</td><td>ⴥ</td><td>ჵ</td><td>現在は不使用</td>
 </tr>
 </table>
+
 ***
 <h3>コラム：letter caseの変換の非対称性</h3>
+
 <h4>（１）LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVE</h4>
+
 LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを無視した時に同一視したいとすると、それらはどちらもupper caseなのでtoUpperCaseメソッドを実行しても変わらないため等値判定してもfalseが返ります。これらのlower caseはいずれもLATIN SMALL LETTER Iなので、等値判定するとtrueが返ります。なお、Day 7で解説するUnicode文字正規化をLATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEに対してそれぞれ行ってもどちらも変化しません。従って、LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEを同一視するためにはlower caseに変換する必要があります。
 
 ```scala
@@ -2314,7 +2444,9 @@ LATIN CAPITAL LETTER IとLATIN CAPITAL LETTER I WITH DOT ABOVEをletter caseを�
     assert(Normalizer.normalize(Character.toLowerCase(char73).toString, Normalizer.Form.NFKC) == Normalizer.normalize(Character.toLowerCase(char304).toString, Normalizer.Form.NFKC))
   }
 ```
+
 <h4>（２）GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOL</h4>
+
 GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時に同一視したいとすると、GREEK THETA SYMBOLはlower caseでGREEK CAPITAL THETA SYMBOLはupper caseであり、GREEK THETA SYMBOLのupper caseはGREEK CAPITAL LETTER THETA、GREEK CAPITAL THETA SYMBOLのlower caseはGREEK SMALL LETTER THETAであるため、一度upper caseやlower caseに揃えただけでは一致しません。ところが、GREEK CAPITAL LETTER THETAとGREEK SMALL LETTER THETAはbicameralな関係にあり、つまりGREEK CAPITAL LETTER THETAのlower caseがGREEK SMALL LETTER、GREEK SMALL LETTERのupper caseがGREEK CAPITAL LETTER THETAであるため、GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLはlower caseへの変換とupper caseへの変換の２回変換を行えば、その変換の順序に関係なく一致を見ることができます。
 ちなみに、Day 7で解説するUnicode文字正規化をGREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLに行うと、それぞれGREEK SMALL LETTERとGREEK CAPITAL LETTER THETAに変換されるため、lower caseへの変換とUnicode文字正規化、あるいはupper caseへの変換とUnicode文字正規化を行っても、これらも変換の順序に関係なく一致を見ることができます。
 
@@ -2435,8 +2567,10 @@ GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時�
     assert(Normalizer.normalize(Character.toLowerCase(char977).toString, Normalizer.Form.NFKC) == Normalizer.normalize(Character.toLowerCase(char1012).toString, Normalizer.Form.NFKC))
   }
 ```
+
 ***
 <h3>コラム：配列と連結リスト</h3>
+
 解説はWikipediaの記事「<a href="https://ja.wikipedia.org/wiki/%E9%80%A3%E7%B5%90%E3%83%AA%E3%82%B9%E3%83%88#.E9.80.A3.E7.B5.90.E3.83.AA.E3.82.B9.E3.83.88.E3.81.A8.E9.85.8D.E5.88.97" target="_blank">連結リストと配列</a>」を読んでください。<br>
 実際の実装に関しては次を読んでください。
 <ul>
@@ -2446,8 +2580,10 @@ GREEK THETA SYMBOLとGREEK CAPITAL THETA SYMBOLをletter caseを無視した時�
 <li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/collection/map.html" target="_blank">Scala Map</a></li>
 <li><a href="http://www.ne.jp/asahi/hishidama/home/tech/java/collection.html" target="_blank">Java コレクションクラス</a></li>
 </ul>
+
 ***
 <h3>コラム：N-gramの読み方</h3>
+
 N-gramの数字Nはラテン語の接頭辞表現が使用されます。
 例えば1-gram、2-gram、3-gramはラテン語のそれぞれuni、bi、triを用いてunigram、bigram、trigramで表現されます。
 読み方はラテン語表記に従って、それぞれ、ユニグラム、バイグラム、トライグラムと読みます。
