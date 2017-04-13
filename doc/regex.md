@@ -1,4 +1,5 @@
 # 1.　正規表現
+
 正規表現（regular expression、regex）とは、文字列の集合を文字列で表現する方法のことで、文字列のパターンマッチを行うために使用します。
 正規表現は<a href="https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A7%E3%83%A0%E3%82%B9%E3%82%AD%E3%83%BC%E9%9A%8E%E5%B1%A4" target="_blank">チョムスキー階層</a>の３型文法（構文木は根が１つの二分木、入れ子構造を持たない文法、正規文法から生成可能、有限オートマトンによって受理可能）です。一般的にプログラミングにおける正規表現は、どんな文字にも一致する特殊文字「ワイルドカード」を加えて組み合わせたものを指します。厳密には、正規表現とワイルドカードはプログラミング言語設計上別の機構ですが、パターンマッチを行う上で両方をシームレスに使えるので、ここでの正規表現は便宜上ワイルドカードと組み合わせたものを指すことにします。<br>
 <br>
@@ -53,6 +54,7 @@ UTF-16（リトルエンディアン）の文字の構造がわかりやすい�
 //（右の2オクテットがlow surrogate、左の2オクテットがhigh surrogate）
 )
 ```
+
 Scala / Javaにおける正規表現の定義は<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/util/regex/Pattern.html" target="_blank">JavaのJavadocのPatternクラス</a>に書かれています。
 詳細な定義はPatternクラスの説明を読んでください。
 ここでは、処理の目的を、一致、分割、抽出、置換に分けてそれぞれの処理で正規表現を使い方を説明します。
@@ -68,6 +70,7 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 
 ***
 <h3>1.1　一致</h3>
+
 <ul>
   <li>完全一致（exact match）：ABCDはABCDに完全一致</li>
   <li>部分一致（broad match / partial match）：BCはABCDに部分一致、下記の前方一致・後方一致は部分一致の特殊例、一般的に完全一致は部分一致に含めませんが特殊例として解釈することも可能です。
@@ -170,8 +173,10 @@ Regexクラスを使用するとmatch-case文でパターンマッチの分岐�
 <td>&nbsp;</td>
 </tr>
 </table>
+
 ***
 <h4>1.1.1　完全一致（表層文字列）</h4>
+
 表層文字列の完全一致は==演算子かJava由来のequalsメソッドを使用します。
 Javaでは、==演算子を使用すると参照の一致を見てしまい、文字列としては等値であってもfalseを返してしまう可能性があります。そのため、文字列としての等値を正しく返すためにequalsメソッドを使用しました。
 letter caseを無視して（例えば、全てlower caseに揃えて）から完全一致を見る場合はequalsIgnoreCaseメソッドを使用します。
@@ -218,8 +223,10 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
     assert(unagiCopula ne "僕はウサギ")
   }
 ```
+
 ***
 <h4>1.1.2　完全一致（正規表現）</h4>
+
 パターンマッチの完全一致を正規表現を用いて見る場合は、Stringクラスのmatchesメソッド、Patternクラスのmatchesメソッド、Matcherクラスのmatchesメソッド、Regexクラスを用いる方法があります。Stringクラスのmatchesメソッドは処理速度が遅いです。PatternクラスのmatchesメソッドとRegexクラスではPatternクラスを使用する方が処理速度が速いです。何度も同じパターンで一致を見る場合は、Patternクラスは一度compileメソッドでコンパイルしてPatternのインスタンスを生成しておいて、それを何度も使用する方が高速ですし、Regexクラスについても、一度StringクラスのrメソッドでRegexインスタンスを生成しておいて、それを何度も使用する方が高速です。この場合でもPatternインスタンスを使用する方がRegexインスタンスを使用するより高速です。コンパイルされたPatternインスタンスはmatcherメソッドで対象の文字列を与え、Matcherクラスのインスタンスを生成し、Matcherクラスのmatchesメソッドを使用することで完全一致したかを確認できます。
 
 ```scala
@@ -254,6 +261,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
     }
   }
 ```
+
 regionMatchesメソッドにより、一致範囲を指定して、正規表現による完全一致を調べることができます。
 
 ```scala
@@ -266,8 +274,10 @@ regionMatchesメソッドにより、一致範囲を指定して、正規表現�
     assert(unagiCopula.regionMatches(false, 2, "ウナギだ", 0, 3))
   }
 ```
+
 ***
 <h4>1.1.3　部分一致（表層文字列）</h4>
+
 表層文字列の部分一致を見るためには、Java由来のcontainsメソッドとScala由来のcontainsSliceメソッドがあります。
 containsメソッドはStringクラスのindexOfメソッドを使用して実装されています。indexOfメソッドは先頭から順番に一つずつ見ていき一致したらその位置インデックスを返すメソッドです（この方法は、「Brute-force search」もしくは「力まかせ探索」と言います）。もし見つからなかった場合はindexOfメソッドから-1が返ってきますので、返り値が-1ではなければcontainsメソッドはtrueを返し、-1の場合はfalseを返します。
 containsSliceメソッドはSeqLikeクラスのindexOfSliceメソッドを使用して、containsメソッドと同様にindexOfSliceメソッドの返り値が-1でなければtrue、-1の場合はfalseを返します。indexOfSliceメソッドは<a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%8C%E3%83%BC%E3%82%B9%E2%80%93%E3%83%A2%E3%83%AA%E3%82%B9%E2%80%93%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E6%B3%95" target="_blank">クヌース–モリス–プラット法</a>（以下、KMP法）を用いて実装されています。
@@ -283,8 +293,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(unagiCopula.containsSlice("ウナギ"))
   }
 ```
+
 ***
 <h4>1.1.4　部分一致（正規表現）</h4>
+
 一回だけ部分一致をみたい場合は、Patternクラスのfindメソッドを使用する方法とRegexクラスのfindFirstInメソッドを使用する方法とRegexクラスのfindFirstMatchInメソッドを使用する方法があります。全ての部分一致を見たい場合は、Patternクラスのfindメソッドとnextメソッドを使用する方法とRegexクラスのfindAllInメソッドを使用する方法とRegexクラスのfindAllMatchInメソッドを使用する方法があります。RegexクラスのfindFirstInメソッドとfindAllInメソッドはそれぞれOption[String]とMatchIteratorを返します。RegexクラスのfindFirstMatchInメソッドやfindAllMatchInメソッドはOption[Match]とIterator[Match]を返します。RegexクラスとMatchクラスの関係はJava由来のPatternクラスに対するMatcherクラスの関係と似ており、Matchクラスの多くのメソッドはMatcherクラスにも同様に存在します。
 
 ```scala
@@ -332,8 +344,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(allMatch.size == 2)
   }
 ```
+
 ***
 <h4>1.1.5　前方一致（表層文字列）</h4>
+
 表層文字列の前方一致を見る場合はStringクラスのstartsWithメソッドを使用します。
 
 ```scala
@@ -342,8 +356,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(tautology.startsWith("ウナギ"))
   }
 ```
+
 ***
 <h4>1.1.6　前方一致（正規表現）</h4>
+
 パターンマッチによる前方一致を見る場合は、PatternクラスとMatcherクラスを用いて、MatcherクラスのlookingAtメソッドを使用することができます。部分一致の方法を用いて、正規表現で書いたパターンに対して前方一致を示す「^」を先頭に加える方法もあります。
 
 ```scala
@@ -355,8 +371,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(matcher.lookingAt())
   }
 ```
+
 ***
 <h4>1.1.7　後方一致（表層文字列）</h4>
+
 表層文字列の後方一致を見る場合はStringクラスのendsWithメソッドを使用します。
 
 ```scala
@@ -365,8 +383,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(tautology.endsWith("ギだ。"))
   }
 ```
+
 ***
 <h4>1.1.8　後方一致（正規表現）</h4>
+
 正規表現で後方一致を見る場合は、専用のメソッドがありません。
 例えば、一致を見たい文字列を逆順にして、MatcherクラスのlookingAtメソッドで一致が見れるようなパターンを用意しておき、後方一致を前方一致の方法で見る方法もあります。部分一致の方法を用いて、正規表現で書いたパターンに対して後方一致を示す「$」を末尾に加える方法もあります。
 
@@ -379,8 +399,10 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(matcher.lookingAt())
   }
 ```
+
 ***
 <h4>1.1.9　最長一致・最短一致</h4>
+
 <ul>
 <li>最長一致</li>
 <li>最短一致</li>
@@ -402,10 +424,14 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(shortestMatchingRegex2.findFirstIn(str).get == "<a>")
   }
 ```
+
 ***
 <h3>1.2　分割</h3>
+
 文字列を分割するためには分割位置の与える必要があります。分割位置を与える方法として、文字列中の区切り文字の存在を利用する方法、区切り文字の特殊な例として行末文字を用いる方法、インデックスで直接指定する方法、文字列中のCharを前方から見てある条件を満たさなくなった位置を使用する方法があります。それぞれについて下記で説明します。
+
 <h4>1.2.1　区切り文字による分割</h4>
+
 区切り文字（デリミタ、delimiter）でトークン（token）に分割（split）します。
 よくCSV、TSV、SSVファイルや統語解析器の出力結果をパースするときに使用します。<a href="https://github.com/ynupc/scalastringcourseday5/blob/master/doc/mutability.md" target="_blank">Day 5</a>で紹介したStringJoinerやString.joinメソッドでトークンをデリミタで結合するのとちょうど逆の処理になります。
 この分割処理を行うためのクラス<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/StringTokenizer.html" target="_blank">StringTokenizer</a>はJava 8でも動作しますが、Java 5以降互換性を保つためのレガシークラスとなっており、使用が推奨されておりませんのでご注意ください。
@@ -484,7 +510,9 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
     assert(buffer == Seq[String]("A", "B", "C", "D", "E", "F"))
   }
 ```
+
 <h4>1.2.2　行末文字による分割</h4>
+
 linesメソッドやlinesWithSeparatorsメソッドを用いて行末文字で分割します。
 行末文字とは、改行文字LF（Line Feed）のU+000Aと改ページFF（Form Feed）のU+000Cを指します。
 linesメソッドは分割後に分割された文字列から行末文字を削除しますが、linesWithSeparatorsメソッドは分割後も行末文字が残ります。
@@ -526,7 +554,9 @@ linesメソッドは分割後に分割された文字列から行末文字を削
     assert(buffer == Seq[String]("A,B\n", "C,D,E\f", "F"))
   }
 ```
+
 <h4>1.2.3　分割位置をインデックスによる指定した分割</h4>
+
 StringクラスのsplitAtメソッドを用いて分割位置を指定して分割します。
 
 ```scala
@@ -544,7 +574,9 @@ StringクラスのsplitAtメソッドを用いて分割位置を指定して分�
     assert(swappedPair._2 == "A,B")
   }
 ```
+
 <h4>1.2.4　条件に従わなくなった位置による分割</h4>
+
 Stringクラスからspanメソッドを使用して条件に従わなくなった位置で分割します。
 
 ```scala
@@ -561,11 +593,14 @@ Stringクラスからspanメソッドを使用して条件に従わなくなっ�
     assert(pair._2 == "C,D,E,F")
   }
 ```
+
 ***
 <h3>1.3　置換</h3>
+
 文字列がパターンにマッチしたらマッチした箇所を他の文字列に置き換えます。置き換える文字列を空文字列にすることでマッチした箇所を削除することも可能です。
 
 <h4>1.3.1　表層文字列の一致による置換</h4>
+
 Charの置換はStringクラスのreplaceメソッドで行います。
 Stringの置換はJava由来のStringクラスのreplaceメソッドで行うか、Scala由来のreplaceAllLiterallyメソッドで行います。
 replaceメソッドもreplaceAllLiterallyメソッドも内部では最終的にMatcherクラスのreplaceAllに投げますが、途中過程が異なるためreplaceメソッドの方がreplaceAllLiterallyメソッドよりも高速です。
@@ -594,6 +629,7 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
 ```
 
 <h4>1.3.2　正規表現の一致による置換</h4>
+
 正規表現の一致で、最初に一致した箇所で置換する場合はStringクラスかMatcherクラスのreplaceFirstメソッド、一致した全ての箇所で置換する場合はStringクラスかMatcherクラスのreplaceAllメソッドを使用します。Stringクラスのメソッドは内部的にはMatcherクラスのメソッドを呼び出しているため、一度使用する場合は処理速度に違いはありません。複数回同じ置換処理を行う場合は、Patternインスタンスを生成しそれを使い回してMatcherインスタンスを生成すると処理を高速化できます。
 
 ```scala
@@ -632,7 +668,9 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
     assert(replaceAll == "ウサギはウサギだ。")
   }
 ```
+
 <h4>1.3.3　範囲指定による置換</h4>
+
 位置や範囲をインデックスで指定して置換をします。
 一文字のみを置換したい場合はupdatedメソッドを使用します。
 文字を複数含む範囲で置換したい場合はpatchメソッドを使用します。
@@ -661,7 +699,9 @@ replaceメソッドやreplaceAllメソッドの引数をreplaceAllメソッド�
     assert(result    == "ウナギはイヌだ。")
   }
 ```
+
 <h4>1.3.4　複数のCharの同時置換</h4>
+
 collectFirstメソッドやcollectメソッドを使用することで、一致した文字を別の文字に変換します。
 replaceメソッドによる文字の置換を複数回用いる場合は、replaceメソッドを呼び出す順序により結果が異なる可能性がある点と、replaceメソッドを使うたびにStringが生成されて非効率である点で異なります。
 
@@ -698,8 +738,10 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
     assert(result    == "ウンコはウンコだ。")
   }
 ```
+
 ***
 <h3>1.4　抽出</h3>
+
 文字列からパターンマッチにより部分的な文字列を抽出するためにグループが使われます。<br>
 正規表現内を()で囲むとグループが作れます。左から右に左丸括弧を数えることでグループ番号が振られます。例えば、ウ((ナ)(ギ))の場合、次のように番号付けされます。
 
@@ -1011,15 +1053,19 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
 
 ***
 <h3>コラム：自然言語はチョムスキー階層での何型文法？</h3>
+
 ノーム・チョムスキー
 言語獲得
 生成文法
 
 複雑性
+
 <h4>（１）Complexity Zoo</h4>
+
 https://www.math.ucdavis.edu/~greg/zoology/diagram.xml
 
 <h4>（２）Chomsky hierarchy</h4>
+
 ノーム・チョムスキー
 Type-2（文脈自由文法）では不十分ではないか
 Type-1で不十分という事例は出ていない
@@ -1144,8 +1190,10 @@ Type-1で不十分という事例は出ていない
 </tfoot>
 </table>
 ノーム・チョムスキーの言語獲得に関する理論の変遷
+
 ***
 <h3>コラム：文字列探索アルゴリズム</h3>
+
 <ul>
 <li>Aho–Corasick algorithm</li>
 <li>Commentz-Walter algorithm</li>
