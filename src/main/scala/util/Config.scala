@@ -2,7 +2,7 @@ package util
 
 import java.io.File
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{Config => TypeSafeConfig, ConfigFactory}
 import net.ceedubs.ficus.Ficus._
 import text.similarity.{Overlap, Similarity}
 
@@ -11,7 +11,7 @@ import text.similarity.{Overlap, Similarity}
   *         Created on 2016/05/22
   */
 object Config {
-  final private[this] var config: Config = ConfigFactory.load()
+  final private[this] var config: TypeSafeConfig = ConfigFactory.load()
 
   def set(configFile: File): Unit = {
     config = ConfigFactory.load(ConfigFactory.parseFile(configFile))
