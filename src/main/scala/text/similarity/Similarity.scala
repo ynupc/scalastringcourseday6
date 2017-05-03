@@ -60,7 +60,7 @@ object Similarity extends Enumeration {
         calculateSimpson(v1, v2)
       case Tversky =>
         calculateTversky(v1, v2, Config.tverskyA, Config.tverskyB)
-      case otherwise =>
+      case _ =>
         0D
     }
   }
@@ -102,7 +102,7 @@ object Similarity extends Enumeration {
     v1.vector foreach {
       case (key1, value1) if vector2.contains(key1) =>
         summation += value1 + vector2(key1)
-      case otherwise =>
+      case _ =>
     }
     Divider.divide(summation * 2, v1.sum + v2.sum)
   }

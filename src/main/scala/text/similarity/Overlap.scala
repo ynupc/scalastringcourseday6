@@ -27,7 +27,7 @@ object Overlap extends Enumeration {
         calculatePrecision(v1, v2)
       case Recall | Rus05 =>
         calculateRecall(v1, v2)
-      case otherwise =>
+      case _ =>
         0D
     }
   }

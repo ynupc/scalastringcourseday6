@@ -10,7 +10,7 @@ class BinaryVector(var vector: Seq[String]) extends Vector {
   vector = vector.distinct
 
   def toFrequencyVector: FrequencyVector = {
-    val map: mutable.Map[String, Int] = mutable.Map[String, Int]()
+    val map = mutable.Map.empty[String, Int]
     vector foreach {
       term: String =>
         map(term) = 1

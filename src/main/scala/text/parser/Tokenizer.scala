@@ -1,7 +1,7 @@
 package text.parser
 
 import util.Config
-import util.StringUtils._
+import util.primitive._
 
 /**
   * @author ynupc
@@ -16,10 +16,10 @@ object Tokenizer {
         Config.tokenizer match {
           case that if that equalsIgnoreCase "CharacterNGram" =>
             characterNGram(text)
-          case otherwise =>
+          case _ =>
             Nil
         }
-      case otherwise =>
+      case _ =>
         Nil
     }
   }

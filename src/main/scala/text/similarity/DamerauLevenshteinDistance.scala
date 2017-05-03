@@ -37,7 +37,7 @@ class DamerauLevenshteinDistance(deleteCost: Double, insertCost: Double, replace
     }
 
     val table: Array[Array[Double]] = Array.ofDim(length1, length2)
-    val array1IndexByElement: mutable.Map[Element, Int] = mutable.Map[Element, Int]()
+    val array1IndexByElement = mutable.Map.empty[Element, Int]
     if (array1(0) != array2(0)) {
       table(0)(0) = math.min(replaceCost, deleteCost + insertCost)
     }

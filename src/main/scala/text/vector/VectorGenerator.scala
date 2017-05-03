@@ -7,7 +7,7 @@ import scala.collection.mutable
   *         Created on 2016/05/22
   */
 trait VectorGenerator[Vector] {
-  private val cache = mutable.Map[Long, Vector]()
+  private val cache = mutable.Map.empty[Long, Vector]
 
   def getVectorFromCache(id: Long, sentence: String): Vector = {
     if (cache.contains(id)) {

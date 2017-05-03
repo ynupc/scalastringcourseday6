@@ -11,7 +11,7 @@ object SentenceSplitter {
     Config.sentenceSplitter match {
       case "none" =>
         Seq[String](text)
-      case otherwise =>
+      case _ =>
         Seq[String](text)
     }
   }

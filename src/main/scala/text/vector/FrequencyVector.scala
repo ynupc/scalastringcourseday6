@@ -52,7 +52,7 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
     var summation: Long = keySet.size
     v2.vector.keys foreach {
       case key: String if keySet contains key =>
-      case otherwise =>
+      case _ =>
         summation += 1
     }
     summation
@@ -66,7 +66,7 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
     val avg: Double = average
     var summation: Double = 0D
     vector foreach {
-      case (key, value) =>
+      case (_, value) =>
         val diff: Double = value - avg
         summation += diff * diff
     }
@@ -99,7 +99,7 @@ class FrequencyVector(val vector: scala.collection.mutable.Map[String, Int]) ext
     vector foreach {
       case (key1, value1) if keySetV2 contains key1 =>
         summation += value1 * vector2(key1)
-      case otherwise =>
+      case _ =>
     }
     summation
   }

@@ -8,7 +8,7 @@ import scala.collection.mutable.ListBuffer
   */
 object FrequencyVectorMerger extends VectorMerger[FrequencyVector] {
   override def merge(vectors: Seq[FrequencyVector]): FrequencyVector = {
-    val terms: ListBuffer[(String, Int)] = ListBuffer[(String, Int)]()
+    val terms = ListBuffer.empty[(String, Int)]
     vectors foreach {
       vector: FrequencyVector =>
         terms ++= vector.vector.toList

@@ -91,7 +91,7 @@ class Day6TestSuite extends AssertionsForJUnit {
     unagiCopula match {
       case regex() =>
         assert(true)
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -303,7 +303,7 @@ class Day6TestSuite extends AssertionsForJUnit {
     //行末文字は削除する
     val it: Iterator[String] = multiLine.lines
 
-    val buffer: ListBuffer[String] = ListBuffer[String]()
+    val buffer = ListBuffer.empty[String]
     while (it.hasNext) {
       buffer += it.next
     }
@@ -321,7 +321,7 @@ class Day6TestSuite extends AssertionsForJUnit {
     //行末文字を残す
     val it: Iterator[String] = multiLine.linesWithSeparators
 
-    val buffer: ListBuffer[String] = ListBuffer[String]()
+    val buffer = ListBuffer.empty[String]
     while (it.hasNext) {
       buffer += it.next
     }
@@ -454,7 +454,7 @@ class Day6TestSuite extends AssertionsForJUnit {
           assert(matcher.group("third")    == "ギ")
           assert(matcher.group(3)          == "ギ")
 
-        case otherwise =>
+        case _ =>
           assert(false)
       }
     }
@@ -487,7 +487,7 @@ class Day6TestSuite extends AssertionsForJUnit {
         assert(first  == "ナギ")
         assert(second == "ナ")
         assert(third  == "ギ")
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -591,7 +591,7 @@ class Day6TestSuite extends AssertionsForJUnit {
         assert(first  == "ナギ")
         assert(second == "ナ")
         assert(third  == "ギ")
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -844,7 +844,7 @@ class Day6TestSuite extends AssertionsForJUnit {
     unagiCopula.headOption match {
       case Some(head) if head == '僕' =>
         assert(true)
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -880,7 +880,7 @@ class Day6TestSuite extends AssertionsForJUnit {
     unagiCopula.lastOption match {
       case Some(last) if last == 'ギ' =>
         assert(true)
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -1502,11 +1502,11 @@ GHI
 
     val list: Seq[String] = Seq[String]("𠮷", "野", "家")
 
-    val strCombo: ListBuffer[String] = ListBuffer[String]()
+    val strCombo = ListBuffer.empty[String]
     str.combinations(2) foreach {strCombo.+=}
     assert(strCombo == Seq[String]("𠮷", "\uD842野", "\uD842家", "\uDFB7野", "\uDFB7家", "野家"))
 
-    val listCombo: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
+    val listCombo = ListBuffer.empty[Seq[String]]
     list.combinations(2) foreach {listCombo.+=}
     assert(listCombo == Seq[Seq[String]](Seq("𠮷", "野"), Seq("𠮷", "家"), Seq("野", "家")))
   }
@@ -1517,7 +1517,7 @@ GHI
 
     val list: Seq[String] = Seq[String]("𠮷", "野", "家")
 
-    val strPerm: ListBuffer[String] = ListBuffer[String]()
+    val strPerm = ListBuffer.empty[String]
     str.permutations foreach {strPerm.+=}
     assert(strPerm == Seq[String](
       "𠮷野家", "𠮷家野", "\uD842野\uDFB7家", "\uD842野家\uDFB7", "\uD842家\uDFB7野", "\uD842家野\uDFB7",
@@ -1525,7 +1525,7 @@ GHI
       "野𠮷家", "野\uD842家\uDFB7", "野\uDFB7\uD842家", "野\uDFB7家\uD842", "野家𠮷", "野家\uDFB7\uD842",
       "家𠮷野", "家\uD842野\uDFB7", "家\uDFB7\uD842野", "家\uDFB7野\uD842", "家野𠮷", "家野\uDFB7\uD842"))
 
-    val listPerm: ListBuffer[Seq[String]] = ListBuffer[Seq[String]]()
+    val listPerm = ListBuffer.empty[Seq[String]]
     list.permutations foreach {listPerm.+=}
     assert(listPerm == Seq[Seq[String]](
       Seq("𠮷", "野", "家"), Seq("𠮷", "家", "野"),
@@ -1658,12 +1658,12 @@ GHI
 
   @Test
   def testForeach(): Unit = {
-    val result1: ListBuffer[Char] = ListBuffer[Char]()
+    val result1 = ListBuffer.empty[Char]
     unagiCopula foreach result1.+=
 
     assert(result1 == Seq[Char]('僕', 'は', 'ウ', 'ナ', 'ギ'))
 
-    val result2: ListBuffer[Char] = ListBuffer[Char]()
+    val result2 = ListBuffer.empty[Char]
     unagiCopula foreach {
       char =>
         result2 += char
@@ -1674,7 +1674,7 @@ GHI
 
   @Test
   def testCharacterIterator(): Unit = {
-    val result: ListBuffer[Char] = ListBuffer[Char]()
+    val result = ListBuffer.empty[Char]
     val iterator: CharacterIterator = new StringCharacterIterator(unagiCopula)
     var char: Char = iterator.first
     while (char != CharacterIterator.DONE) {
@@ -1707,7 +1707,7 @@ GHI
   @Test
   def testSliding1(): Unit = {
     val n: Int = 2
-    val nGrams: ListBuffer[String] = ListBuffer[String]()
+    val nGrams = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n)) {
       nGrams += nGram
     }
@@ -1719,35 +1719,35 @@ GHI
   def testSliding2(): Unit = {
     val n: Int = 2
 
-    val nGrams1: ListBuffer[String] = ListBuffer[String]()
+    val nGrams1 = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n, 1)) {
       nGrams1 += nGram
     }
 
     assert(nGrams1 == Seq[String]("僕は", "はウ", "ウナ", "ナギ"))
 
-    val nGrams2: ListBuffer[String] = ListBuffer[String]()
+    val nGrams2 = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n, 2)) {
       nGrams2 += nGram
     }
 
     assert(nGrams2 == Seq[String]("僕は", "ウナ", "ギ"))
 
-    val nGrams3: ListBuffer[String] = ListBuffer[String]()
+    val nGrams3 = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n, 3)) {
       nGrams3 += nGram
     }
 
     assert(nGrams3 == Seq[String]("僕は", "ナギ"))
 
-    val nGrams4: ListBuffer[String] = ListBuffer[String]()
+    val nGrams4 = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n, 4)) {
       nGrams4 += nGram
     }
 
     assert(nGrams4 == Seq[String]("僕は", "ギ"))
 
-    val nGrams5: ListBuffer[String] = ListBuffer[String]()
+    val nGrams5 = ListBuffer.empty[String]
     for (nGram <- unagiCopula.sliding(n, 5)) {
       nGrams5 += nGram
     }
@@ -1758,7 +1758,7 @@ GHI
   @Test
   def testGrouped(): Unit = {
     val n: Int = 2
-    val groups: ListBuffer[String] = ListBuffer[String]()
+    val groups = ListBuffer.empty[String]
     for (group <- unagiCopula.grouped(n)) {
       groups += group
     }
@@ -1769,7 +1769,7 @@ GHI
   @Test
   def testLines(): Unit = {
     val str: String = "\nUnigram\nBigram\r\nTrigram\n\n"
-    val result: ListBuffer[String] = ListBuffer[String]()
+    val result = ListBuffer.empty[String]
     for (line <- str.lines) {
       result += line
     }
@@ -1779,7 +1779,7 @@ GHI
   @Test
   def testLinesWithSeparators(): Unit = {
     val str: String = "\nUnigram\nBigram\r\nTrigram\n\n"
-    val result: ListBuffer[String] = ListBuffer[String]()
+    val result = ListBuffer.empty[String]
     for (line <- str.linesWithSeparators) {
       result += line
     }

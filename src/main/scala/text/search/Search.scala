@@ -88,7 +88,7 @@ object Search {
         KMPSkipSearch.indexOf[T](source, target)
       case Searching.AlphaSkipSearch =>
         AlphaSkipSearch.indexOf[T](source, target)
-      case otherwise =>
+      case _ =>
         throw new NoSuchSearchingAlgorithmException()
     }
   }
@@ -110,7 +110,7 @@ object Search {
     searching match {
       case Searching.BruteForce =>
         //TODO: fix here
-        val buffer: ListBuffer[Int] = ListBuffer[Int]()
+        val buffer = ListBuffer.empty[Int]
         for (i <- source.indices) {
           buffer += source.indexOf(target, i)
         }
@@ -127,7 +127,7 @@ object Search {
         MorrisPratt.indicesOf[T](source, target)
       case Searching.KnuthMorrisPratt =>
         //TODO: fix here
-        val buffer: ListBuffer[Int] = ListBuffer[Int]()
+        val buffer = ListBuffer.empty[Int]
         for (i <- source.indices) {
           buffer += source.indexOfSlice(target, i)
         }
@@ -190,7 +190,7 @@ object Search {
         KMPSkipSearch.indicesOf[T](source, target)
       case Searching.AlphaSkipSearch =>
         AlphaSkipSearch.indicesOf[T](source, target)
-      case otherwise =>
+      case _ =>
         throw new NoSuchSearchingAlgorithmException()
     }
   }

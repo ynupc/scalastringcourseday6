@@ -22,7 +22,7 @@ object Config {
   final lazy val nGram: Int = config.as[Option[Int]]("vector.concept.nGram.n") match {
     case Some(n) if 1 <= n =>
       n
-    case otherwise =>
+    case _ =>
       1
   }
 
@@ -31,7 +31,7 @@ object Config {
       gap
     case Some(gap) if gap < 0 =>
       Int.MaxValue
-    case otherwise =>
+    case _ =>
       0
   }
 
@@ -93,7 +93,7 @@ object Config {
         Similarity.Simpson
       case Some(sim) if sim equalsIgnoreCase "Tversky" =>
         Similarity.Tversky
-      case otherwise =>
+      case _ =>
         Similarity.Cosine
     }
   }
@@ -110,7 +110,7 @@ object Config {
         Overlap.Precision
       case Some(con) if con equalsIgnoreCase "Recall" =>
         Overlap.Recall
-      case otherwise =>
+      case _ =>
         Overlap.Rus05
     }
   }

@@ -26,7 +26,7 @@ object Dissimilarity extends Enumeration {
         calculateManhattan(v1, v2)
       case Minkowsky =>
         calculateMinkowsky(v1, v2, Config.minkowskyQ)
-      case otherwise =>
+      case _ =>
         defaultDissimilarity
     }
   }

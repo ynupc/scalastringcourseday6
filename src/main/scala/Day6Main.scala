@@ -1,6 +1,5 @@
 import java.text.{CharacterIterator, StringCharacterIterator}
 import java.util.StringTokenizer
-import java.util.function.Consumer
 import java.util.regex.Pattern
 
 import scala.util.matching.Regex
@@ -51,7 +50,7 @@ object Day6Main {
       unagiCopula match {
         case regex() =>
           true
-        case otherwise =>
+        case _ =>
           false
       }
     }
@@ -60,7 +59,7 @@ object Day6Main {
       unagiCopula match {
         case regexUnagiCopula() =>
           true
-        case otherwise =>
+        case _ =>
           false
       }
     }
@@ -90,19 +89,15 @@ object Day6Main {
     executionTime.printlnAverageExecutionTime(patternDelimiter.split(csv))
     executionTime.printlnAverageExecutionTime {
       Pattern.compile(delimiter).splitAsStream(csv) forEach {
-        new Consumer[String]() {
-          override def accept(str: String): Unit = {
+        (str: String) => {
 
-          }
         }
       }
     }
     executionTime.printlnAverageExecutionTime {
       patternDelimiter.splitAsStream(csv) forEach {
-        new Consumer[String]() {
-          override def accept(str: String): Unit = {
+        (str: String) => {
 
-          }
         }
       }
     }

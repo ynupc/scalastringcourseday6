@@ -25,7 +25,7 @@ class AverageSimilarityCalculator(val vectors: Seq[FrequencyVector]) {
       new SimilarityCalculator(vector)
     }
   }
-  val size = calculators.size
+  val size: Int = calculators.size
   def calculate(v2: FrequencyVector): Double = {
     var score: Double = 0D
     calculators foreach {
