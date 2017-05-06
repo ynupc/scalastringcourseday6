@@ -501,7 +501,7 @@ containsSliceはKMP法で実装されているので、その分のオーバー�
   def testStringTokenizer(): Unit = {
     //StringTokenizerは互換性を保つためにJavaが残しているlegacy classですので、可能な限り使用は避けましょう。
     val stringTokenizer = new StringTokenizer("A,B,C,D,E,F", ",")
-    val buffer: ListBuffer[String] = ListBuffer[String]()
+    val buffer = ListBuffer.empty[String]
 
     while (stringTokenizer.hasMoreTokens) {
       buffer += stringTokenizer.nextToken
@@ -528,7 +528,7 @@ linesメソッドは分割後に分割された文字列から行末文字を削
     //行末文字は削除する
     val it: Iterator[String] = multiLine.lines
 
-    val buffer: ListBuffer[String] = ListBuffer[String]()
+    val buffer = ListBuffer.empty[String]
     while (it.hasNext) {
       buffer += it.next
     }
@@ -546,7 +546,7 @@ linesメソッドは分割後に分割された文字列から行末文字を削
     //行末文字を残す
     val it: Iterator[String] = multiLine.linesWithSeparators
 
-    val buffer: ListBuffer[String] = ListBuffer[String]()
+    val buffer = ListBuffer.empty[String]
     while (it.hasNext) {
       buffer += it.next
     }
