@@ -256,7 +256,7 @@ Scalaでは、==演算子を使用すると文字列としての等値を見る�
     unagiCopula match {
       case regex() =>
         assert(true)
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -878,7 +878,7 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
           assert(matcher.group("third")    == "ギ")
           assert(matcher.group(3)          == "ギ")
 
-        case otherwise =>
+        case _ =>
           assert(false)
       }
     }
@@ -911,7 +911,7 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
         assert(first  == "ナギ")
         assert(second == "ナ")
         assert(third  == "ギ")
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
@@ -1015,7 +1015,7 @@ replaceメソッドによる文字の置換を複数回用いる場合は、repl
         assert(first  == "ナギ")
         assert(second == "ナ")
         assert(third  == "ギ")
-      case otherwise =>
+      case _ =>
         assert(false)
     }
   }
